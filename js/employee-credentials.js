@@ -1,25 +1,14 @@
 // Edit this list to change employee login accounts.
-// Add or remove entries as needed.
-// This is a static-site login, so credentials are stored client-side.
+// This is a static-site browser login, so credentials are stored client-side.
 window.EMPLOYEE_CREDENTIALS = [
     {
         username: "Aviation",
-        password: "ilovemygf",
+        password: "6767",
         displayName: "Aviation"
     },
     {
-        username: "Quasy",
-        password: "Quasyisgay",
-        displayName: "Quasy"
-    },
-    {
-	username: "Caden",
-	password: "Cadenisgoodceo",
-	displayName: "Caden"
-    },
-    {
-	username: "Volts",
-	password: "Voltsisawesome",
-	displayName: "Volts"
+        username: "MissionOps",
+        password: "change-me",
+        displayName: "Mission Ops"
     }
 ];

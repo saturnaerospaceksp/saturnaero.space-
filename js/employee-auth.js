@@ -25,9 +25,7 @@ const getEmployeeAccounts = () => {
     const rawAccounts = window.EMPLOYEE_CREDENTIALS;
     const list = Array.isArray(rawAccounts) ? rawAccounts : [rawAccounts];
 
-    return list
-        .map(normalizeEmployeeAccount)
-        .filter(Boolean);
+    return list.map(normalizeEmployeeAccount).filter(Boolean);
 };
 
 const getStoredEmployee = () => {

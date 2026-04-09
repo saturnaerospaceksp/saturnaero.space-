@@ -57,8 +57,16 @@ window.EmployeeAudit = {
             timestamp: new Date().toISOString()
         };
 
-        const nextEntries = [entry, ...getStoredAuditLog()];
-        saveAuditLog(nextEntries);
+        saveAuditLog([entry, ...getStoredAuditLog()]);
+
+        if (window.GitHubSync?.isConfigured()) {
+            try {
+                await window.GitHubSync.appendAuditEntry(entry);
+            } catch {
+                // Keep the local fallback even if the repo write fails.
+            }
+        }
+
         return entry;
     },
     getEntries() {

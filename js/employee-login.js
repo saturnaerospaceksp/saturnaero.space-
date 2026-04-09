@@ -3,54 +3,6 @@ const loginMessage = document.querySelector("[data-login-message]");
 const loginPanel = document.querySelector("[data-login-panel]");
 const logoutButton = document.querySelector("[data-logout]");
 const loggedInName = document.querySelector("[data-logged-in-name]");
-const auditList = document.querySelector("[data-audit-list]");
-
-const formatAuditTime = (value) => {
-    const parsed = new Date(value);
-
-    if (Number.isNaN(parsed.getTime())) {
-        return value || "";
-    }
-
-    return parsed.toLocaleString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit"
-    });
-};
-
-const renderAuditList = () => {
-    if (!auditList) {
-        return;
-    }
-
-    const entries = window.EmployeeAudit?.getEntries().slice(0, 8) || [];
-
-    if (!entries.length) {
-        auditList.innerHTML = `
-            <div class="audit-item">
-                <p>No employee activity has been logged yet.</p>
-            </div>
-        `;
-        return;
-    }
-
-    auditList.innerHTML = entries.map((entry) => {
-        const detailText = Object.entries(entry.details || {})
-            .map(([key, value]) => `${key}: ${value}`)
-            .join(" | ");
-
-        return `
-            <div class="audit-item">
-                <p><strong>${entry.action}</strong> by ${entry.employee}</p>
-                <p>${formatAuditTime(entry.timestamp)} | IP: ${entry.ip}</p>
-                ${detailText ? `<p>${detailText}</p>` : ""}
-            </div>
-        `;
-    }).join("");
-};
 
 const syncEmployeePanel = () => {
     if (!loginPanel) {
@@ -64,8 +16,6 @@ const syncEmployeePanel = () => {
     if (loggedInName) {
         loggedInName.textContent = employee ? employee.displayName : "";
     }
-
-    renderAuditList();
 };
 
 if (loginForm) {

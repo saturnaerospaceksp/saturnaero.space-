@@ -14,11 +14,11 @@ const cosmicNewsStorageKey = "saturnCosmicNewsData";
 
 const defaultCosmicNews = {
     featured: {
-        tag: "Featured Update",
-        title: "Use this lead slot for the biggest Saturn Aerospace story of the moment.",
-        meta: "Ideal for launch results, fleet reveals, long mission recaps, or a major studio-wide announcement.",
-        body: "This featured block is designed to hold the main headline and a longer summary before the reader drops into the rest of the page. If something important happens, this is where it should land first.",
-        note: "Suggested use: publish the most important update here, then refresh this lead slot whenever a bigger story takes over.",
+        tag: "Cosmic News",
+        title: "Latest news from Saturn Aerospace",
+        meta: "Official updates, mission notes, fleet news, and community announcements.",
+        body: "This page is where Saturn Aerospace publishes its latest stories and major updates as new missions, vehicles, and milestones arrive.",
+        note: "New posts from staff will appear below as they are published.",
         image: ""
     },
     posts: []
@@ -60,7 +60,7 @@ const normalizePost = (post, index) => {
         return null;
     }
 
-    const id = String(post.id || `post-${index}`);
+    const id = String(post.id || `post-${index}`).trim();
     const tag = String(post.tag || "").trim();
     const title = String(post.title || "").trim();
     const meta = String(post.meta || "").trim();
@@ -98,41 +98,52 @@ const normalizeFeatured = (featured) => {
     };
 };
 
-const readImageInput = (fileInput, fallbackImage = "") => {
-    const file = fileInput?.files?.[0];
+const normalizeCosmicNews = (data) => {
+    const source = data && typeof data === "object" ? data : {};
 
-    if (!file) {
-        return Promise.resolve(fallbackImage);
-    }
+    return {
+        featured: normalizeFeatured(source.featured),
+        posts: Array.isArray(source.posts)
+            ? source.posts.map(normalizePost).filter(Boolean)
+            : []
+    };
+};
 
+const readLocalImageInput = (file) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
-        reader.onload = () => resolve(String(reader.result || fallbackImage));
+        reader.onload = () => resolve(String(reader.result || ""));
         reader.onerror = () => reject(new Error("Image upload failed"));
         reader.readAsDataURL(file);
     });
+};
+
+const readImageInput = async (fileInput, fallbackImage = "") => {
+    const file = fileInput?.files?.[0];
+
+    if (!file) {
+        return fallbackImage;
+    }
+
+    if (window.GitHubSync?.uploadNewsImage) {
+        return window.GitHubSync.uploadNewsImage(file);
+    }
+
+    return readLocalImageInput(file);
 };
 
 const getStoredCosmicNews = () => {
     const raw = localStorage.getItem(cosmicNewsStorageKey);
 
     if (!raw) {
-        return cloneNewsData(defaultCosmicNews);
+        return normalizeCosmicNews(defaultCosmicNews);
     }
 
     try {
-        const parsed = JSON.parse(raw);
-        const posts = Array.isArray(parsed.posts)
-            ? parsed.posts.map(normalizePost).filter(Boolean)
-            : cloneNewsData(defaultCosmicNews).posts;
-
-        return {
-            featured: normalizeFeatured(parsed.featured),
-            posts: posts.length ? posts : cloneNewsData(defaultCosmicNews).posts
-        };
+        return normalizeCosmicNews(JSON.parse(raw));
     } catch {
-        return cloneNewsData(defaultCosmicNews);
+        return normalizeCosmicNews(defaultCosmicNews);
     }
 };
 
@@ -261,6 +272,35 @@ const fillPostForm = (postId) => {
     postForm.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
+const persistCosmicNews = async (employeeName, successMessage, localOnlyMessage) => {
+    const normalizedState = normalizeCosmicNews(cosmicNewsState);
+
+    if (window.GitHubSync?.isConfigured()) {
+        try {
+            cosmicNewsState = normalizeCosmicNews(await window.GitHubSync.saveNews(normalizedState, employeeName));
+            saveCosmicNews();
+            renderFeaturedStory();
+            renderNewsPosts();
+            setNewsMessage(successMessage, "is-success");
+            return true;
+        } catch {
+            cosmicNewsState = normalizedState;
+            saveCosmicNews();
+            renderFeaturedStory();
+            renderNewsPosts();
+            setNewsMessage(localOnlyMessage, "is-error");
+            return false;
+        }
+    }
+
+    cosmicNewsState = normalizedState;
+    saveCosmicNews();
+    renderFeaturedStory();
+    renderNewsPosts();
+    setNewsMessage(localOnlyMessage, "is-error");
+    return false;
+};
+
 const syncNewsEditor = () => {
     const employee = window.EmployeeAuth?.getCurrentEmployee();
     const isAuthenticated = Boolean(employee);
@@ -285,7 +325,9 @@ const syncNewsEditor = () => {
 
     if (newsStatus) {
         newsStatus.textContent = isAuthenticated
-            ? "You can update the featured story, edit existing posts, publish new posts, or remove posts from the feed."
+            ? (window.GitHubSync?.isConfigured()
+                ? "You can update the featured story, publish posts, upload images, and write those changes back to GitHub from this page."
+                : "You can edit from this page, but changes will stay in this browser until GitHub sync is configured in js/github-sync-config.js.")
             : "";
     }
 
@@ -297,7 +339,9 @@ if (featuredForm) {
     featuredForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        if (!window.EmployeeAuth?.isAuthenticated()) {
+        const employee = window.EmployeeAuth?.getCurrentEmployee();
+
+        if (!employee) {
             setNewsMessage("Log in before editing the featured story.", "is-error");
             return;
         }
@@ -318,13 +362,18 @@ if (featuredForm) {
             return;
         }
 
-        saveCosmicNews();
-        renderFeaturedStory();
+        const savedToGitHub = await persistCosmicNews(
+            employee.displayName,
+            "Featured story updated.",
+            "Featured story saved only in this browser. Add your GitHub token in js/github-sync-config.js to publish from the website."
+        );
+
         await window.EmployeeAudit?.log("featured_story_updated", {
             page: "cosmic-news",
-            title: cosmicNewsState.featured.title
+            title: cosmicNewsState.featured.title,
+            sync: savedToGitHub ? "github" : "local"
         });
-        setNewsMessage("Featured story updated.", "is-success");
+
         featuredForm.elements.image.value = "";
     });
 }
@@ -370,23 +419,25 @@ if (postForm) {
 
         if (existingIndex >= 0) {
             cosmicNewsState.posts[existingIndex] = nextPost;
-            await window.EmployeeAudit?.log("news_post_updated", {
-                page: "cosmic-news",
-                title: nextPost.title
-            });
-            setNewsMessage("Post updated.", "is-success");
         } else {
             cosmicNewsState.posts.unshift(nextPost);
-            await window.EmployeeAudit?.log("news_post_created", {
-                page: "cosmic-news",
-                title: nextPost.title
-            });
-            setNewsMessage("New post published.", "is-success");
         }
 
-        saveCosmicNews();
+        const savedToGitHub = await persistCosmicNews(
+            employee.displayName,
+            existingIndex >= 0 ? "Post updated." : "New post published.",
+            existingIndex >= 0
+                ? "Post updated only in this browser. Add your GitHub token in js/github-sync-config.js to publish from the website."
+                : "New post saved only in this browser. Add your GitHub token in js/github-sync-config.js to publish from the website."
+        );
+
+        await window.EmployeeAudit?.log(existingIndex >= 0 ? "news_post_updated" : "news_post_created", {
+            page: "cosmic-news",
+            title: nextPost.title,
+            sync: savedToGitHub ? "github" : "local"
+        });
+
         resetPostForm();
-        renderNewsPosts();
     });
 }
 
@@ -398,7 +449,7 @@ if (postResetButton) {
 }
 
 if (newsPostsContainer) {
-    newsPostsContainer.addEventListener("click", (event) => {
+    newsPostsContainer.addEventListener("click", async (event) => {
         const target = event.target;
 
         if (!(target instanceof HTMLElement)) {
@@ -417,13 +468,18 @@ if (newsPostsContainer) {
         if (deleteId) {
             const deletedPost = cosmicNewsState.posts.find((entry) => entry.id === deleteId);
             cosmicNewsState.posts = cosmicNewsState.posts.filter((entry) => entry.id !== deleteId);
-            saveCosmicNews();
-            renderNewsPosts();
-            void window.EmployeeAudit?.log("news_post_removed", {
+
+            const savedToGitHub = await persistCosmicNews(
+                window.EmployeeAuth?.getCurrentEmployee()?.displayName || "Saturn Aerospace",
+                "Post removed.",
+                "Post removed only in this browser. Add your GitHub token in js/github-sync-config.js to publish removals from the website."
+            );
+
+            await window.EmployeeAudit?.log("news_post_removed", {
                 page: "cosmic-news",
-                title: deletedPost?.title || deleteId
+                title: deletedPost?.title || deleteId,
+                sync: savedToGitHub ? "github" : "local"
             });
-            setNewsMessage("Post removed.", "is-success");
         }
     });
 }
@@ -437,5 +493,24 @@ if (newsLogoutButton) {
     });
 }
 
-renderFeaturedStory();
-syncNewsEditor();
+const loadCosmicNews = async () => {
+    cosmicNewsState = getStoredCosmicNews();
+    renderFeaturedStory();
+    syncNewsEditor();
+
+    if (!window.GitHubSync?.fetchNews) {
+        return;
+    }
+
+    try {
+        const fetchedNews = await window.GitHubSync.fetchNews(defaultCosmicNews);
+        cosmicNewsState = normalizeCosmicNews(fetchedNews);
+        saveCosmicNews();
+        renderFeaturedStory();
+        syncNewsEditor();
+    } catch {
+        // Keep the local fallback if the public fetch fails.
+    }
+};
+
+void loadCosmicNews();
