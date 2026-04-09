@@ -3,29 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saturn</title>
-
+    <meta name="description" content="Saturn Aerospace builds practical aerospace systems with a focus on precision, reliability, and forward-thinking engineering.">
+    <title>Saturn Aerospace</title>
     <style>
+        :root {
+            --bg: #08111f;
+            --panel: rgba(8, 17, 31, 0.72);
+            --text: #f4f7fb;
+            --muted: #b8c3d6;
+            --accent: #6fd3ff;
+            --accent-strong: #2a95d1;
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b0f1a;
-            color: #e6e6e6;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(111, 211, 255, 0.2), transparent 32%),
+                linear-gradient(160deg, #050a12 0%, #08111f 45%, #10233c 100%);
+        }
+
+        .page {
+            width: min(1100px, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: 2rem 0 4rem;
+        }
+
+        .nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
+            padding: 0.75rem 0 2rem;
+        }
+
+        .brand {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.18rem;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 3rem 0;
+        }
+
+        .hero-card,
+        .info-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card {
+            padding: 3rem;
+        }
+
+        .eyebrow {
+            margin: 0 0 1rem;
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 0.18rem;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: 3rem;
-            letter-spacing: 1px;
+            margin: 0;
+            font-size: clamp(2.5rem, 5vw, 4.75rem);
+            line-height: 1.05;
+        }
+
+        .lead {
+            margin: 1.5rem 0 0;
+            max-width: 42rem;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+            padding: 0.9rem 1.35rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+        .button-primary {
+            color: #031018;
+            background: var(--accent);
+        }
+
+        .button-secondary {
+            color: var(--text);
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .info-card {
+            padding: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .stat {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .stat strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 1.1rem;
+        }
+
+        .stat span {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .section-card {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .section-card h2 {
+            margin: 0 0 0.75rem;
+            font-size: 1.05rem;
+        }
+
+        .section-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        @media (max-width: 860px) {
+            .hero,
+            .sections {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card,
+            .info-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="page">
+        <header class="nav">
+            <div class="brand">Saturn Aerospace</div>
+        </header>
 
-    <h1>Hello there, Saturn Aerospace viewers 🚀</h1>
+        <main>
+            <section class="hero">
+                <div class="hero-card">
+                    <p class="eyebrow">Basic Index Page</p>
+                    <h1>Engineering flight systems with clarity and purpose.</h1>
+                    <p class="lead">
+                        Saturn Aerospace is a simple landing page placeholder for your site.
+                        It gives you a clean homepage now, with enough structure to expand into
+                        services, projects, team details, or contact information later.
+                    </p>
+                    <div class="actions">
+                        <a class="button button-primary" href="mailto:contact@saturnaero.space">Contact</a>
+                        <a class="button button-secondary" href="#overview">Overview</a>
+                    </div>
+                </div>
 
+                <aside class="info-card">
+                    <div class="stats">
+                        <div class="stat">
+                            <strong>Focused</strong>
+                            <span>Minimal static structure that is easy to maintain.</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Responsive</strong>
+                            <span>Layout adapts cleanly across desktop and mobile screens.</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Ready To Extend</strong>
+                            <span>Add navigation, product sections, forms, or project showcases as needed.</span>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="sections" id="overview">
+                <article class="section-card">
+                    <h2>Mission</h2>
+                    <p>Build a credible first page that presents Saturn Aerospace with a professional baseline.</p>
+                </article>
+                <article class="section-card">
+                    <h2>Capability</h2>
+                    <p>Use this page as a starting point for company messaging, updates, and service descriptions.</p>
+                </article>
+                <article class="section-card">
+                    <h2>Next Step</h2>
+                    <p>Replace the placeholder copy with your real brand, offerings, and contact details.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="footer">
+            Saturn Aerospace
+        </footer>
+    </div>
 </body>
 </html>
