@@ -21,38 +21,7 @@ const defaultCosmicNews = {
         note: "Suggested use: publish the most important update here, then refresh this lead slot whenever a bigger story takes over.",
         image: ""
     },
-    posts: [
-        {
-            id: "default-mission-update",
-            tag: "Mission Update",
-            title: "Post launch-day status, mission recaps, or operational notes here.",
-            meta: "Best for short updates that still deserve a proper headline and summary.",
-            body: "This slot works well for countdown notes, in-flight progress, recovery confirmation, or a short breakdown of what changed during a mission campaign.",
-            image: "",
-            author: "Saturn Aerospace",
-            updatedAt: "Template"
-        },
-        {
-            id: "default-fleet-news",
-            tag: "Fleet News",
-            title: "Use this space for vehicle reveals, upgrades, and development milestones.",
-            meta: "Perfect for Rhea, Daphnis, Hyperion, and future fleet updates.",
-            body: "If a vehicle receives a redesign, a new patch, fresh renders, or a major capability change, this card format gives it enough room without needing a full pinned story.",
-            image: "",
-            author: "Saturn Aerospace",
-            updatedAt: "Template"
-        },
-        {
-            id: "default-community-notice",
-            tag: "Community Notice",
-            title: "Share studio announcements, events, or community-facing news articles.",
-            meta: "Useful for schedules, volunteer notices, creative showcases, and public updates.",
-            body: "This is the most flexible slot on the page. It can handle general announcements just as easily as editorial-style posts, event summaries, or smaller bits of weekly news.",
-            image: "",
-            author: "Saturn Aerospace",
-            updatedAt: "Template"
-        }
-    ]
+    posts: []
 };
 
 const cloneNewsData = (data) => JSON.parse(JSON.stringify(data));
@@ -218,10 +187,9 @@ const renderNewsPosts = () => {
     if (!cosmicNewsState.posts.length) {
         newsPostsContainer.innerHTML = `
             <article class="forum-card">
-                <span class="forum-tag">No Posts Yet</span>
-                <h3>Cosmic News is ready for the next update.</h3>
-                <p class="forum-meta">The feed is empty right now.</p>
-                <p>Log in with an employee account to publish the first post for this session.</p>
+                <span class="forum-tag">No News Yet</span>
+                <h3>No Cosmic News posts have been published yet.</h3>
+                <p class="forum-meta">This feed will update as soon as the first article is posted.</p>
             </article>
         `;
         return;

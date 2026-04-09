@@ -10,7 +10,7 @@ window.EMPLOYEE_CREDENTIALS = [
     {
         username: "Quasy",
         password: "Quasyisgay",
-        displayName: "Smeggy Gay Boy"
+        displayName: "Quasy"
     },
     {
 	username: "Caden",
