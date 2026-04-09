@@ -3,15 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hello World">
-    <title>Hello World</title>
+    <meta name="description" content="Saturn Aerospace">
+    <meta name="theme-color" content="#060606">
+    <title>Saturn Aerospace</title>
+    <link rel="icon" type="image/png" href="img/SA_Logo.png">
     <link rel="stylesheet" href="style/style.css">
 </head>
-<body>
-    <main>
-        <h1>Hello World</h1>
-        <p>This page is responsive and should work cleanly on phones, tablets, and desktop screens.</p>
+<body data-page="home">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html" aria-label="Saturn Aerospace home">
+                <img class="brand-logo" src="img/SA_Logo.png" alt="" aria-hidden="true">
+                <span class="brand-text">Saturn Aerospace</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+                <a href="index.html" data-nav-link="home">Home</a>
+                <a href="volunteering.html" data-nav-link="volunteering">Volunteering</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero hero-home">
+            <img class="hero-media" src="img/Screenshot_269.png" alt="An astronaut looking out over a lunar horizon toward Earth.">
+            <div class="hero-overlay"></div>
+            <div class="container hero-inner">
+                <div class="hero-copy" data-reveal>
+                    <p class="hero-kicker">Saturn Aerospace</p>
+                    <h1 class="display kinetic" data-kinetic>Reaching the stars, together.</h1>
+                    <p class="hero-subtitle">
+                        Saturn Aerospace is a cinematic space community built around bold visuals,
+                        shared momentum, and the people who want to be part of where it goes next.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="volunteering.html">Volunteer</a>
+                        <a class="button button-ghost" data-community-link="discord" href="#">Join Discord</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-band">
+            <div class="container media-grid media-grid-reverse">
+                <div class="media-copy" data-reveal>
+                    <p class="section-kicker">Inside the mission</p>
+                    <h2 class="section-title kinetic" data-kinetic>A sharper first impression.</h2>
+                    <p>
+                        The homepage now stays intentionally short: one strong opening scene, one follow-up
+                        band, and a direct path into volunteering and community channels.
+                    </p>
+                    <div class="hero-actions compact-actions">
+                        <a class="button button-primary" data-community-link="youtube" href="#">YouTube</a>
+                        <a class="button button-ghost" data-community-link="email" href="#">Email</a>
+                    </div>
+                </div>
+                <figure class="media-panel" data-reveal>
+                    <img src="img/Screenshot_265.png" alt="The interior of a spacecraft with seats and hatchways leading deeper inside.">
+                </figure>
+            </div>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-title">Saturn Aerospace</p>
+                <p class="footer-copy">A cinematic space experience focused on community, atmosphere, and the people ready to step forward.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="volunteering.html">Volunteering</a>
+                <a data-community-link="discord" href="#">Discord</a>
+                <a data-community-link="youtube" href="#">YouTube</a>
+                <a href="misc/Saturn%20Aerospace%20T%26C%27s%20%26%20Privacy%20Policy.pdf" target="_blank" rel="noreferrer">T&amp;Cs / Privacy</a>
+            </div>
+        </div>
+        <div class="container footer-meta">
+            <p>&copy; <span data-current-year></span> Saturn Aerospace</p>
+        </div>
+    </footer>
+
     <script src="js/script.js"></script>
 </body>
 </html>
