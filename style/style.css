@@ -320,7 +320,7 @@ img {
 
 .hero-copy {
     position: relative;
-    width: min(100%, 58rem);
+    width: min(100%, 70rem);
     max-width: 100%;
     text-align: center;
     padding: clamp(0.5rem, 1vw, 1rem);
@@ -357,13 +357,14 @@ img {
     margin: 0;
     color: var(--text);
     font-weight: 700;
-    line-height: 0.95;
-    text-wrap: balance;
+    line-height: 1;
+    text-wrap: pretty;
+    max-width: 100%;
 }
 
 .display {
-    max-width: 13ch;
-    font-size: clamp(3.25rem, 7vw, 6.75rem);
+    font-size: clamp(2.7rem, 5.4vw, 5.2rem);
+    letter-spacing: -0.015em;
 }
 
 .hero-lockup {
@@ -382,7 +383,8 @@ img {
 }
 
 .section-title {
-    font-size: clamp(2rem, 4.8vw, 4rem);
+    font-size: clamp(1.7rem, 3.2vw, 3.15rem);
+    letter-spacing: -0.012em;
 }
 
 .kinetic {
@@ -398,11 +400,11 @@ img {
 }
 
 .hero-subtitle {
-    max-width: min(100%, 48rem);
+    max-width: min(100%, 54rem);
     margin: 0.25rem auto 0;
     color: #f3e5c0;
-    font-size: clamp(1rem, 1.5vw, 1.22rem);
-    letter-spacing: 0.042em;
+    font-size: clamp(0.98rem, 1.2vw, 1.1rem);
+    letter-spacing: 0.035em;
     text-transform: uppercase;
     text-wrap: pretty;
     text-shadow: 0 0 18px rgba(243, 223, 172, 0.08);
@@ -558,7 +560,7 @@ img {
 }
 
 .media-copy {
-    max-width: 34rem;
+    max-width: 44rem;
 }
 
 .media-copy p:last-of-type {
@@ -1234,17 +1236,13 @@ body[data-page="hyperion"] .gallery-card img {
         font-size: 0.94rem;
     }
 
-    .display {
-        max-width: 10ch;
-    }
-
     .hero-banner {
         width: min(26rem, 88vw);
     }
 
     .hero-subtitle {
-        max-width: min(100%, 30rem);
-        letter-spacing: 0.03em;
+        max-width: min(100%, 34rem);
+        letter-spacing: 0.028em;
     }
 
     .hero::before {
