@@ -3,6 +3,11 @@ const loginMessage = document.querySelector("[data-login-message]");
 const loginPanel = document.querySelector("[data-login-panel]");
 const logoutButton = document.querySelector("[data-logout]");
 const loggedInName = document.querySelector("[data-logged-in-name]");
+const STAFF_HUB_PATH = "staff-hub.html";
+
+const redirectToStaffHub = () => {
+    window.location.href = STAFF_HUB_PATH;
+};
 
 const syncEmployeePanel = () => {
     if (!loginPanel) {
@@ -33,10 +38,11 @@ if (loginForm) {
                 page: "employee-login",
                 username: account.username
             });
-            loginMessage.textContent = `Login successful. ${account.displayName} now has employee access on this browser session.`;
+            loginMessage.textContent = `Login successful. Redirecting ${account.displayName} to the Staff Hub.`;
             loginMessage.className = "auth-message is-success";
             loginForm.reset();
             syncEmployeePanel();
+            redirectToStaffHub();
             return;
         }
 
@@ -58,6 +64,11 @@ if (logoutButton) {
 
         syncEmployeePanel();
     });
+}
+
+if (window.EmployeeAuth?.isAuthenticated()) {
+    syncEmployeePanel();
+    redirectToStaffHub();
 }
 
 syncEmployeePanel();

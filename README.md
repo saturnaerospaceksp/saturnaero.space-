@@ -18,7 +18,8 @@ Static marketing site for `saturnaero.space`, built as plain HTML, CSS, JSON, an
 - `hyperion.html`: launcher page
 - `rhea.html`: launcher page
 - `volunteering.html`: volunteering / recruitment page
-- `employee-login.html`: browser-session employee login page
+- `employee-login.html`: staff login page for internal access
+- `staff-hub.html`: internal staff landing page after login
 
 ## Repo Structure
 
@@ -39,7 +40,8 @@ Static marketing site for `saturnaero.space`, built as plain HTML, CSS, JSON, an
 |   |-- employee-credentials.js
 |   |-- employee-login.js
 |   |-- github-sync-config.js
-|   `-- github-sync.js
+|   |-- github-sync.js
+|   `-- staff-hub.js
 |-- misc/
 `-- templates/
     |-- future-page-notes.md
@@ -72,9 +74,9 @@ All visual styling lives in `style/style.css`. The current design language is:
 
 ### Employee login
 
-`employee-login.html` and the news editor use browser-only auth:
+`employee-login.html`, `staff-hub.html`, and the news editor use browser-only auth:
 
-- credentials are defined in `js/employee-credentials.js`
+- the shared staff credential is defined in `js/employee-credentials.js`
 - auth state is stored in `sessionStorage`
 - audit entries are stored in `localStorage`
 - this is not secure server-side authentication
@@ -176,6 +178,12 @@ Important:
 ### Update employee credentials
 
 Edit `js/employee-credentials.js`.
+
+Current credential:
+
+- username: `saturn.staff`
+- password: `26`
+- display label: `Saturn Staff`
 
 Current model:
 

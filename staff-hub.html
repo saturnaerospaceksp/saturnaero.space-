@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Staff login for Saturn Aerospace team access.">
+    <meta name="description" content="Staff Hub for Saturn Aerospace internal staff tools and updates.">
     <meta name="theme-color" content="#060606">
-    <title>Staff Login | Saturn Aerospace</title>
+    <title>Staff Hub | Saturn Aerospace</title>
     <link rel="icon" type="image/png" href="img/SA_Logo.png">
     <link rel="stylesheet" href="style/style.css">
 </head>
-<body data-page="employee-login">
+<body data-page="staff-hub">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header" data-site-header>
@@ -47,43 +47,36 @@
 
     <main id="main-content">
         <section class="hero hero-page">
-            <img class="hero-media" src="img/Screenshot_269.png" alt="A Saturn Aerospace space scene with an astronaut looking toward Earth.">
+            <img class="hero-media" src="img/Screenshot_377.png" alt="A Saturn Aerospace vehicle in orbit above Earth.">
             <div class="hero-overlay"></div>
             <div class="container hero-inner">
                 <div class="hero-copy auth-shell" data-reveal>
-                    <p class="hero-kicker">Staff Access</p>
-                    <h1 class="display kinetic" data-kinetic>Staff Login</h1>
+                    <p class="hero-kicker">Internal Workspace</p>
+                    <h1 class="display kinetic" data-kinetic>Staff Hub</h1>
                     <p class="hero-subtitle">
-                        Sign in with the shared staff credential to access the Staff Hub and internal tools for this browser session.
+                        Welcome back, <span data-staff-name>Saturn Staff</span>. This hub is the landing point for staff tools, updates, and internal workflows.
                     </p>
 
                     <div class="auth-card">
-                        <form class="auth-form" data-login-form>
-                            <div class="auth-field">
-                                <label for="employee-username">Username</label>
-                                <input id="employee-username" name="username" type="text" autocomplete="username" placeholder="Enter username" required>
+                        <div class="editor-toolbar">
+                            <div>
+                                <p class="section-kicker">Hub Access</p>
+                                <h3>Staff session is active</h3>
                             </div>
-
-                            <div class="auth-field">
-                                <label for="employee-password">Password</label>
-                                <input id="employee-password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+                            <div class="editor-actions">
+                                <button class="button button-ghost button-small" type="button" data-staff-logout>Log Out</button>
                             </div>
-
-                            <button class="button button-primary" type="submit">Log In</button>
-                            <p class="auth-message" data-login-message></p>
-                        </form>
-                    </div>
-
-                    <section class="auth-panel" data-login-panel>
-                        <h3>Staff Access Active</h3>
-                        <p>
-                            Signed in as <strong data-logged-in-name></strong>. You can continue directly into the Staff Hub from this browser session.
-                        </p>
-                        <div class="hero-actions compact-actions">
-                            <a class="button button-ghost" href="staff-hub.html">Open Staff Hub</a>
-                            <button class="button button-ghost" type="button" data-logout>Log Out</button>
                         </div>
-                    </section>
+
+                        <p>
+                            The Staff Hub is now live as the central landing page for internal access. Additional staff sections can be added here next.
+                        </p>
+
+                        <div class="hero-actions compact-actions">
+                            <a class="button button-primary" href="cosmic-news.html">Open Cosmic News</a>
+                            <a class="button button-ghost" href="employee-login.html">Back to Login</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -93,7 +86,7 @@
         <div class="container footer-grid">
             <div>
                 <p class="footer-title">Saturn Aerospace</p>
-                <p class="footer-copy">Staff access for the Saturn Aerospace internal workspace and tools.</p>
+                <p class="footer-copy">The Staff Hub is the internal landing page for Saturn Aerospace staff tools and updates.</p>
             </div>
             <div class="footer-links">
                 <a href="index.html">Home</a>
@@ -122,11 +115,8 @@
     </footer>
 
     <script src="js/employee-credentials.js"></script>
-    <script src="js/github-sync-config.js"></script>
     <script src="js/employee-auth.js"></script>
-    <script src="js/github-sync.js"></script>
-    <script src="js/employee-audit.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/employee-login.js"></script>
+    <script src="js/staff-hub.js"></script>
 </body>
 </html>
