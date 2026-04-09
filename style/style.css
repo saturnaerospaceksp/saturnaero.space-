@@ -1,26 +1,4 @@
-@font-face {
-    font-family: "KH Interference";
-    src: url("../fonts/KHInterferenceSite-Light-2.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "KH Interference";
-    src: url("../fonts/KHInterferenceSite-Regular-2.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "KH Interference";
-    src: url("../fonts/KHInterferenceSite-Bold-2.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;700&display=swap");
 
 :root {
     color-scheme: dark;
@@ -55,7 +33,7 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: "KH Interference", Arial, Helvetica, sans-serif;
+    font-family: "Atkinson Hyperlegible Mono", "Courier New", monospace;
     color: var(--text);
     background:
         radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 24rem),
