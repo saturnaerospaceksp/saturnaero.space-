@@ -631,6 +631,51 @@ img {
     margin-bottom: 0;
 }
 
+.home-intro .media-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 52rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home-intro .section-title {
+    margin-bottom: 1rem;
+}
+
+.home-break {
+    padding-block: clamp(1.2rem, 3vw, 2.2rem);
+}
+
+.home-break-panel {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(14rem, 32vw, 25rem);
+    padding: clamp(1.8rem, 4vw, 3rem);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.72) 100%),
+        url("../img/Screenshot_193.png") center center / cover no-repeat;
+}
+
+.home-break-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+}
+
+.home-break-copy .section-title {
+    margin-bottom: 1rem;
+}
+
+.home-break-copy p {
+    margin: 0;
+    color: #f1e5c7;
+    line-height: 1.72;
+    font-size: clamp(1rem, 1.25vw, 1.1rem);
+}
+
 .media-panel {
     position: relative;
     margin: 0;
