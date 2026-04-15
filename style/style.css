@@ -838,12 +838,20 @@ body[data-page="hyperion"] .gallery-card img {
     align-items: start;
 }
 
+.forum-feature-grid-video {
+    grid-template-columns: minmax(0, 1fr);
+}
+
 .forum-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .forum-card,
 .forum-item {
+    padding: 1.35rem;
+}
+
+.forum-video-feature {
     padding: 1.35rem;
 }
 
@@ -869,6 +877,20 @@ body[data-page="hyperion"] .gallery-card img {
     margin-bottom: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.03);
+}
+
+.forum-video-wrap {
+    width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.forum-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
 }
 
 .forum-feature h3,

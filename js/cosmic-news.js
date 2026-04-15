@@ -1,5 +1,5 @@
 const newsFeaturedContainer = document.querySelector("[data-news-featured]");
-const newsPostsContainer = document.querySelector("[data-news-posts]");
+const newsLatestVideoContainer = document.querySelector("[data-news-latest-video]");
 const newsTools = document.querySelector("[data-news-tools]");
 const newsEditor = document.querySelector("[data-news-editor]");
 const newsStatus = document.querySelector("[data-news-status]");
@@ -18,13 +18,56 @@ const defaultCosmicNews = {
         title: "Latest news from Saturn Aerospace",
         meta: "Official updates, mission notes, fleet news, and community announcements.",
         body: "This page is where Saturn Aerospace publishes its latest stories and major updates as new missions, vehicles, and milestones arrive.",
-        note: "New posts from staff will appear below as they are published.",
+        note: "New SaturnCast videos will appear below as they are published.",
         image: ""
     },
     posts: []
 };
 
 const cloneNewsData = (data) => JSON.parse(JSON.stringify(data));
+
+const defaultSaturnCastVideo = {
+    tag: "SaturnCast",
+    title: "SaturnCast: Part One",
+    meta: "Monthly video update from Saturn Aerospace.",
+    body: "This video covers the Leadership transition, Hyperion/Tarvos incident, the Rhea return to flight, a strategic shift in the lunar missions, and the SCOM program restart and a Q&A at the end.",
+    videoUrl: "https://youtu.be/k9M--UIoIUs",
+    author: "Saturn Aerospace",
+    updatedAt: "2026-04-15T00:00:00.000Z"
+};
+
+const getYouTubeEmbedUrl = (value) => {
+    const raw = String(value || "").trim();
+
+    if (!raw) {
+        return "";
+    }
+
+    try {
+        const url = new URL(raw);
+
+        if (url.hostname === "youtu.be") {
+            const videoId = url.pathname.replaceAll("/", "").trim();
+            return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : "";
+        }
+
+        if (url.hostname.includes("youtube.com")) {
+            const videoId = url.searchParams.get("v");
+
+            if (videoId) {
+                return `https://www.youtube-nocookie.com/embed/${videoId}`;
+            }
+
+            if (url.pathname.startsWith("/embed/")) {
+                return `https://www.youtube-nocookie.com${url.pathname}`;
+            }
+        }
+    } catch {
+        return "";
+    }
+
+    return "";
+};
 
 const escapeHtml = (value) => {
     return String(value)
@@ -66,6 +109,7 @@ const normalizePost = (post, index) => {
     const meta = String(post.meta || "").trim();
     const body = String(post.body || "").trim();
     const image = String(post.image || "").trim();
+    const videoUrl = String(post.videoUrl || "").trim();
     const author = String(post.author || "Saturn Aerospace").trim();
     const updatedAt = String(post.updatedAt || "").trim();
 
@@ -80,6 +124,7 @@ const normalizePost = (post, index) => {
         meta,
         body,
         image,
+        videoUrl,
         author: author || "Saturn Aerospace",
         updatedAt: updatedAt || "Template"
     };
@@ -178,7 +223,7 @@ const renderFeaturedStory = () => {
                 <p class="forum-meta">${escapeHtml(featured.meta)}</p>
                 <p>${escapeHtml(featured.body)}</p>
                 <div class="hero-actions compact-actions">
-                    <a class="button button-primary" href="#latest-updates">Read Latest Posts</a>
+                    <a class="button button-primary" href="#latest-updates">Watch Latest Video</a>
                 </div>
             </div>
             <div class="forum-note">
@@ -188,46 +233,54 @@ const renderFeaturedStory = () => {
     `;
 };
 
-const renderNewsPosts = () => {
-    if (!newsPostsContainer) {
+const renderLatestVideo = () => {
+    if (!newsLatestVideoContainer) {
         return;
     }
 
-    const isAuthenticated = window.EmployeeAuth?.isAuthenticated();
+    const latestVideoPost = cosmicNewsState.posts.find((post) => post.videoUrl) || defaultSaturnCastVideo;
 
-    if (!cosmicNewsState.posts.length) {
-        newsPostsContainer.innerHTML = `
-            <article class="forum-card">
-                <span class="forum-tag">No News Yet</span>
-                <h3>No Cosmic News posts have been published yet.</h3>
-                <p class="forum-meta">This feed will update as soon as the first article is posted.</p>
-            </article>
-        `;
-        return;
-    }
+    const byline = latestVideoPost.updatedAt
+        ? `Posted by ${escapeHtml(latestVideoPost.author)} | ${escapeHtml(formatTimestamp(latestVideoPost.updatedAt))}`
+        : `Posted by ${escapeHtml(latestVideoPost.author)}`;
+    const videoEmbedUrl = getYouTubeEmbedUrl(latestVideoPost.videoUrl);
+    const videoBody = defaultSaturnCastVideo.body;
 
-    newsPostsContainer.innerHTML = cosmicNewsState.posts.map((post) => {
-        const byline = post.updatedAt
-            ? `Posted by ${escapeHtml(post.author)} | ${escapeHtml(formatTimestamp(post.updatedAt))}`
-            : `Posted by ${escapeHtml(post.author)}`;
-
-        return `
-            <article class="forum-card" data-reveal>
-                ${post.image ? `<img class="forum-image" src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}">` : ""}
-                <span class="forum-tag">${escapeHtml(post.tag)}</span>
-                <h3>${escapeHtml(post.title)}</h3>
-                <p class="forum-meta">${escapeHtml(post.meta)}</p>
-                <p>${escapeHtml(post.body)}</p>
-                <p class="forum-byline">${byline}</p>
-                ${isAuthenticated ? `
-                    <div class="forum-card-actions">
-                        <button class="button button-ghost button-small" type="button" data-post-edit="${escapeHtml(post.id)}">Edit</button>
-                        <button class="button button-ghost button-small" type="button" data-post-delete="${escapeHtml(post.id)}">Delete</button>
+    newsLatestVideoContainer.innerHTML = `
+        <div class="forum-feature-grid forum-feature-grid-video">
+            <div>
+                ${latestVideoPost.image ? `<img class="forum-image" src="${escapeHtml(latestVideoPost.image)}" alt="${escapeHtml(latestVideoPost.title)}">` : ""}
+                ${videoEmbedUrl ? `
+                    <div class="forum-video-wrap">
+                        <iframe
+                            class="forum-video"
+                            src="${escapeHtml(videoEmbedUrl)}"
+                            title="${escapeHtml(latestVideoPost.title)}"
+                            loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                        ></iframe>
                     </div>
-                ` : ""}
-            </article>
-        `;
-    }).join("");
+                    <div class="hero-actions compact-actions">
+                        <a class="button button-primary" href="${escapeHtml(latestVideoPost.videoUrl)}" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+                    </div>
+                ` : `
+                    <p class="forum-meta">
+                        <a href="${escapeHtml(latestVideoPost.videoUrl)}" target="_blank" rel="noopener noreferrer">Watch the video</a>
+                    </p>
+                `}
+                <span class="forum-tag">${escapeHtml(latestVideoPost.tag)}</span>
+                <h3>${escapeHtml(latestVideoPost.title)}</h3>
+                <p class="forum-meta">${escapeHtml(latestVideoPost.meta)}</p>
+                <p>${escapeHtml(videoBody)}</p>
+                <p class="forum-byline">${byline}</p>
+            </div>
+            <div class="forum-note">
+                <p>The latest SaturnCast video is embedded here for quick viewing. New monthly videos can replace this entry as they are published.</p>
+            </div>
+        </div>
+    `;
 
     document.querySelectorAll("[data-reveal]").forEach((item) => item.classList.add("is-visible"));
 };
@@ -269,6 +322,7 @@ const fillPostForm = (postId) => {
     postForm.elements.title.value = post.title;
     postForm.elements.meta.value = post.meta;
     postForm.elements.body.value = post.body;
+    postForm.elements.videoUrl.value = post.videoUrl || "";
     postForm.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
@@ -280,14 +334,14 @@ const persistCosmicNews = async (employeeName, successMessage, localOnlyMessage)
             cosmicNewsState = normalizeCosmicNews(await window.GitHubSync.saveNews(normalizedState, employeeName));
             saveCosmicNews();
             renderFeaturedStory();
-            renderNewsPosts();
+            renderLatestVideo();
             setNewsMessage(successMessage, "is-success");
             return true;
         } catch {
             cosmicNewsState = normalizedState;
             saveCosmicNews();
             renderFeaturedStory();
-            renderNewsPosts();
+            renderLatestVideo();
             setNewsMessage(localOnlyMessage, "is-error");
             return false;
         }
@@ -296,7 +350,7 @@ const persistCosmicNews = async (employeeName, successMessage, localOnlyMessage)
     cosmicNewsState = normalizedState;
     saveCosmicNews();
     renderFeaturedStory();
-    renderNewsPosts();
+    renderLatestVideo();
     setNewsMessage(localOnlyMessage, "is-error");
     return false;
 };
@@ -332,7 +386,7 @@ const syncNewsEditor = () => {
     }
 
     fillFeaturedForm();
-    renderNewsPosts();
+    renderLatestVideo();
 };
 
 if (featuredForm) {
@@ -402,6 +456,7 @@ if (postForm) {
                 meta: postForm.elements.meta.value,
                 body: postForm.elements.body.value,
                 image,
+                videoUrl: postForm.elements.videoUrl.value,
                 author: employee.displayName,
                 updatedAt: new Date().toISOString()
             }, cosmicNewsState.posts.length);
@@ -445,42 +500,6 @@ if (postResetButton) {
     postResetButton.addEventListener("click", () => {
         resetPostForm();
         setNewsMessage("", "");
-    });
-}
-
-if (newsPostsContainer) {
-    newsPostsContainer.addEventListener("click", async (event) => {
-        const target = event.target;
-
-        if (!(target instanceof HTMLElement)) {
-            return;
-        }
-
-        const editId = target.dataset.postEdit;
-        const deleteId = target.dataset.postDelete;
-
-        if (editId) {
-            fillPostForm(editId);
-            setNewsMessage("Editing selected post.", "");
-            return;
-        }
-
-        if (deleteId) {
-            const deletedPost = cosmicNewsState.posts.find((entry) => entry.id === deleteId);
-            cosmicNewsState.posts = cosmicNewsState.posts.filter((entry) => entry.id !== deleteId);
-
-            const savedToGitHub = await persistCosmicNews(
-                window.EmployeeAuth?.getCurrentEmployee()?.displayName || "Saturn Aerospace",
-                "Post removed.",
-                "Post removed only in this browser. Add your GitHub token in js/github-sync-config.js to publish removals from the website."
-            );
-
-            await window.EmployeeAudit?.log("news_post_removed", {
-                page: "cosmic-news",
-                title: deletedPost?.title || deleteId,
-                sync: savedToGitHub ? "github" : "local"
-            });
-        }
     });
 }
 

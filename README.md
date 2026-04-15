@@ -142,6 +142,7 @@ Expected shape:
       "title": "Headline",
       "meta": "Short meta line",
       "body": "Post summary",
+      "videoUrl": "https://youtu.be/example",
       "image": "",
       "author": "Saturn Aerospace",
       "updatedAt": "2026-04-09T12:00:00.000Z"
@@ -156,6 +157,7 @@ Rules:
 - keep `featured` and `posts` keys
 - keep `posts` as an array
 - each post must have `id`, `tag`, `title`, `meta`, and `body`
+- `videoUrl` is optional and will render as a YouTube embed when present
 - use unique `id` values
 - use ISO timestamps for `updatedAt`
 

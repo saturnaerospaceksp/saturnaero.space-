@@ -4,8 +4,19 @@
         "title": "Latest news from Saturn Aerospace",
         "meta": "Official updates, mission notes, fleet news, and community announcements.",
         "body": "This page is where Saturn Aerospace publishes its latest stories and major updates as new missions, vehicles, and milestones arrive.",
-        "note": "New posts from staff will appear below as they are published.",
+        "note": "New SaturnCast videos will appear below as they are published.",
         "image": ""
     },
-    "posts": []
+    "posts": [
+        {
+            "id": "saturncast-part-one",
+            "tag": "SaturnCast",
+            "title": "SaturnCast: Part One",
+            "meta": "Monthly video update from Saturn Aerospace.",
+            "body": "Our SaturnCast video series begins with Part One. This video covers the Leadership transition, Hyperion/Tarvos incident, the Rhea return to flight, a strategic shift in the lunar missions, and the SCOM program restart and a Q&A at the end.",
+            "videoUrl": "https://youtu.be/k9M--UIoIUs",
+            "author": "Saturn Aerospace",
+            "updatedAt": "2026-04-15T00:00:00.000Z"
+        }
+    ]
 }

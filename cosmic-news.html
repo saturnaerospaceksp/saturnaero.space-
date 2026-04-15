@@ -160,6 +160,12 @@
                                 <p class="field-help">Optional. Leave empty to keep the current image on edited posts.</p>
                             </div>
 
+                            <div class="auth-field">
+                                <label for="post-video-url">Video URL</label>
+                                <input id="post-video-url" name="videoUrl" type="url" placeholder="https://youtu.be/k9M--UIoIUs">
+                                <p class="field-help">Optional. Add a YouTube link to display a video embed in the post.</p>
+                            </div>
+
                             <div class="editor-actions">
                                 <button class="button button-primary" type="submit">Save Post</button>
                                 <button class="button button-ghost" type="button" data-post-reset>Clear Form</button>
@@ -174,11 +180,11 @@
         <section class="feature-band" id="latest-updates">
             <div class="container">
                 <div class="media-copy" data-reveal>
-                    <p class="section-kicker">Latest Updates</p>
-                    <h2 class="section-title kinetic" data-kinetic>Fresh posts from Saturn Aerospace.</h2>
+                    <p class="section-kicker">SaturnCast</p>
+                    <h2 class="section-title kinetic" data-kinetic>Watch the latest video update.</h2>
                 </div>
 
-                <div class="forum-grid" data-news-posts></div>
+                <article class="forum-card forum-video-feature" data-reveal data-news-latest-video></article>
             </div>
         </section>
     </main>
