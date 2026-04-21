@@ -1666,6 +1666,27 @@ img {
     padding: 92px 12px 74px;
   }
 
+  .launch {
+    min-height: 190vh;
+  }
+
+  .launch__sticky {
+    align-items: center;
+  }
+
+  .launch__stage {
+    width: min(78vw, 420px);
+    height: min(78vw, 420px);
+    max-width: 78vw;
+    max-height: 78vw;
+    --launch-atmosphere-radius: clamp(78px, 24vw, 140px);
+  }
+
+  .launch__label {
+    bottom: 4.5vh;
+    font-size: 0.64rem;
+  }
+
   .hero__title {
     font-size: clamp(1.5rem, 11vw, 4rem);
     letter-spacing: -0.04em;
