@@ -84,17 +84,8 @@
                 vector-effect="non-scaling-stroke"
                 d="M500 286 C558 288 650 316 716 382 C784 452 826 546 822 646 C818 748 770 846 708 910 C650 970 594 1000 530 1012"
               />
-              <circle
-                class="launch__trail-dot"
-                cx="500"
-                cy="282"
-                r="6"
-                fill="#d9e6ff"
-                stroke="rgba(194, 215, 255, 0.88)"
-                stroke-width="2"
-                vector-effect="non-scaling-stroke"
-              />
             </svg>
+            <span class="launch__trail-dot" aria-hidden="true"></span>
           </div>
           <p class="launch__label">Scroll To Launch</p>
         </div>
@@ -197,6 +188,7 @@
     <script>
       const root = document.documentElement;
       const launchSection = document.getElementById('launch');
+      const launchStage = document.querySelector('.launch__stage');
       const trailPath = document.querySelector('.launch__trail-path');
       const trailDot = document.querySelector('.launch__trail-dot');
       const scrollCue = document.querySelector('.hero__scroll');
@@ -220,15 +212,19 @@
         }
 
         const start = launchSection.offsetTop;
-        const span = Math.max(1, launchSection.offsetHeight - window.innerHeight);
+        const span = Math.max(1, launchSection.offsetHeight - window.innerHeight * 0.32);
         const progress = Math.min(1, Math.max(0, (window.scrollY - start) / span));
         root.style.setProperty('--launch-progress', progress.toFixed(4));
 
-        if (trailLength > 0) {
+        if (trailLength > 0 && launchStage) {
           const distance = trailLength * progress;
-          const point = trailPath.getPointAtLength(distance);
-          trailDot.setAttribute('cx', point.x.toFixed(2));
-          trailDot.setAttribute('cy', point.y.toFixed(2));
+          const headLead = Math.min(24, trailLength * 0.02);
+          const point = trailPath.getPointAtLength(Math.min(trailLength, distance + headLead));
+          const rect = launchStage.getBoundingClientRect();
+          const dotX = (point.x / 1000) * rect.width;
+          const dotY = (point.y / 1000) * rect.height;
+          trailDot.style.left = `${dotX.toFixed(2)}px`;
+          trailDot.style.top = `${dotY.toFixed(2)}px`;
           trailPath.style.strokeDashoffset = `${trailLength * (1 - progress)}`;
         }
       };
