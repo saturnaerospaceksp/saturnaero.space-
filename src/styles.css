@@ -8,6 +8,7 @@
   --line: rgba(255, 255, 255, 0.12);
   --accent: #c2d7ff;
   --accent-strong: #f2deb0;
+  --launch-progress: 0;
 }
 
 * {
@@ -525,6 +526,16 @@ img {
   color: rgba(247, 248, 255, 0.88);
 }
 
+.hero__status[href] {
+  cursor: help;
+  text-decoration: none;
+}
+
+.hero__status[href]:hover,
+.hero__status[href]:focus-visible {
+  text-decoration: none;
+}
+
 .hero__status-dot {
   width: 8px;
   height: 8px;
@@ -682,6 +693,106 @@ img {
     0 0 18px rgba(242, 222, 176, 0.08);
 }
 
+.launch {
+  position: relative;
+  min-height: 220vh;
+  background:
+    linear-gradient(180deg, rgba(8, 12, 22, 0.98), rgba(7, 10, 18, 1));
+}
+
+.launch__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(84, 119, 191, 0.2), transparent 34%),
+    radial-gradient(circle at 50% 14%, rgba(194, 215, 255, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(6, 10, 18, 0.88), rgba(7, 10, 18, 0.98));
+}
+
+.launch__stage {
+  position: relative;
+  width: min(88vw, 980px);
+  height: min(88vw, 980px);
+  max-height: 88vh;
+  max-width: 88vh;
+  --launch-atmosphere-radius: clamp(122px, 25vw, 220px);
+}
+
+.launch__planet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--launch-atmosphere-radius) * 2);
+  height: calc(var(--launch-atmosphere-radius) * 2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background:
+    url('../img/earth.png') center center / cover no-repeat,
+    linear-gradient(180deg, #102244, #091326);
+  filter: brightness(0.42) saturate(0.78) contrast(0.92);
+  box-shadow:
+    inset 0 24px 34px rgba(255, 255, 255, 0.05),
+    inset 0 -26px 34px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(194, 215, 255, 0.06),
+    0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+.launch__planet::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px rgba(4, 6, 11, 0.98);
+  pointer-events: none;
+}
+
+.launch__orbit {
+  display: none;
+}
+
+.launch__trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.launch__trail-path {
+  fill: none;
+  stroke: rgba(160, 184, 229, 0.8);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(160, 184, 229, 0.18));
+}
+
+.launch__trail-dot {
+  fill: #d9e6ff;
+  stroke: rgba(194, 215, 255, 0.88);
+  stroke-width: 2;
+  filter:
+    drop-shadow(0 0 8px rgba(194, 215, 255, 0.7))
+    drop-shadow(0 0 18px rgba(125, 179, 255, 0.35));
+}
+
+.launch__label {
+  position: absolute;
+  left: 50%;
+  bottom: 7vh;
+  transform: translateX(-50%);
+  margin: 0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(247, 248, 255, 0.76);
+}
+
 .more,
 .different {
   position: relative;
@@ -690,15 +801,17 @@ img {
   place-items: center;
   padding: clamp(48px, 8vw, 96px) 20px;
   background:
+    linear-gradient(180deg, rgba(4, 6, 11, 0.58), rgba(4, 6, 11, 0.84)),
+    url('../img/img_home_about.png') center center / cover no-repeat,
     radial-gradient(circle at top, rgba(82, 118, 192, 0.12), transparent 42%),
     linear-gradient(180deg, rgba(7, 10, 18, 0.95), rgba(4, 6, 11, 1));
 }
 
 .more::before {
   background:
-    radial-gradient(circle at 20% 15%, rgba(194, 215, 255, 0.1), transparent 16%),
-    radial-gradient(circle at 80% 60%, rgba(242, 222, 176, 0.08), transparent 16%);
-  opacity: 0.8;
+    radial-gradient(circle at 20% 15%, rgba(194, 215, 255, 0.08), transparent 16%),
+    radial-gradient(circle at 80% 60%, rgba(242, 222, 176, 0.07), transparent 16%);
+  opacity: 0.9;
   animation: drift-soft 16s ease-in-out infinite alternate;
 }
 
@@ -781,8 +894,8 @@ img {
 
 .about__signals {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 8px;
   margin-top: 24px;
 }
 
@@ -790,7 +903,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.03);
@@ -798,6 +911,7 @@ img {
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .about__signal-dot {
@@ -1013,6 +1127,14 @@ img {
   background: url('../img/img_home_splash.png') center center / cover no-repeat;
 }
 
+.page-hero--scom .page-hero__media-fallback {
+  background: url('../img/img_scom_splash.png') center center / cover no-repeat;
+}
+
+.page-hero--scom .page-hero__media {
+  background: url('../img/img_scom_splash.png') center center / cover no-repeat;
+}
+
 .page-hero__media-video {
   width: 100%;
   height: 100%;
@@ -1063,10 +1185,10 @@ img {
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-    rgba(6, 8, 14, 0.48);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+    rgba(6, 8, 14, 0.56);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.26),
+    0 26px 70px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
@@ -1092,6 +1214,99 @@ img {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
   line-height: 1.7;
   color: var(--muted);
+}
+
+.page-intro--scom {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  padding-top: clamp(80px, 11vw, 140px);
+  padding-bottom: clamp(80px, 11vw, 140px);
+  padding-left: clamp(20px, 4vw, 72px);
+  padding-right: clamp(20px, 4vw, 72px);
+  background:
+    linear-gradient(180deg, rgba(4, 6, 11, 0.62), rgba(4, 6, 11, 0.82)),
+    url('../img/img_scom_description.png') center center / cover no-repeat;
+}
+
+.page-intro--scom h1 {
+  position: relative;
+  z-index: 1;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.page-intro--scom p {
+  position: relative;
+  z-index: 1;
+  max-width: none;
+}
+
+.page-intro--scom p + p {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-intro--scom h1,
+.page-intro--scom p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-intro--scom-cta {
+  padding-top: clamp(72px, 10vw, 130px);
+  padding-bottom: clamp(80px, 11vw, 140px);
+  background:
+    linear-gradient(180deg, rgba(4, 6, 11, 0.7), rgba(7, 10, 18, 0.86)),
+    url('../img/img_scom_getscom.png') center bottom / cover no-repeat;
+}
+
+.page-intro--scom-cta h1 {
+  white-space: nowrap;
+}
+
+.page-intro--scom-cta .page-intro__links {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.page-intro--scom-cta .page-intro__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--fg);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.page-intro--scom-cta .page-intro__links a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(194, 215, 255, 0.35);
+  background: rgba(194, 215, 255, 0.1);
+}
+
+@media (max-width: 860px) {
+  .page-intro--scom h1,
+  .page-intro--scom-cta h1 {
+    white-space: normal;
+  }
 }
 
 .page-intro--shop .page-intro__inner {

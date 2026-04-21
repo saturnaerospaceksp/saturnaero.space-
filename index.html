@@ -24,7 +24,6 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="#top" aria-current="page">Home</a>
               <a class="site-nav__chip" href="scom.html">SCOM</a>
-              <a class="site-nav__chip" href="mnswt.html">MNSWT</a>
               <a class="site-nav__chip" href="ksc.html">Spaceport</a>
               <details class="nav-group">
                 <summary>Vehicles</summary>
@@ -66,10 +65,10 @@
         <div class="hero__glow hero__glow--right"></div>
 
         <div class="hero__content">
-          <div class="hero__status" aria-label="Mission status">
+          <a class="hero__status" href="scom.html" aria-label="Open SCOM page">
             <span class="hero__status-dot"></span>
             SCOM Service Live
-          </div>
+          </a>
           <h1 class="hero__title">
             <span class="hero__title-base">Saturn Aerospace</span>
             <span class="hero__title-sheen" aria-hidden="true">Saturn Aerospace</span>
@@ -79,10 +78,27 @@
           </p>
         </div>
 
-        <button class="hero__scroll" type="button" aria-label="Scroll to next section">
+        <button class="hero__scroll" type="button" aria-label="Scroll to launch sequence">
           <span class="hero__scroll-label">Scroll</span>
           <span class="hero__scroll-arrow" aria-hidden="true"></span>
         </button>
+      </section>
+
+      <section class="launch" id="launch" aria-label="Launch sequence">
+        <div class="launch__sticky">
+          <div class="launch__stage" aria-hidden="true">
+            <span class="launch__planet"></span>
+            <span class="launch__orbit"></span>
+            <svg class="launch__trail" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                class="launch__trail-path"
+                d="M500 286 C558 288 650 316 716 382 C784 452 826 546 822 646 C818 748 770 846 708 910 C650 970 594 1000 530 1012"
+              />
+              <circle class="launch__trail-dot" cx="500" cy="282" r="6" />
+            </svg>
+          </div>
+          <p class="launch__label">Scroll To Launch</p>
+        </div>
       </section>
 
       <section class="more" id="more" aria-label="More about Saturn Aerospace">
@@ -90,7 +106,7 @@
           <div class="about__visual" aria-hidden="true"></div>
           <div class="about__content">
             <p class="more__eyebrow">About Us</p>
-            <h2>What Is Saturn Aerospace</h2>
+            <h2>What Is Saturn Aerospace?</h2>
             <p>
               Saturn Aerospace is a fictional space company built around Kerbal
               operations, with Kerboscript at the center of our flight tests,
@@ -127,8 +143,8 @@
       <section class="different" id="different" aria-label="Why Saturn Aerospace is different">
         <div class="different__inner">
           <div class="different__content">
-            <p class="more__eyebrow">Why Are We Different</p>
-            <h2>Why Are We Different</h2>
+            <p class="more__eyebrow">Why Are We Different?</p>
+            <h2>Why Are We Different?</h2>
             <p>
               We try to make rockets feel less mysterious. Our software handles
               a lot of the hard work, so the people running the mission can
@@ -180,15 +196,55 @@
       </footer>
     </main>
     <script>
+      const root = document.documentElement;
+      const launchSection = document.getElementById('launch');
+      const trailPath = document.querySelector('.launch__trail-path');
+      const trailDot = document.querySelector('.launch__trail-dot');
       const scrollCue = document.querySelector('.hero__scroll');
       const nextSection = document.getElementById('more');
       const dropdowns = Array.from(document.querySelectorAll('.nav-group'));
+      let trailLength = 0;
+
+      const updateTrailMetrics = () => {
+        if (!trailPath) {
+          return;
+        }
+
+        trailLength = trailPath.getTotalLength();
+        trailPath.style.strokeDasharray = `${trailLength}`;
+        trailPath.style.strokeDashoffset = `${trailLength}`;
+      };
+
+      const updateLaunchProgress = () => {
+        if (!launchSection || !trailPath || !trailDot) {
+          return;
+        }
+
+        const start = launchSection.offsetTop;
+        const span = Math.max(1, launchSection.offsetHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, (window.scrollY - start) / span));
+        root.style.setProperty('--launch-progress', progress.toFixed(4));
+
+        if (trailLength > 0) {
+          const distance = trailLength * progress;
+          const point = trailPath.getPointAtLength(distance);
+          trailDot.setAttribute('cx', point.x.toFixed(2));
+          trailDot.setAttribute('cy', point.y.toFixed(2));
+          trailPath.style.strokeDashoffset = `${trailLength * (1 - progress)}`;
+        }
+      };
 
       if (scrollCue && nextSection) {
         scrollCue.addEventListener('click', () => {
-          nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          launchSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       }
+
+      updateTrailMetrics();
+      updateLaunchProgress();
+      window.addEventListener('scroll', updateLaunchProgress, { passive: true });
+      window.addEventListener('resize', updateLaunchProgress);
+      window.addEventListener('resize', updateTrailMetrics);
 
       dropdowns.forEach((current) => {
         current.addEventListener('toggle', () => {

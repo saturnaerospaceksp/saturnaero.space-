@@ -11,8 +11,10 @@
   </head>
   <body class="page-content">
     <main class="page-shell page-shell--content">
-      <section class="page-hero" aria-label="SCOM splash screen">
-        <div class="page-hero__media" aria-hidden="true"></div>
+      <section class="page-hero page-hero--scom" aria-label="SCOM splash screen">
+        <div class="page-hero__media" aria-hidden="true">
+          <div class="page-hero__media-fallback"></div>
+        </div>
         <header class="site-header site-header--page">
           <nav class="site-nav" aria-label="Primary">
             <a class="site-nav__brand" href="index.html#top">
@@ -22,7 +24,6 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="index.html#top">Home</a>
               <a class="site-nav__chip" href="scom.html" aria-current="page">SCOM</a>
-              <a class="site-nav__chip" href="mnswt.html">MNSWT</a>
               <a class="site-nav__chip" href="ksc.html">Spaceport</a>
               <details class="nav-group">
                 <summary>Vehicles</summary>
@@ -56,18 +57,40 @@
         </div>
       </section>
 
-      <section class="page-intro" aria-label="SCOM introduction">
-        <div class="page-intro__inner">
-          <div class="page-intro__eyebrow">Systems</div>
-          <h1>Saturn Communications Network</h1>
-          <p>
-            Saturn Communications Network is the satellite layer that helps
-            extend coverage and keep communications available around the globe.
-          </p>
-          <p>
-            It is built to make internet coverage more reachable without making
-            the system harder to use.
-          </p>
+      <section class="page-intro page-intro--scom" aria-label="SCOM description">
+        <h1>What Is SCOM?</h1>
+        <p>
+          Saturn Communications Network is the world's leading communications
+          network. With our V6 satellites, we have near-global coverage,
+          giving people reliable internet access almost anywhere on Earth, at
+          any time.
+        </p>
+        <p>
+          Whether you are working, traveling, or operating in remote
+          locations, SCOM is designed to keep you connected when it matters
+          most.
+        </p>
+        <p>
+          Built around a growing satellite constellation and a software-first
+          control system, SCOM is made for reach, reliability, and scale. Our
+          goal is simple: make internet access feel available everywhere, not
+          just in the easy-to-reach places.
+        </p>
+      </section>
+
+      <section class="page-intro page-intro--scom page-intro--scom-cta" aria-label="Get SCOM Today">
+        <div class="hero__status" aria-label="Mission status">
+          <span class="hero__status-dot"></span>
+          SCOM Service Live
+        </div>
+        <h1>Get SCOM Today</h1>
+        <p>
+          SCOM for Saturn Aerospace is a simulated service and is essentially
+          our youtube and discord channels, which you can find here:
+        </p>
+        <div class="page-intro__links" aria-label="SCOM links">
+          <a href="https://youtube.com/@saturnaero" target="_blank" rel="noreferrer">youtube.com/@saturnaero</a>
+          <a href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">discord.gg/zAweNAyBbs</a>
         </div>
       </section>
 
@@ -108,3 +131,4 @@
     </script>
   </body>
 </html>
+
