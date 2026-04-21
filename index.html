@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Saturn Aerospace is a KSP space company, with software flying our rockets."
+    />
+    <meta name="theme-color" content="#05070d" />
+    <link rel="icon" href="./img/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <title>Saturn Aerospace</title>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" id="top" aria-label="Saturn Aerospace splash screen">
+        <header class="site-header">
+          <nav class="site-nav" aria-label="Primary">
+            <a class="site-nav__brand" href="#top">
+              <img class="site-nav__brand-icon" src="./img/favicon.png" alt="" />
+              <span>Saturn Aerospace</span>
+            </a>
+            <div class="site-nav__links">
+              <a class="site-nav__home" href="#top" aria-current="page">Home</a>
+              <a class="site-nav__chip" href="scom.html">SCOM</a>
+              <a class="site-nav__chip" href="mnswt.html">MNSWT</a>
+              <a class="site-nav__chip" href="ksc.html">Spaceport</a>
+              <details class="nav-group">
+                <summary>Vehicles</summary>
+                <div class="nav-group__menu" role="menu" aria-label="Vehicles">
+                  <a href="daphnis.html" role="menuitem">Daphnis</a>
+                  <a href="hyperion-tarvos.html" role="menuitem">Hyperion &amp; Tarvos</a>
+                  <a href="rhea-iapetus.html" role="menuitem">Rhea &amp; Iapetus</a>
+                </div>
+              </details>
+              <details class="nav-group">
+                <summary>Team</summary>
+                <div class="nav-group__menu" role="menu" aria-label="Team">
+                  <a href="meet-our-team.html" role="menuitem">Meet Our Team</a>
+                  <a href="life-at-saturn.html" role="menuitem">Life At Saturn</a>
+                  <a href="careers.html" role="menuitem">Career Opportunities</a>
+                </div>
+              </details>
+              <a class="site-nav__chip" href="shop.html">Shop</a>
+            </div>
+          </nav>
+        </header>
+        <div class="hero__media" aria-hidden="true">
+          <div class="hero__media-fallback"></div>
+          <video
+            class="hero__media-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="./img/img_home_splash.png"
+          >
+            <source src="./img/splash_intro.mp4" type="video/mp4" />
+          </video>
+          <div class="hero__media-overlay"></div>
+        </div>
+        <div class="hero__backdrop"></div>
+        <div class="hero__glow hero__glow--left"></div>
+        <div class="hero__glow hero__glow--right"></div>
+
+        <div class="hero__content">
+          <div class="hero__status" aria-label="Mission status">
+            <span class="hero__status-dot"></span>
+            SCOM Service Live
+          </div>
+          <h1 class="hero__title">
+            <span class="hero__title-base">Saturn Aerospace</span>
+            <span class="hero__title-sheen" aria-hidden="true">Saturn Aerospace</span>
+          </h1>
+          <p class="subtitle">
+            A KSP space company, with software flying our rockets
+          </p>
+        </div>
+
+        <button class="hero__scroll" type="button" aria-label="Scroll to next section">
+          <span class="hero__scroll-label">Scroll</span>
+          <span class="hero__scroll-arrow" aria-hidden="true"></span>
+        </button>
+      </section>
+
+      <section class="more" id="more" aria-label="More about Saturn Aerospace">
+        <div class="more__inner">
+          <div class="about__visual" aria-hidden="true"></div>
+          <div class="about__content">
+            <p class="more__eyebrow">About Us</p>
+            <h2>What Is Saturn Aerospace</h2>
+            <p>
+              Saturn Aerospace is a fictional space company built around Kerbal
+              operations, with Kerboscript at the center of our flight tests,
+              vehicle control, and launch-day reliability.
+            </p>
+            <p>
+              We operate a small fleet of launchers, including RHE4, Hyperion,
+              and Daphnis, each designed to handle a different mission profile
+              while staying focused on precision and repeatable outcomes.
+            </p>
+            <p>
+              Every vehicle is tuned with the same goal in mind: make the
+              software do the hard work, keep the missions clean, and keep the
+              launches moving forward.
+            </p>
+            <div class="about__signals" aria-label="Operational highlights">
+              <div class="about__signal">
+                <span class="about__signal-dot"></span>
+                Vehicle tests
+              </div>
+              <div class="about__signal">
+                <span class="about__signal-dot"></span>
+                Launch prep
+              </div>
+              <div class="about__signal">
+                <span class="about__signal-dot"></span>
+                Mission control
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="different" id="different" aria-label="Why Saturn Aerospace is different">
+        <div class="different__inner">
+          <div class="different__content">
+            <p class="more__eyebrow">Why Are We Different</p>
+            <h2>Why Are We Different</h2>
+            <p>
+              We try to make rockets feel less mysterious. Our software handles
+              a lot of the hard work, so the people running the mission can
+              focus on getting it done cleanly.
+            </p>
+            <ul class="different__list">
+              <li>
+                <strong>We have a real mission control team.</strong>
+                Launch operations are run by people who track the flight,
+                make the calls, and keep the mission moving in the right
+                direction.
+              </li>
+              <li>
+                <strong>Our team comes from around the world.</strong>
+                Different backgrounds and perspectives help us solve problems
+                faster and build better missions together.
+              </li>
+              <li>
+                <strong>We reuse as much as we can.</strong>
+                Flight hardware and software are reused wherever possible to
+                cut cost and shorten turnaround time.
+              </li>
+              <li>
+                <strong>We keep things simple on purpose.</strong>
+                The goal is to make launches more reliable, easier to repeat,
+                and less wasteful over time.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <a class="site-footer__brand" href="#top">
+            <img class="site-footer__brand-icon" src="./img/favicon.png" alt="" />
+            <span>Saturn Aerospace</span>
+          </a>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a href="careers.html">Careers</a>
+            <a href="life-at-saturn.html">Life At Saturn</a>
+            <a href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Discord</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">
+          Software-first launch systems, mission control, and a fleet built to
+          stay useful longer.
+        </p>
+      </footer>
+    </main>
+    <script>
+      const scrollCue = document.querySelector('.hero__scroll');
+      const nextSection = document.getElementById('more');
+      const dropdowns = Array.from(document.querySelectorAll('.nav-group'));
+
+      if (scrollCue && nextSection) {
+        scrollCue.addEventListener('click', () => {
+          nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      dropdowns.forEach((current) => {
+        current.addEventListener('toggle', () => {
+          if (!current.open) {
+            return;
+          }
+
+          dropdowns.forEach((other) => {
+            if (other !== current) {
+              other.open = false;
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
