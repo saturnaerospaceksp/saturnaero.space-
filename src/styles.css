@@ -23,6 +23,7 @@ body,
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
@@ -83,6 +84,7 @@ html::-webkit-scrollbar-corner {
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top, rgba(82, 118, 192, 0.3), transparent 38%),
     radial-gradient(circle at 80% 20%, rgba(242, 222, 176, 0.16), transparent 30%),
@@ -1189,15 +1191,23 @@ img {
 .page-hero--scom .page-hero__media-fallback {
   background:
     linear-gradient(180deg, rgba(4, 6, 11, 0.14), rgba(4, 6, 11, 0.5)),
-    url('../img/img_scom_splash.png') center center / contain no-repeat;
+    url('../img/img_scom_splash.png') center center / cover no-repeat;
   background-color: #05070d;
 }
 
 .page-hero--scom .page-hero__media {
   background:
     linear-gradient(180deg, rgba(4, 6, 11, 0.14), rgba(4, 6, 11, 0.5)),
-    url('../img/img_scom_splash.png') center center / contain no-repeat;
+    url('../img/img_scom_splash.png') center center / cover no-repeat;
   background-color: #05070d;
+}
+
+.page-hero--scom .page-hero__content {
+  padding: clamp(86px, 11vw, 140px) clamp(18px, 4vw, 24px) 56px;
+}
+
+.page-hero--scom .hero__title {
+  font-size: clamp(1.7rem, 4.8vw, 4.35rem);
 }
 
 .page-hero--ksc .page-hero__media-fallback {
@@ -1588,7 +1598,7 @@ img {
     top: calc(100% + 10px);
     left: 0;
     right: 0;
-    width: min(calc(100vw - 24px), 100%);
+    width: calc(100% - 24px);
     margin: 0 auto;
     max-width: 460px;
     padding: 12px;
