@@ -29,16 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const closeMenu = () => {
     panel.classList.remove('is-open');
+    panel.hidden = mobileQuery.matches;
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open navigation');
   };
 
   const syncMenuState = () => {
     if (!mobileQuery.matches) {
+      panel.hidden = false;
       closeMenu();
       return;
     }
 
+    panel.hidden = !panel.classList.contains('is-open');
     toggle.setAttribute('aria-expanded', panel.classList.contains('is-open') ? 'true' : 'false');
     toggle.setAttribute(
       'aria-label',
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggle.addEventListener('click', () => {
     const isOpen = panel.classList.toggle('is-open');
+    panel.hidden = !isOpen;
     toggle.setAttribute('aria-expanded', String(isOpen));
     toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
   });
@@ -77,5 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   mobileQuery.addEventListener('change', syncMenuState);
   window.addEventListener('resize', syncMenuState);
+  panel.hidden = mobileQuery.matches;
   syncMenuState();
 });
