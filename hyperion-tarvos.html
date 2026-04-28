@@ -11,7 +11,7 @@
   </head>
   <body class="page-content">
     <main class="page-shell page-shell--content">
-      <section class="page-hero" aria-label="Hyperion and Tarvos splash screen">
+      <section class="page-hero page-hero--hyperion" aria-label="Hyperion and Tarvos splash screen">
         <div class="page-hero__media" aria-hidden="true"></div>
         <header class="site-header site-header--page">
           <nav class="site-nav" aria-label="Primary">
@@ -22,9 +22,22 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="index.html#top">Home</a>
               <a class="site-nav__chip" href="scom.html">SCOM</a>
-              <a class="site-nav__chip" href="ksc.html">Spaceport</a>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Vehicles</summary>
+                <div class="nav-group__menu" aria-label="Vehicles">
+                  <a href="daphnis.html">Daphnis</a>
+                  <a href="hyperion-tarvos.html" aria-current="page">Hyperion &amp; Tarvos</a>
+                  <a href="rhea-iapetus.html">Rhea &amp; Iapetus</a>
+                </div>
+              </details>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Team</summary>
+                <div class="nav-group__menu" aria-label="Team">
+                  <a href="meet-our-team.html">Meet Our Team</a>
+                  <a href="careers.html">Careers</a>
+                </div>
+              </details>
               <a class="site-nav__chip" href="launch-with-us.html">Launch With Us</a>
-              <a class="site-nav__chip" href="shop.html">Shop</a>
             </div>
           </nav>
         </header>
@@ -35,16 +48,129 @@
             <span class="hero__title-sheen" aria-hidden="true">Hyperion &amp; Tarvos</span>
           </h1>
           <p class="subtitle">
-            Built to stay close to the same software-first operating model
+            The worlds first lunar capable strato-launch rocket
           </p>
         </div>
       </section>
 
-      <section class="page-intro" aria-label="Work in progress">
-        <div class="page-intro__inner">
-          <h1>WIP</h1>
+      <section class="page-intro page-intro--hyperion-black" aria-label="Hyperion introduction">
+        <div class="page-intro__inner page-intro__inner--hyperion-intro">
+          <div class="page-intro__content page-intro__content--hyperion">
+            <p class="page-intro__eyebrow">ABOUT</p>
+            <h1>A Strato-Launched Launch Vehicle</h1>
+            <p>
+              Hyperion is Saturn Aerospace's boldest launch concept so far: a
+              strato-launched rocket carried aloft by Tarvos, our carrier
+              aircraft, and released at around 20 to 30 kilometres above the
+              ground.
+            </p>
+            <p>
+              By starting high above the densest part of the atmosphere,
+              Hyperion can spend less propellant fighting drag and gravity
+              losses during ascent. That means more of the vehicle's energy can
+              be used to reach orbit and more of the stack can be devoted to
+              payload.
+            </p>
+            <div class="hyperion__facts" aria-label="Hyperion launch facts">
+              <div class="hyperion__fact">
+                <span class="hyperion__fact-value">20-30 km</span>
+                <span class="hyperion__fact-label">release altitude</span>
+              </div>
+              <div class="hyperion__fact">
+                <span class="hyperion__fact-value">Tarvos</span>
+                <span class="hyperion__fact-label">carrier aircraft</span>
+              </div>
+              <div class="hyperion__fact">
+                <span class="hyperion__fact-value">More payload</span>
+                <span class="hyperion__fact-label">less atmosphere to fight</span>
+              </div>
+            </div>
+          </div>
+          <aside class="page-intro__aside hyperion__profile" aria-label="Hyperion launch profile">
+            <p class="page-intro__eyebrow">MISSION PROFILE</p>
+            <h2>The Launch Chain</h2>
+            <ul class="hyperion__timeline">
+              <li>
+                <span class="hyperion__timeline-step">01</span>
+                <div>
+                  <strong>Climb</strong>
+                  <p>Tarvos lifts the stack above the weather and into the thin air of the upper atmosphere.</p>
+                </div>
+              </li>
+              <li>
+                <span class="hyperion__timeline-step">02</span>
+                <div>
+                  <strong>Release</strong>
+                  <p>Hyperion separates cleanly, preserving speed and avoiding a long vertical ascent through dense air.</p>
+                </div>
+              </li>
+              <li>
+                <span class="hyperion__timeline-step">03</span>
+                <div>
+                  <strong>Ignition</strong>
+                  <p>The rocket lights high above the launch site, turning the thinner atmosphere into a performance gain.</p>
+                </div>
+              </li>
+            </ul>
+          </aside>
         </div>
       </section>
+
+        <section class="page-intro page-intro--hyperion-climb" aria-label="Hyperion video">
+          <div class="page-intro__inner page-intro__inner--hyperion-video">
+            <div class="page-intro__content page-intro__content--hyperion-video">
+              <p class="page-intro__eyebrow">FLIGHT LOG</p>
+              <h1>Hyperion Flight Log</h1>
+              <p>
+                Follow the latest Hyperion and Tarvos test coverage as the team
+                continues to refine the air-launch concept. This log follows
+                the carrier profile, the release window, and the climb from a
+                strato-launch into orbit.
+              </p>
+              <div class="page-intro__chips page-intro__chips--hyperion" aria-label="Hyperion video highlights">
+                <span class="page-intro__chip">Carrier release</span>
+                <span class="page-intro__chip">Ignition window</span>
+                <span class="page-intro__chip">Climb profile</span>
+              </div>
+            </div>
+            <a
+              class="page-intro__watch-link page-intro__watch-link--hyperion"
+              href="https://youtu.be/iNlbpslnYf0"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Watch the Hyperion launch update video on YouTube"
+            >
+              <span class="page-intro__watch-live">Latest Test Flight</span>
+              <span class="page-intro__watch-title">Tarvos / Hyperion</span>
+              <span class="page-intro__watch-note">
+                See the latest air-launch coverage for the carrier drop, the
+                separation moment, and the climb that follows.
+              </span>
+              <span class="page-intro__watch-cta">
+                <span class="page-intro__watch-play" aria-hidden="true"></span>
+                Watch on YouTube
+              </span>
+            </a>
+          </div>
+        </section>
+
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <a class="site-footer__brand" href="index.html#top">
+            <img class="site-footer__brand-icon" src="./img/favicon.png" alt="" />
+            <span>Saturn Aerospace</span>
+          </a>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a href="careers.html">Careers</a>
+            <a href="life-at-saturn.html">Life At Saturn</a>
+            <a href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Discord</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">
+          Software-first launch systems, mission control, and a fleet built to
+          stay useful longer.
+        </p>
+      </footer>
     </main>
     <script>
       const dropdowns = Array.from(document.querySelectorAll('.nav-group'));

@@ -1,12 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Careers at Saturn Aerospace."
-    />
+    <meta name="description" content="Careers at Saturn Aerospace." />
     <meta name="theme-color" content="#05070d" />
     <link rel="icon" href="./img/favicon.png" type="image/png" />
     <link rel="stylesheet" href="./src/styles.css" />
@@ -14,7 +11,7 @@
   </head>
   <body class="page-content">
     <main class="page-shell page-shell--content">
-      <section class="page-hero" aria-label="Careers splash screen">
+      <section class="page-hero page-hero--careers" aria-label="Careers splash screen">
         <div class="page-hero__media" aria-hidden="true"></div>
         <header class="site-header site-header--page">
           <nav class="site-nav" aria-label="Primary">
@@ -25,29 +22,111 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="index.html#top">Home</a>
               <a class="site-nav__chip" href="scom.html">SCOM</a>
-              <a class="site-nav__chip" href="ksc.html">Spaceport</a>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Vehicles</summary>
+                <div class="nav-group__menu" aria-label="Vehicles">
+                  <a href="daphnis.html">Daphnis</a>
+                  <a href="hyperion-tarvos.html">Hyperion &amp; Tarvos</a>
+                  <a href="rhea-iapetus.html">Rhea &amp; Iapetus</a>
+                </div>
+              </details>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Team</summary>
+                <div class="nav-group__menu" aria-label="Team">
+                  <a href="meet-our-team.html">Meet Our Team</a>
+                  <a href="careers.html" aria-current="page">Careers</a>
+                </div>
+              </details>
               <a class="site-nav__chip" href="launch-with-us.html">Launch With Us</a>
-              <a class="site-nav__chip" href="shop.html">Shop</a>
             </div>
           </nav>
         </header>
         <div class="page-hero__content">
           <div class="page-intro__eyebrow">Team</div>
           <h1 class="hero__title">
-            <span class="hero__title-base">Career Opportunities</span>
-            <span class="hero__title-sheen" aria-hidden="true">Career Opportunities</span>
+            <span class="hero__title-base">Careers With Saturn</span>
+            <span class="hero__title-sheen" aria-hidden="true">Careers With Saturn</span>
           </h1>
           <p class="subtitle">
-            Work on launch operations, systems, and the parts that keep missions moving.
+            Join a growing organisation leading the way in KSP
           </p>
         </div>
       </section>
 
-      <section class="page-intro" aria-label="Work in progress">
-        <div class="page-intro__inner">
-          <h1>WIP</h1>
+      <section class="page-intro page-intro--careers" aria-label="Open positions">
+        <div class="page-intro__inner page-intro__inner--careers">
+          <div class="page-intro__content page-intro__content--careers">
+            <p class="page-intro__eyebrow">Open Positions</p>
+            <h1>Current Opportunities</h1>
+            <p>
+              Search the roles below to find where you fit best. Each position opens
+              into Saturn’s wider application flow if you want to move forward.
+            </p>
+            <label class="careers-search" for="careers-search">
+              <span class="sr-only">Search roles</span>
+              <input id="careers-search" type="search" placeholder="Search roles..." />
+            </label>
+          </div>
+
+          <div class="careers-grid" role="list" aria-label="Role listings">
+            <article class="career-card" role="listitem" data-role="mission control">
+                <p class="career-card__status">Recruiting</p>
+                <h2>Mission Control</h2>
+                <p class="career-card__meta">
+                  Location: Remote
+                </p>
+                <p>
+                  Support launch day operations, monitor vehicle status, and help keep
+                  flights on plan from countdown to landing.
+                </p>
+                <a class="career-card__link" href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Join</a>
+            </article>
+
+            <article class="career-card" role="listitem" data-role="design engineering">
+                <p class="career-card__status">Recruiting</p>
+                <h2>Design &amp; Engineering</h2>
+                <p class="career-card__meta">
+                  Location: Hybrid
+                </p>
+                <p>
+                  Work on vehicle structures, flight systems, and the parts that shape
+                  Saturn’s launch vehicles.
+                </p>
+                <a class="career-card__link" href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Join</a>
+            </article>
+
+            <article class="career-card" role="listitem" data-role="software development">
+                <p class="career-card__status">Recruiting</p>
+                <h2>Software Development</h2>
+                <p class="career-card__meta">
+                  Location: Remote
+                </p>
+                <p>
+                  Help build the software that powers mission control, vehicle logic,
+                  and the tooling behind every launch.
+                </p>
+                <a class="career-card__link" href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Join</a>
+            </article>
+          </div>
         </div>
       </section>
+
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <a class="site-footer__brand" href="index.html#top">
+            <img class="site-footer__brand-icon" src="./img/favicon.png" alt="" />
+            <span>Saturn Aerospace</span>
+          </a>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a href="meet-our-team.html">Meet Our Team</a>
+            <a href="launch-with-us.html">Launch With Us</a>
+            <a href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Discord</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">
+          Software-first launch systems, mission control, and a fleet built to stay useful longer.
+        </p>
+      </footer>
     </main>
     <script>
       const dropdowns = Array.from(document.querySelectorAll('.nav-group'));
@@ -67,5 +146,27 @@
       });
     </script>
     <script src="./src/site.js"></script>
+    <script>
+      const search = document.getElementById('careers-search');
+      const cards = Array.from(document.querySelectorAll('.career-card'));
+      const listings = document.querySelector('.careers-grid');
+      const careersContent = document.querySelector('.page-intro--careers .page-intro__content');
+
+      if (search) {
+        search.addEventListener('input', () => {
+          const query = search.value.trim().toLowerCase();
+
+          cards.forEach((card) => {
+            const match = !query || card.dataset.role.includes(query);
+            card.hidden = query ? !match : false;
+          });
+
+          if (listings) {
+            const visible = cards.filter((card) => !card.hidden).length;
+            listings.dataset.empty = visible === 0 ? 'true' : 'false';
+          }
+        });
+      }
+    </script>
   </body>
 </html>

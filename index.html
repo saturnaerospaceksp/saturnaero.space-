@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./src/styles.css" />
     <title>Saturn Aerospace</title>
   </head>
-  <body>
+  <body class="home-page">
     <main class="page-shell">
       <section class="hero" id="top" aria-label="Saturn Aerospace splash screen">
         <header class="site-header">
@@ -38,9 +38,22 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="#top" aria-current="page">Home</a>
               <a class="site-nav__chip" href="scom.html">SCOM</a>
-              <a class="site-nav__chip" href="ksc.html">Spaceport</a>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Vehicles</summary>
+                <div class="nav-group__menu" aria-label="Vehicles">
+                  <a href="daphnis.html">Daphnis</a>
+                  <a href="hyperion-tarvos.html">Hyperion &amp; Tarvos</a>
+                  <a href="rhea-iapetus.html">Rhea &amp; Iapetus</a>
+                </div>
+              </details>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Team</summary>
+                <div class="nav-group__menu" aria-label="Team">
+                  <a href="meet-our-team.html">Meet Our Team</a>
+                  <a href="careers.html">Careers</a>
+                </div>
+              </details>
               <a class="site-nav__chip" href="launch-with-us.html">Launch With Us</a>
-              <a class="site-nav__chip" href="shop.html">Shop</a>
             </div>
           </nav>
         </header>
@@ -177,6 +190,18 @@
         </p>
       </footer>
     </main>
+    <div class="launch-prompt" hidden role="dialog" aria-modal="true" aria-labelledby="launch-prompt-title">
+      <div class="launch-prompt__backdrop" data-launch-prompt-close></div>
+      <div class="launch-prompt__panel">
+        <button class="launch-prompt__close" type="button" aria-label="Close popup" data-launch-prompt-close>&times;</button>
+        <p class="launch-prompt__eyebrow">Quick Links</p>
+        <h2 id="launch-prompt-title">Where do you want to go?</h2>
+        <div class="launch-prompt__actions">
+          <a class="launch-prompt__action" href="launch-with-us.html">Launch With Us</a>
+          <a class="launch-prompt__action" href="careers.html">Careers</a>
+        </div>
+      </div>
+    </div>
     <script>
       const scrollCue = document.querySelector('.hero__scroll');
       const nextSection = document.getElementById('more');
@@ -205,3 +230,4 @@
     <script src="./src/site.js"></script>
   </body>
 </html>
+

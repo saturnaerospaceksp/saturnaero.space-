@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
   </head>
   <body class="page-content">
     <main class="page-shell page-shell--content">
-      <section class="page-hero" aria-label="Team splash screen">
+      <section class="page-hero page-hero--team" aria-label="Team splash screen">
         <div class="page-hero__media" aria-hidden="true"></div>
         <header class="site-header site-header--page">
           <nav class="site-nav" aria-label="Primary">
@@ -22,9 +22,22 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="index.html#top">Home</a>
               <a class="site-nav__chip" href="scom.html">SCOM</a>
-              <a class="site-nav__chip" href="ksc.html">Spaceport</a>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Vehicles</summary>
+                <div class="nav-group__menu" aria-label="Vehicles">
+                  <a href="daphnis.html">Daphnis</a>
+                  <a href="hyperion-tarvos.html">Hyperion &amp; Tarvos</a>
+                  <a href="rhea-iapetus.html">Rhea &amp; Iapetus</a>
+                </div>
+              </details>
+              <details class="nav-group">
+                <summary class="site-nav__chip" aria-current="page">Team</summary>
+                <div class="nav-group__menu" aria-label="Team">
+                  <a href="meet-our-team.html" aria-current="page">Meet Our Team</a>
+                  <a href="careers.html">Careers</a>
+                </div>
+              </details>
               <a class="site-nav__chip" href="launch-with-us.html">Launch With Us</a>
-              <a class="site-nav__chip" href="shop.html">Shop</a>
             </div>
           </nav>
         </header>
@@ -35,16 +48,88 @@
             <span class="hero__title-sheen" aria-hidden="true">Meet Our Team</span>
           </h1>
           <p class="subtitle">
-            A distributed group working on the same mission
+            The people building, flying, and running Saturn Aerospace
           </p>
         </div>
       </section>
 
-      <section class="page-intro" aria-label="Work in progress">
-        <div class="page-intro__inner">
-          <h1>WIP</h1>
+      <section class="page-intro page-intro--team" aria-label="Meet the team">
+        <div class="page-intro__inner page-intro__inner--team">
+          <div class="page-intro__content page-intro__content--team">
+            <p class="page-intro__eyebrow">Meet The Team</p>
+            <h1>The People Behind Saturn</h1>
+            <p>
+              Saturn Aerospace is driven by a small team with different backgrounds,
+              but the same goal: build better systems, fly cleaner missions, and keep
+              pushing the program forward.
+            </p>
+          </div>
+
+          <div class="team-grid" aria-label="Team members">
+            <article class="team-card">
+              <div class="team-card__image-wrap">
+                <img src="./img/img_team_ceo.png" alt="Caden, CEO" class="team-card__image" />
+              </div>
+              <div class="team-card__body">
+                <p class="team-card__role">CEO</p>
+                <h2>Caden</h2>
+                <p>
+                  Caden joined the team and adapted quickly to the environment, showing
+                  a strong understanding of our systems and design approach. He started
+                  as a mission controller and quickly earned the CEO position.
+                </p>
+              </div>
+            </article>
+
+            <article class="team-card">
+              <div class="team-card__image-wrap">
+                <img src="./img/img_team_coo.png" alt="Aviation, COO" class="team-card__image" />
+              </div>
+              <div class="team-card__body">
+                <p class="team-card__role">COO</p>
+                <h2>Aviation</h2>
+                <p>
+                  Aviation has been with Saturn for many years and has shown steady
+                  growth throughout his time on the team. He now leads operations and
+                  contributes heavily to streaming and vehicle software.
+                </p>
+              </div>
+            </article>
+
+            <article class="team-card">
+              <div class="team-card__image-wrap">
+                <img src="./img/img_team_cto.png" alt="Quasy, CTO" class="team-card__image" />
+              </div>
+              <div class="team-card__body">
+                <p class="team-card__role">CTO</p>
+                <h2>Quasy</h2>
+                <p>
+                  Quasy founded the company in 2021, though he later reduced his role
+                  due to other commitments. He has created vehicle software, designed
+                  multiple launch vehicles, and pushed Saturn to its limits.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
+
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <a class="site-footer__brand" href="index.html#top">
+            <img class="site-footer__brand-icon" src="./img/favicon.png" alt="" />
+            <span>Saturn Aerospace</span>
+          </a>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a href="careers.html">Careers</a>
+            <a href="life-at-saturn.html">Life At Saturn</a>
+            <a href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Discord</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">
+          Software-first launch systems, mission control, and a fleet built to stay useful longer.
+        </p>
+      </footer>
     </main>
     <script>
       const dropdowns = Array.from(document.querySelectorAll('.nav-group'));

@@ -11,8 +11,11 @@
   </head>
   <body class="page-content">
     <main class="page-shell page-shell--content">
-      <section class="page-hero" aria-label="Rhea and Iapetus splash screen">
-        <div class="page-hero__media" aria-hidden="true"></div>
+      <section class="page-hero page-hero--rhea" aria-label="Rhea and Iapetus splash screen">
+        <div class="page-hero__media" aria-hidden="true">
+          <div class="page-hero__media-fallback"></div>
+          <div class="page-hero__media-overlay"></div>
+        </div>
         <header class="site-header site-header--page">
           <nav class="site-nav" aria-label="Primary">
             <a class="site-nav__brand" href="index.html#top">
@@ -22,9 +25,22 @@
             <div class="site-nav__links">
               <a class="site-nav__home" href="index.html#top">Home</a>
               <a class="site-nav__chip" href="scom.html">SCOM</a>
-              <a class="site-nav__chip" href="ksc.html">Spaceport</a>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Vehicles</summary>
+                <div class="nav-group__menu" aria-label="Vehicles">
+                  <a href="daphnis.html">Daphnis</a>
+                  <a href="hyperion-tarvos.html">Hyperion &amp; Tarvos</a>
+                  <a href="rhea-iapetus.html" aria-current="page">Rhea &amp; Iapetus</a>
+                </div>
+              </details>
+              <details class="nav-group">
+                <summary class="site-nav__chip">Team</summary>
+                <div class="nav-group__menu" aria-label="Team">
+                  <a href="meet-our-team.html">Meet Our Team</a>
+                  <a href="careers.html">Careers</a>
+                </div>
+              </details>
               <a class="site-nav__chip" href="launch-with-us.html">Launch With Us</a>
-              <a class="site-nav__chip" href="shop.html">Shop</a>
             </div>
           </nav>
         </header>
@@ -35,16 +51,126 @@
             <span class="hero__title-sheen" aria-hidden="true">Rhea &amp; Iapetus</span>
           </h1>
           <p class="subtitle">
-            Built as part of the fleet, not as a one-off
+            The most powerful fully reusable rocket in the world
           </p>
         </div>
       </section>
 
-      <section class="page-intro" aria-label="Work in progress">
-        <div class="page-intro__inner">
-          <h1>WIP</h1>
+      <section class="page-intro page-intro--rhea-core" aria-label="About Rhea and Iapetus">
+        <div class="page-intro__inner page-intro__inner--rhea-core">
+          <div class="page-intro__content page-intro__content--rhea">
+            <p class="page-intro__eyebrow">ABOUT</p>
+            <h1>About Rhea &amp; Iapetus</h1>
+            <p>
+              Rhea and Iapetus are built as a practical launcher family,
+              balancing reliable reuse with a mission profile that can stay in
+              service across a wide range of payloads and orbital demands.
+            </p>
+            <p>
+              The stack is designed to keep operations straightforward while
+              still giving Saturn Aerospace the flexibility to move quickly
+              between missions without rebuilding the vehicle around each launch.
+            </p>
+          </div>
+          <aside class="page-intro__aside rhea__advantages" aria-label="Rhea and Iapetus advantages">
+            <p class="page-intro__eyebrow">OPERATIONAL ADVANTAGES</p>
+            <h2>Why This Stack Works</h2>
+            <ul class="rhea__list">
+              <li>Recovery and reuse are built into the vehicle plan from the start.</li>
+              <li>Rapid turnaround keeps the launch flow moving without unnecessary downtime.</li>
+              <li>A common stack reduces integration friction across missions.</li>
+              <li>Flexible enough to support both routine and more demanding launch profiles.</li>
+            </ul>
+          </aside>
         </div>
       </section>
+
+      <section class="page-intro page-intro--rhea-video" aria-label="Watch the latest video">
+        <div class="page-intro__inner page-intro__inner--rhea-video">
+          <div class="page-intro__content page-intro__content--rhea-video">
+            <p class="page-intro__eyebrow">LATEST VIDEO</p>
+            <h1>Watch The Latest Video</h1>
+            <p>
+              Follow the latest Rhea and Iapetus updates as the team continues
+              to refine the vehicle and push the program forward.
+            </p>
+          </div>
+          <a
+            class="page-intro__watch-link page-intro__watch-link--rhea"
+            href="https://youtube.com/live/Y0kBY2pJgRk"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Watch the latest Rhea and Iapetus video on YouTube"
+          >
+            <span class="page-intro__watch-live">Live Video</span>
+            <span class="page-intro__watch-title">Open the latest stream</span>
+            <span class="page-intro__watch-cta">
+              <span class="page-intro__watch-play" aria-hidden="true"></span>
+              Watch on YouTube
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="page-intro page-intro--rhea-stack" aria-label="The stack">
+        <div class="page-intro__inner page-intro__inner--rhea-stack">
+          <div class="page-intro__content page-intro__content--rhea-stack">
+            <p class="page-intro__eyebrow">THE STACK</p>
+            <h1>The Hotstage</h1>
+            <p>
+              The hotstage delivers a 40% more efficient separation, leading to
+              more payload mass reaching orbit.
+            </p>
+            <p>
+              It is part of what makes the stack feel composed and repeatable:
+              less drama on the pad, cleaner loads in flight, and a smoother
+              path from launch to payload deployment.
+            </p>
+          </div>
+          <aside class="page-intro__aside rhea__highlights" aria-label="Rhea and Iapetus stack highlights">
+            <p class="page-intro__eyebrow">WHY IT MATTERS</p>
+            <h2>Why The Stack Works</h2>
+            <ul class="rhea__list">
+              <li>Cleaner stage connection keeps the architecture tidy through the handoff between stages.</li>
+              <li>40% more efficient separation improves staging performance and leaves more payload capability for orbit.</li>
+              <li>Flexible across profiles so the vehicle stays useful across a broad range of mission needs and payload types.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page-intro page-intro--rhea-lunar" aria-label="Rhea to the moon">
+        <div class="page-intro__inner page-intro__inner--rhea-lunar">
+          <div class="page-intro__content page-intro__content--centered page-intro__content--rhea-lunar">
+            <p class="page-intro__eyebrow">THE NEXT STEP</p>
+            <h1>Rhea To The Moon</h1>
+            <p>
+              The Rhea design team are looking at ways to bring Rhea to the
+              moon in 2026. With a fully modified version of the Rhea second
+              stage, we can provide reliable access to the moon with crew and
+              supplies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <a class="site-footer__brand" href="index.html#top">
+            <img class="site-footer__brand-icon" src="./img/favicon.png" alt="" />
+            <span>Saturn Aerospace</span>
+          </a>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a href="careers.html">Careers</a>
+            <a href="life-at-saturn.html">Life At Saturn</a>
+            <a href="https://discord.gg/zAweNAyBbs" target="_blank" rel="noreferrer">Discord</a>
+          </nav>
+        </div>
+        <p class="site-footer__meta">
+          Software-first launch systems, mission control, and a fleet built to
+          stay useful longer.
+        </p>
+      </footer>
     </main>
     <script>
       const dropdowns = Array.from(document.querySelectorAll('.nav-group'));
