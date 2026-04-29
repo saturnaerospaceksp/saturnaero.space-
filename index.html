@@ -94,6 +94,19 @@
           <span class="hero__scroll-label">Scroll</span>
           <span class="hero__scroll-arrow" aria-hidden="true"></span>
         </button>
+
+        <div class="launch-prompt" hidden role="dialog" aria-modal="true" aria-labelledby="launch-prompt-title">
+          <div class="launch-prompt__backdrop" data-launch-prompt-close></div>
+          <div class="launch-prompt__panel">
+            <button class="launch-prompt__close" type="button" aria-label="Close popup" data-launch-prompt-close>&times;</button>
+            <p class="launch-prompt__eyebrow">Quick Links</p>
+            <h2 id="launch-prompt-title">Where do you want to go?</h2>
+            <div class="launch-prompt__actions">
+              <a class="launch-prompt__action" href="launch-with-us.html">Launch With Us</a>
+              <a class="launch-prompt__action" href="careers.html">Careers</a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="more" id="more" aria-label="More about Saturn Aerospace">
@@ -190,18 +203,6 @@
         </p>
       </footer>
     </main>
-    <div class="launch-prompt" hidden role="dialog" aria-modal="true" aria-labelledby="launch-prompt-title">
-      <div class="launch-prompt__backdrop" data-launch-prompt-close></div>
-      <div class="launch-prompt__panel">
-        <button class="launch-prompt__close" type="button" aria-label="Close popup" data-launch-prompt-close>&times;</button>
-        <p class="launch-prompt__eyebrow">Quick Links</p>
-        <h2 id="launch-prompt-title">Where do you want to go?</h2>
-        <div class="launch-prompt__actions">
-          <a class="launch-prompt__action" href="launch-with-us.html">Launch With Us</a>
-          <a class="launch-prompt__action" href="careers.html">Careers</a>
-        </div>
-      </div>
-    </div>
     <script>
       const scrollCue = document.querySelector('.hero__scroll');
       const nextSection = document.getElementById('more');
