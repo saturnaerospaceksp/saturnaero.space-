@@ -1110,6 +1110,17 @@ img {
   box-shadow: 0 0 14px rgba(242, 222, 176, 0.4);
 }
 
+.rhea__patch {
+  display: block;
+  width: min(100%, 420px);
+  margin-top: 22px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.95) contrast(1.02) brightness(0.96);
+  opacity: 0.96;
+}
+
 .different__list strong {
   display: block;
   margin-bottom: 8px;
@@ -2511,6 +2522,12 @@ img {
   .page-intro--rhea-core .page-intro__content,
   .page-intro--rhea-core .rhea__advantages {
     padding: 22px 18px;
+  }
+
+  .rhea__patch {
+    width: 100%;
+    margin-top: 18px;
+    border-radius: 14px;
   }
 
   .page-intro--daphnis-about .page-intro__inner {
