@@ -20,7 +20,7 @@ Use vertical alignment utilities to align inline-level elements relative to thei
   <span class="align-text-bottom">text-bottom</span>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Table cells
 
@@ -40,4 +40,4 @@ Vertical alignment utilities are also applicable to table cells, allowing you to
   </tbody>
 </table>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

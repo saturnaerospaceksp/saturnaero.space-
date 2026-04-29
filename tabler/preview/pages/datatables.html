@@ -38,7 +38,7 @@ permalink: datatables.html
 				<td class="sort-progress" data-progress="{{ progress }}">
 					<div class="row align-items-center">
 						<div class="col-12 col-lg-auto">{{ progress }}%</div>
-						<div class="col">{% include "ui/progress.html" value=progress width="5rem" %}</div>
+						<div class="col">{% include ui/progress.html value=progress width="5rem" %}</div>
 					</div>
 				</td>
 			</tr>
@@ -49,4 +49,4 @@ permalink: datatables.html
 	</div>
 </div>
 
-{% include "js/tabler-list.html", parameters="[ 'sort-name', 'sort-type', 'sort-city', 'sort-score', { attr: 'data-date', name: 'sort-date' }, { attr: 'data-progress', name: 'sort-progress' }, 'sort-quantity' ]" %}
+{% include js/tabler-list.html, parameters="[ 'sort-name', 'sort-type', 'sort-city', 'sort-score', { attr: 'data-date', name: 'sort-date' }, { attr: 'data-progress', name: 'sort-progress' }, 'sort-quantity' ]" %}

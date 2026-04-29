@@ -6,7 +6,7 @@
 	{% if include.first-last -%}
 	<li class="page-item disabled">
 		<a class="page-link{% if include.text %} page-text{% endif %}" href="#" tabindex="-1" aria-disabled="true">
-			{% unless include.text %}{% include "ui/icon.html" icon="chevrons-left" %}{% else %}Previous{% endunless -%}
+			{% unless include.text %}{% include ui/icon.html icon="chevrons-left" %}{% else %}Previous{% endunless -%}
 		</a>
 	</li>
 	{% endif -%}
@@ -16,7 +16,7 @@
 			<div class="page-item-subtitle">previous</div>
 			<div class="page-item-title">{{ include.prev-description }}</div>
 			{% else -%}
-			{% unless include.text %}{% include "ui/icon.html" icon="chevron-left" %}{% else %}Previous{% endunless -%}
+			{% unless include.text %}{% include ui/icon.html icon="chevron-left" %}{% else %}Previous{% endunless -%}
 			{% endif %}
 		</a>
 	</li>
@@ -41,14 +41,14 @@
             <div class="page-item-subtitle">next</div>
             <div class="page-item-title">{{ include.next-description }}</div>
          {% else -%}
-            {% unless include.text %}{% include "ui/icon.html" icon="chevron-right" %}{% else %}Next{% endunless %}
+            {% unless include.text %}{% include ui/icon.html icon="chevron-right" %}{% else %}Next{% endunless %}
          {% endif -%}
       </a>
    </li>
 	{% if include.first-last -%}
 	<li class="page-item">
 		<a class="page-link{% if include.text %} page-text{% endif %}" href="#">
-			{% unless include.text %}{% include "ui/icon.html" icon="chevrons-right" %}{% else %}Next{% endunless %}
+			{% unless include.text %}{% include ui/icon.html icon="chevrons-right" %}{% else %}Next{% endunless %}
 		</a>
 	</li>
 	{% endif -%}

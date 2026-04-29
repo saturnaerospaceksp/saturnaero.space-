@@ -26,6 +26,6 @@ To be able to use the range slider in your application you will need to install 
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 For more details on customizing a noUiSlider element, see the documentation on the [noUiSlider website](https://refreshless.com/nouislider/).

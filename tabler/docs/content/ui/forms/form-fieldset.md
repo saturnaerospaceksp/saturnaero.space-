@@ -32,4 +32,4 @@ Group parts of your form to make it well-structured and clearer for users, using
   </label>
 </fieldset>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

@@ -14,7 +14,7 @@ Placeholder lines can contain lines of text. Their length is different and depen
 <div class="placeholder col-10"></div>
 <div class="placeholder col-8"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 However, it may be useful to specify the full width in order to fit the content more effectively.
 
@@ -24,7 +24,7 @@ However, it may be useful to specify the full width in order to fit the content 
 <div class="placeholder col-12"></div>
 <div class="placeholder col-12"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 You can also move the lines to the right or center them:
 
@@ -40,7 +40,7 @@ You can also move the lines to the right or center them:
   <div class="placeholder col-8"></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Placeholder heading
 
@@ -51,7 +51,7 @@ A placeholder can also contain an element that looks like a header:
 <div class="placeholder placeholder-xs col-10"></div>
 <div class="placeholder placeholder-xs col-11"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Placeholder avatar
 
@@ -68,7 +68,7 @@ You can use a placeholder that will look like an avatar. You can use the `avatar
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 You can also use the `avatar` component with different sizes. Look at the example below to see how the avatar placeholder looks.
 
@@ -79,7 +79,7 @@ You can also use the `avatar` component with different sizes. Look at the exampl
 <div class="avatar avatar-sm placeholder"></div>
 <div class="avatar avatar-xs placeholder"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Placeholder image
 
@@ -99,7 +99,7 @@ You can use a placeholder that will look like a picture. You can use the `ratio`
   <div class="placeholder-image"></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column centered vertical %}
+{% include docs/example.html html=html column centered vertical %}
 
 ## Placeholder color
 
@@ -116,7 +116,7 @@ By default, the placeholder uses `currentColor`. This can be overridden with a c
 <span class="placeholder col-12 bg-light"></span>
 <span class="placeholder col-12 bg-dark"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Placeholder sizing
 
@@ -128,7 +128,7 @@ The sizes of placeholders are based on the typographic style of the parent eleme
 <span class="placeholder col-12 placeholder-sm"></span>
 <span class="placeholder col-12 placeholder-xs"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Animation
 
@@ -142,7 +142,7 @@ Animate placeholders with `.placeholder-glow` or `.placeholder-wave` to better c
   <span class="placeholder col-12"></span>
 </p>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Live examples
 
@@ -268,4 +268,4 @@ See in the following examples how else you can use the placeholder component
   </ul>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column centered vertical %}
+{% include docs/example.html html=html column centered vertical %}

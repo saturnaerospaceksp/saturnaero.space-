@@ -63,4 +63,4 @@ The results can be seen in the example below.
 	<div><div class="cursor-grabbing bg-surface-secondary p-3">grabbing</div></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html hide-code %}
+{% include docs/example.html html=html hide-code %}

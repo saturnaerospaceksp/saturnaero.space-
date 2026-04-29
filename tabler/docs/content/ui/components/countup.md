@@ -24,7 +24,7 @@ The results can be seen in the example below.
 {% capture html -%}
 <h1 data-countup>30000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Duration
 
@@ -35,7 +35,7 @@ Set the `duration` to determine how long the animation should take. By default, 
 <h1 data-countup='{"duration":4}'>30000</h1>
 <h1 data-countup='{"duration":6}'>30000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Starting value
 
@@ -47,7 +47,7 @@ To see how the starting value affects the animation, look at the example below.
 <h1 data-countup='{"startVal":12345}'>30000</h1>
 <h1 data-countup='{"startVal":47655}'>30000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Decimal places
 
@@ -59,7 +59,7 @@ Set how many decimal numbers should be displayed using `decimalPlaces`. By defau
 <h1 data-countup='{"decimalPlaces":2}'>3.123</h1>
 <h1 data-countup='{"decimalPlaces":3}'>3.123</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Easing
 
@@ -69,7 +69,7 @@ Disable easing using `"useEasing": false`. Easing is set to `true` by default, s
 <h1 data-countup>30000</h1>
 <h1 data-countup='{"useEasing": false}'>30000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Use grouping
 
@@ -79,7 +79,7 @@ Disable grouping using `"useGrouping": false`. Grouping is set to `true` by defa
 <h1 data-countup>30000</h1>
 <h1 data-countup='{"useGrouping": false}'>30000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Separator
 
@@ -89,7 +89,7 @@ You can change the default separator using `separator` and specifying the one yo
 <h1 data-countup>3000000</h1>
 <h1 data-countup='{"separator":" "}'>3000000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Decimal separator
 
@@ -99,7 +99,7 @@ You can change the default decimal separator using `decimal` and specifying the 
 <h1 data-countup='{"decimalPlaces":2}'>3.12</h1>
 <h1 data-countup='{"decimalPlaces":2,"decimal":","}'>3.12</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Prefix
 
@@ -109,7 +109,7 @@ Set the countup prefix using `prefix` and specifying the prefix you want to add,
 <h1 data-countup='{"prefix":"$"}'>30000</h1>
 <h1 data-countup='{"prefix":"€"}'>30000</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}
 
 ## Suffix
 
@@ -119,4 +119,4 @@ Set the countup suffix using `suffix` and specifying the suffix you want to add,
 <h1 data-countup='{"suffix":"%"}'>300</h1>
 <h1 data-countup='{"suffix":"‰"}'>300</h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical separated %}
+{% include docs/example.html html=html vertical separated %}

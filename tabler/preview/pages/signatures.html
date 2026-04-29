@@ -82,7 +82,7 @@ document.querySelector("#signature-advanced-png").addEventListener("click", func
           </div>
           <div class="mb-3">
             <label class="form-label required">Signature</label>
-            {% include "ui/signature.html" sample clear extra-js=simple-js %}
+            {% include ui/signature.html sample clear extra-js=simple-js %}
           </div>
         </form>
         <div class="text-secondary fs-5">
@@ -107,7 +107,7 @@ document.querySelector("#signature-advanced-png").addEventListener("click", func
 				<div class="card-body">
 					<h3 class="card-title">Advanced demo</h3>
 			
-					{% include "ui/signature.html" id="advanced" clear extra-js=advanced-js %}
+					{% include ui/signature.html id="advanced" clear extra-js=advanced-js %}
 			
 					<div class="mt-4">
 						<div class="row">
@@ -129,7 +129,7 @@ document.querySelector("#signature-advanced-png").addEventListener("click", func
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					{% include "ui/button.html" text="Open signature modal" modal-id="signature" %}
+					{% include ui/button.html text="Open signature modal" modal-id="signature" %}
 				</div>
 			</div>
 		</div>
@@ -144,7 +144,7 @@ document.querySelector("#signature-advanced-png").addEventListener("click", func
 		<div class="modal-content">
 			<div class="modal-body">
 				<h5 class="modal-title">Save your signature</h5>
-				{% include "ui/signature.html" id="modal" clear event="shown.bs.modal" %}
+				{% include ui/signature.html id="modal" clear event="shown.bs.modal" %}
 
 				<div class="text-secondary fs-5 mt-4">
 					I agree that the signature and initials will be the electronic representation of my signature and initials for all

@@ -15,7 +15,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-list">
 					{% for color in site.themeColors %}
-					<a class="btn btn-{{ color[0] }}">{% include "ui/icon.html" icon=color[1].icon %} {{ color[1].title }}</a>
+					<a class="btn btn-{{ color[0] }}">{% include ui/icon.html icon=color[1].icon %} {{ color[1].title }}</a>
 					{% endfor %}
 				</div>
 			</div>
@@ -29,7 +29,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-list">
 					{% for color in site.themeColors %}
-					<a class="btn btn-outline btn-{{ color[0] }}">{% include "ui/icon.html"
+					<a class="btn btn-outline btn-{{ color[0] }}">{% include ui/icon.html
 						icon=color[1].icon %} {{ color[1].title }}</a>
 					{% endfor %}
 				</div>
@@ -44,7 +44,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-list">
 					{% for color in site.themeColors %}
-					<a class="btn btn-ghost btn-{{ color[0] }}">{% include "ui/icon.html"
+					<a class="btn btn-ghost btn-{{ color[0] }}">{% include ui/icon.html
 						icon=color[1].icon %} {{ color[1].title }}</a>
 					{% endfor %}
 				</div>
@@ -60,7 +60,7 @@ permalink: buttons.html
 				<div class="btn-list">
 					{% for color in site.themeColors %}
 					<a class="btn btn-square btn-{{ color[0] }}">
-						{% include "ui/icon.html" icon=color[1].icon %} {{ color[1].title }}
+						{% include ui/icon.html icon=color[1].icon %} {{ color[1].title }}
 					</a>
 					{% endfor %}
 				</div>
@@ -76,7 +76,7 @@ permalink: buttons.html
 				<div class="btn-list">
 					{% for color in site.themeColors %}
 					<a class="btn btn-pill btn-{{ color[0] }}">
-						{% include "ui/icon.html" icon=color[1].icon %} {{ color[1].title }}
+						{% include ui/icon.html icon=color[1].icon %} {{ color[1].title }}
 					</a>
 					{% endfor %}
 				</div>
@@ -91,7 +91,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-list">
 					{% for color in site.colors %}
-					<a class="btn btn-{{ color[0] }}">{% include "ui/icon.html"
+					<a class="btn btn-{{ color[0] }}">{% include ui/icon.html
 						icon=color[1].icon %} {{ color[1].title }}</a>
 					{% endfor %}
 				</div>
@@ -106,7 +106,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-list">
 					{% for app in site.socialColors %}
-					<a class="btn btn-icon btn-{{ app[0] }}">{% include "ui/icon.html" icon=app[1].icon %}</a>
+					<a class="btn btn-icon btn-{{ app[0] }}">{% include ui/icon.html icon=app[1].icon %}</a>
 					{% endfor %}
 				</div>
 			</div>
@@ -120,7 +120,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-list">
 					{% for app in site.socialColors %}
-					<a class="btn btn-{{ app[0] }}">{% include "ui/icon.html" icon=app[1].icon %} {{ app[1].title }}</a>
+					<a class="btn btn-{{ app[0] }}">{% include ui/icon.html icon=app[1].icon %} {{ app[1].title }}</a>
 					{% endfor %}
 				</div>
 			</div>
@@ -135,7 +135,7 @@ permalink: buttons.html
 			<div class="card-body">
 				<div class="btn-actions">
 					{% for action in actions %}
-					<a class="btn btn-action">{% include "ui/icon.html" icon=action %}</a>
+					<a class="btn btn-action">{% include ui/icon.html icon=action %}</a>
 					{% endfor %}
 				</div>
 			</div>
@@ -148,15 +148,15 @@ permalink: buttons.html
 			</div>
 			<div class="card-body">
 				<div class="btn-list">
-					<a class="btn btn-animate-icon">Save {% include "ui/icon.html" icon="arrow-right" class="icon-end" %}</a>
-					<a class="btn btn-animate-icon btn-animate-icon-rotate">{% include "ui/icon.html" icon="plus" %} Add</a>
-					<a class="btn btn-animate-icon btn-animate-icon-shake">{% include "ui/icon.html" icon="bell" %} Notifications</a>
-					<a class="btn btn-animate-icon btn-animate-icon-rotate">{% include "ui/icon.html" icon="settings" %} Settings</a>
-					<a class="btn btn-animate-icon btn-animate-icon-pulse">{% include "ui/icon.html" icon="heart" %} Love</a>
-					<a class="btn btn-animate-icon btn-animate-icon-rotate">{% include "ui/icon.html" icon="x" %} Close</a>
-					<a class="btn btn-animate-icon btn-animate-icon-tada">{% include "ui/icon.html" icon="check" %} Confirm</a>
-					<a class="btn btn-animate-icon">Next {% include "ui/icon.html" icon="chevron-right" class="icon-end" %}</a>
-					<a class="btn btn-animate-icon btn-animate-icon-move-start">{% include "ui/icon.html" icon="chevron-left" %} Previous</a>
+					<a class="btn btn-animate-icon">Save {% include ui/icon.html icon="arrow-right" class="icon-end" %}</a>
+					<a class="btn btn-animate-icon btn-animate-icon-rotate">{% include ui/icon.html icon="plus" %} Add</a>
+					<a class="btn btn-animate-icon btn-animate-icon-shake">{% include ui/icon.html icon="bell" %} Notifications</a>
+					<a class="btn btn-animate-icon btn-animate-icon-rotate">{% include ui/icon.html icon="settings" %} Settings</a>
+					<a class="btn btn-animate-icon btn-animate-icon-pulse">{% include ui/icon.html icon="heart" %} Love</a>
+					<a class="btn btn-animate-icon btn-animate-icon-rotate">{% include ui/icon.html icon="x" %} Close</a>
+					<a class="btn btn-animate-icon btn-animate-icon-tada">{% include ui/icon.html icon="check" %} Confirm</a>
+					<a class="btn btn-animate-icon">Next {% include ui/icon.html icon="chevron-right" class="icon-end" %}</a>
+					<a class="btn btn-animate-icon btn-animate-icon-move-start">{% include ui/icon.html icon="chevron-left" %} Previous</a>
 				</div>
 			</div>
 		</div>
@@ -171,10 +171,10 @@ permalink: buttons.html
 					{% assign sizes = 'sm,md,lg,xl' | split: ',' %}
 					{% for size in sizes %}
 					<div class="btn-list">
-						{% include "ui/button.html" size=size text="Button" %}
-						{% include "ui/button.html" size=size icon="star" icon-only %}
-						{% include "ui/button.html" size=size icon="star" text="Button" %}
-						{% include "ui/button.html" size=size icon-end="star" text="Button" %}
+						{% include ui/button.html size=size text="Button" %}
+						{% include ui/button.html size=size icon="star" icon-only %}
+						{% include ui/button.html size=size icon="star" text="Button" %}
+						{% include ui/button.html size=size icon-end="star" text="Button" %}
 					</div>
 					{% endfor %}
 				</div>

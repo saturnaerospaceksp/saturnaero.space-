@@ -22,7 +22,7 @@ Use the default status to notify users about the status of a component or page, 
 <span class="status status-teal">Teal</span>
 <span class="status status-cyan">Cyan</span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 
 ## Status with dot
@@ -79,7 +79,7 @@ You can add a dot to the status to make it more noticeable. To do this, use the 
   Cyan
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ### Animated dot
 
@@ -135,7 +135,7 @@ You can also animate the dot to make it more noticeable. To do this, add a `.sta
   Cyan
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Lite status
 
@@ -191,7 +191,7 @@ Use the lite status to make the status less noticeable. To do this, add a `.stat
   Cyan
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Status dots
 
@@ -211,7 +211,7 @@ If you need only dot status, you can use the `.status-dot` class.
 <span class="status-dot status-teal"></span>
 <span class="status-dot status-cyan"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 The dots can also be animated. To do this, add the `.status-dot-animated` class.
 
@@ -235,7 +235,7 @@ The animated status dots can be used in the same way as the regular status dots.
 <span class="status-dot status-dot-animated status-teal"></span>
 <span class="status-dot status-dot-animated status-cyan"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Status indicator
 
@@ -303,4 +303,4 @@ Use the status indicator to show the status of a component or page. The status i
   <span class="status-indicator-circle"></span>
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

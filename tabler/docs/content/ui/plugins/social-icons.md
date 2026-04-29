@@ -25,10 +25,10 @@ To create a social icon, add the `social` class to a component and provide the c
 <span class="social social-app-x"></span>
 <span class="social social-app-instagram"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Social apps list
 
 Here is a list of all available social apps:
 
-{% include "docs/socials.html" %}
+{% include docs/socials.html %}

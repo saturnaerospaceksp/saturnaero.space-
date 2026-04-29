@@ -20,7 +20,7 @@ Below are examples of headings with different levels:
 <h5>H5 Heading</h5>
 <h6>H6 Heading</h6>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Paragraphs
 
@@ -39,7 +39,7 @@ If you use a second paragraph, it will be separated from the first one by a blan
 </p>
 <p>At vero eos et accusam et justo duo dolores et ea rebum.</p>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical %}
+{% include docs/example.html html=html vertical %}
 
 
 ## Semantic text elements
@@ -101,7 +101,7 @@ Here are examples of semantic text elements:
 	<var>x</var> = <var>y</var> + 2
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Horizontal rules
 
@@ -122,7 +122,7 @@ Use the `hr` tag to represent a thematic break between paragraphs within one sec
   </p>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Horizontal rules with label
 
@@ -162,7 +162,7 @@ You can also add a label to a horizontal rule and align it as you see fit. Cente
   labore et dolore magna aliquyam erat, sed diam voluptua.
 </p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Optimized for different alphabets
 
@@ -179,7 +179,7 @@ Tabler has been optimized to correctly display content in any language. It suppo
 <p>אלפבית עברי</p>
 <p>อักษรไทย</p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Text transform
 
@@ -190,7 +190,7 @@ Transform the content of components with text capitalization classes.
 <p class="text-uppercase">Uppercased text.</p>
 <p class="text-capitalize">Capitalized text.</p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Letter spacing
 
@@ -201,7 +201,7 @@ Control the tracking (letter spacing) of an element and make it tight, wide or n
 <p class="tracking-normal">Lorem ipsum dolor sit amet. Normal letter spacing.</p>
 <p class="tracking-wide">Lorem ipsum dolor sit amet. Wide letter spacing.</p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Line height
 
@@ -221,7 +221,7 @@ Control the leading (line height) of an element using the `.lh-*` classes. The l
   This is the long text with large line height. Lorem ipsum dolor sit amet. Dolor sit amet.
 </p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Antialiasing
 
@@ -233,7 +233,7 @@ Use the `.antialiased` utility to render text using subpixel antialiasing or use
 <div class="antialiased">Text with antialiasing</div>
 <div class="subpixel-antialiased">Text without antialiasing</div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Keyboard input
 
@@ -242,7 +242,7 @@ Use the `<kbd>` to indicate input that is typically entered via keyboard.
 {% capture html -%}
 To edit settings, press <kbd>ctrl</kbd> + <kbd>,</kbd> or <kbd>ctrl</kbd> + <kbd>C</kbd>.
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Markdown elements
 
@@ -274,4 +274,4 @@ If you can't use the CSS classes you want, or you just want to use HTML tags, us
   </ul>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

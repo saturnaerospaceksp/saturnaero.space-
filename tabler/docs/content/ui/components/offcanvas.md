@@ -21,7 +21,7 @@ To create an offcanvas, add the `.offcanvas` class to a container element. You c
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html raw %}
+{% include docs/example.html html=html raw %}
 
 ## Cookies banner
 
@@ -58,4 +58,4 @@ The offcanvas component is used to display a cookies banner. It is a great way t
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html raw %}
+{% include docs/example.html html=html raw %}

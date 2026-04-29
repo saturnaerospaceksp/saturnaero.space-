@@ -20,7 +20,7 @@ To create a default popover use:
   Click to toggle popover
 </button>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered bg="surface-secondary" %}
+{% include docs/example.html html=html centered bg="surface-secondary" %}
 
 ## Four directions
 
@@ -68,7 +68,7 @@ Four options are available: `top`, `right`, `bottom`, and `left` aligned. Direct
   Popover on left
 </button>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered bg="surface-secondary" %}
+{% include docs/example.html html=html centered bg="surface-secondary" %}
 
 ## Popover on hover
 
@@ -86,4 +86,4 @@ Popover can be triggered in one or more of the following styles: `manual`, with 
   Hover to toggle popover
 </button>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered bg="surface-secondary" %}
+{% include docs/example.html html=html centered bg="surface-secondary" %}

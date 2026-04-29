@@ -158,7 +158,7 @@ summary: Learn how to tailor Tabler Illustrations by adjusting colors, sizes, an
   />
 </svg>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Color of the illustration
 
@@ -334,7 +334,7 @@ body {
   </svg>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Color of the skin
 
@@ -504,7 +504,7 @@ Look at the example below to see how you can change the color of the skin.
   </svg>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 
 ## Application Brand Color
@@ -786,7 +786,7 @@ Tabler Illustrations uses `--tblr-primary` as a fallback color if `--tblr-illust
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Dark version of the illustration
 
@@ -945,7 +945,7 @@ Each illustration has a dark mode variant. To use it, copy the dark mode SVG cod
   </svg>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Autodark mode
 
@@ -1200,4 +1200,4 @@ Look at the example below to see how the illustration changes based on the user'
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

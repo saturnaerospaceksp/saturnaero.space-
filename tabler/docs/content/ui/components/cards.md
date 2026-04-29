@@ -16,7 +16,7 @@ Use the `.card` and `.card-body` classes to create a card and use it as the basi
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 
 ## Card padding
 
@@ -38,7 +38,7 @@ Cards with the `.card-sm` class are well suited for small items such as widgets,
   <div class="card-body">This is some text within a card body.</div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 
 ## Card with title
 
@@ -60,7 +60,7 @@ Add a title to your card by including the `.card-title` class within `.card-body
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 
 ## Card with title and image
 
@@ -82,7 +82,7 @@ To create a more visually appealing card, add a title and an image. Thanks to th
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 
 ## Blog post card
 
@@ -109,14 +109,14 @@ Add an image to your blog post card to make it eye-catching. You can do it by ad
       </div>
       <div class="ms-auto">
         <a href="#" class="icon d-none d-md-inline-block ms-3 text-secondary">
-          {% include "ui/icon.html" icon="heart" %}
+          {% include ui/icon.html icon="heart" %}
         </a>
       </div>
     </div>
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 
 ## Row deck
 
@@ -143,7 +143,7 @@ Add the `.row-deck` class to `.row`, if you want to display several cards next t
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" %}
+{% include docs/example.html html=html bg="surface-secondary" %}
 
 ## Post card with aside image
 
@@ -178,7 +178,7 @@ You can also add an image on the left side of the card. To do it, add the `.card
           </div>
           <div class="ms-auto">
             <a href="#" class="icon d-none d-md-inline-block ms-3 text-red">
-              {% include "ui/icon.html" icon="heart" %}
+              {% include ui/icon.html icon="heart" %}
             </a>
           </div>
         </div>
@@ -187,7 +187,7 @@ You can also add an image on the left side of the card. To do it, add the `.card
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" %}
+{% include docs/example.html html=html bg="surface-secondary" %}
 
 ## Color variations
 
@@ -221,7 +221,7 @@ Add a status color to your card, either at the top or on the side of the card, t
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" %}
+{% include docs/example.html html=html bg="surface-secondary" %}
 
 ## Stacked card
 
@@ -238,7 +238,7 @@ Use the `card-stacked` class to stack up multiple cards, if you want to save scr
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 
 ## Tabbed card
 
@@ -300,5 +300,5 @@ Organize multiple cards into tabs to be able to display more content in a well-o
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" column %}
+{% include docs/example.html html=html bg="surface-secondary" column %}
 

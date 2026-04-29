@@ -83,7 +83,7 @@ The `.table` class adds basic styling to a table:
   </table>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Responsive tables
 
@@ -136,7 +136,7 @@ Use the `.table-responsive` class across each breakpoint for horizontal scrollin
   </tbody>
 </table>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## No wrap
 
@@ -176,7 +176,7 @@ If you don't want the table cell content to wrap to another line, use the `table
   </table>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Table Variants
 
@@ -238,7 +238,7 @@ If you don't want the table cell content to wrap to another line, use the `table
   </tbody>
 </table>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Table with sticky header
 
@@ -345,4 +345,4 @@ If you don't want the table cell content to wrap to another line, use the `table
   </tbody>
 </table>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="42rem" %}
+{% include docs/example.html html=html height="42rem" %}

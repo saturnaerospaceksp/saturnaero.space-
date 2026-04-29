@@ -31,7 +31,7 @@ Integrating the Inline Player into your website is straightforward. Below is a s
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Vimeo file
 
@@ -46,7 +46,7 @@ For the Vimeo video you just need to change the `data-plyr-provider`.
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## HTML5 video and audio
 

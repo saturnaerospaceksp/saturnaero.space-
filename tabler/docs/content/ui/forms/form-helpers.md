@@ -37,7 +37,7 @@ Look at the example below to see how the input help works:
   <input type="text" class="form-control" placeholder="Your ZIP Code" />
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Required field
 
@@ -49,7 +49,7 @@ Use the `.required` class to indicate that a field is required. It will add a re
   <input type="text" class="form-control" name="..." placeholder="Required..." />
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Form hint
 
@@ -68,7 +68,7 @@ Look at the example below to see how the form hint works:
   <div class="form-hint">We'll never share your email with anyone else.</div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Additional info inside label
 
@@ -80,4 +80,4 @@ Use the `.form-label-description` class to add additional information to the lab
   <textarea class="form-control" name="" rows="3" placeholder="Content.."></textarea>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

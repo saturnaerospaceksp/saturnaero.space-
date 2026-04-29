@@ -48,7 +48,7 @@ Look at the example below to see how the modal looks.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered bg="surface-secondary" %}
+{% include docs/example.html html=html centered bg="surface-secondary" %}
 
 ## Prompt and alert
 
@@ -100,7 +100,7 @@ You can use the modal to create a prompt or alert. Look at the example below to 
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html raw bg="surface-secondary" %}
+{% include docs/example.html html=html raw bg="surface-secondary" %}
 
 {% capture html -%}
 <div class="modal" id="exampleModal" tabindex="-1">
@@ -147,7 +147,7 @@ You can use the modal to create a prompt or alert. Look at the example below to 
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html raw bg="surface-secondary" %}
+{% include docs/example.html html=html raw bg="surface-secondary" %}
 
 ## Modal with form
 
@@ -260,7 +260,7 @@ You can use the modal to create a form. Look at the example below to see how the
       <div class="modal-footer">
         <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal"> Cancel </a>
         <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-          {% include "ui/icon.html" icon="plus" %}
+          {% include ui/icon.html icon="plus" %}
           Create new report
         </a>
       </div>
@@ -268,4 +268,4 @@ You can use the modal to create a form. Look at the example below to see how the
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html raw bg="surface-secondary" class="px-5" %}
+{% include docs/example.html html=html raw bg="surface-secondary" class="px-5" %}

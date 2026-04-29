@@ -12,30 +12,30 @@ If you need to add icons to your website, you can use the [Tabler Icons library]
 To add an icon to your code copy the SVG code from the Tabler Icons website and paste it into your HTML file.
 
 ```html
-{% include "ui/icon.html" icon="heart" %}
+{% include ui/icon.html icon="heart" %}
 ```
 
 Results can be seen in the example below.
 
 {% capture html -%}
-{% include "ui/icon.html" icon="heart" %}
-{% include "ui/icon.html" icon="ghost-2" %}
-{% include "ui/icon.html" icon="lego" %}
-{% include "ui/icon.html" icon="building-carousel" %}
+{% include ui/icon.html icon="heart" %}
+{% include ui/icon.html icon="ghost-2" %}
+{% include ui/icon.html icon="lego" %}
+{% include ui/icon.html icon="building-carousel" %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Filled icons
 
 To use filled icons, you need to copy the SVG code of the selected filled Icon from the [Tabler Icons website]({{ site.icons.link }}) and paste it into your HTML file.
 
 {% capture html -%}
-{% include "ui/icon.html" icon="heart" type="filled" %}
-{% include "ui/icon.html" icon="bell-ringing" type="filled" %}
-{% include "ui/icon.html" icon="cherry" type="filled" %}
-{% include "ui/icon.html" icon="circle-key" type="filled" %}
+{% include ui/icon.html icon="heart" type="filled" %}
+{% include ui/icon.html icon="bell-ringing" type="filled" %}
+{% include ui/icon.html icon="cherry" type="filled" %}
+{% include ui/icon.html icon="circle-key" type="filled" %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Icon colors
 
@@ -51,19 +51,19 @@ Look at the example below to see how the color of the icon changes.
 
 {% capture html -%}
 <span class="text-red">
-  {% include "ui/icon.html" icon="heart" type="filled" %}
+  {% include ui/icon.html icon="heart" type="filled" %}
 </span>
 <span class="text-yellow">
-  {% include "ui/icon.html" icon="star" type="filled" %}
+  {% include ui/icon.html icon="star" type="filled" %}
 </span>
 <span class="text-blue">
-  {% include "ui/icon.html" icon="circle" %}
+  {% include ui/icon.html icon="circle" %}
 </span>
 <span class="text-green">
-  {% include "ui/icon.html" icon="square-rounded" %}
+  {% include ui/icon.html icon="square-rounded" %}
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Icon animations
 
@@ -119,5 +119,5 @@ To add an animation to the icon, you need to add the `icon-pulse`, `icon-tada`, 
   <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
 </svg>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 

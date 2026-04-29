@@ -14,21 +14,21 @@ Combine `alert` class with one of the following: `alert-success`, `alert-info`, 
 Alert classes affect the color of all the text inside an alert. Use another class, e.g. `text-secondary` to change the color of the alert's content.
 
 {% capture html -%}
-{% include "ui/alert.html" type="success" title="Wow! Everything worked!" description="Your account has been saved!" %}
-{% include "ui/alert.html" type="info" title="Did you know?" description="Here is something that you might like to know." %}
-{% include "ui/alert.html" type="warning" title="Uh oh, something went wrong" description="Sorry! There was a problem with your request." %}
-{% include "ui/alert.html" type="danger" title="I'm so sorry&hellip;" description="Your account has been deleted and can't be restored." %}
+{% include ui/alert.html type="success" title="Wow! Everything worked!" description="Your account has been saved!" %}
+{% include ui/alert.html type="info" title="Did you know?" description="Here is something that you might like to know." %}
+{% include ui/alert.html type="warning" title="Uh oh, something went wrong" description="Sorry! There was a problem with your request." %}
+{% include ui/alert.html type="danger" title="I'm so sorry&hellip;" description="Your account has been deleted and can't be restored." %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Alert links
 
 Add a link to your alert message to redirect users to the details they need to complete or additional information they should read. Use `alert-link` class to style the link and match the text color.
 
 {% capture html -%}
-{% include "ui/alert.html" type="danger" title="This is a danger alert" link="check it out" %}
+{% include ui/alert.html type="danger" title="This is a danger alert" link="check it out" %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Dismissible alerts
 
@@ -39,9 +39,9 @@ Add the `x` close button to make an alert modal dismissible. Thanks to that, you
 ```
 
 {% capture html -%}
-{% include "ui/alert.html" type="danger" title="This is a danger alert" show-close %}
+{% include ui/alert.html type="danger" title="This is a danger alert" show-close %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Alerts with icons
 
@@ -158,7 +158,7 @@ Use the `alert-icon` class on an `<svg>` (or on an `<i>` when using the webfont)
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Alert with avatar
 
@@ -219,7 +219,7 @@ Add an avatar to your alert modal to make it more personalized.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Alert with buttons
 
@@ -273,7 +273,7 @@ Buttons don't inherit the alert's color, so you should set the proper class if y
   <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Important alerts
 
@@ -335,7 +335,7 @@ You can also use other elements, like icons and dismissible buttons, with this t
   <a class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="close"></a>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Custom alert color
 
@@ -370,7 +370,7 @@ You're not limited to the 4 default alert colors. You can use any [base or socia
   <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## SASS variables
 

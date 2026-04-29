@@ -34,12 +34,12 @@ The navbar can contain links, buttons, and other elements. You can customize the
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-	{% include "layout/navbar-logo.html" class="me-3" %}
+	{% include layout/navbar-logo.html class="me-3" %}
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <span class="nav-link-icon">
-            {% include "ui/icon.html" icon="home" %}
+            {% include ui/icon.html icon="home" %}
           </span>
           <span class="nav-link-title"> Home </span>
         </a>
@@ -47,7 +47,7 @@ The navbar can contain links, buttons, and other elements. You can customize the
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span class="nav-link-icon"
-            >{% include "ui/icon.html" icon="checkbox" %}
+            >{% include ui/icon.html icon="checkbox" %}
           </span>
           <span class="nav-link-title"> Profile </span>
         </a>
@@ -55,7 +55,7 @@ The navbar can contain links, buttons, and other elements. You can customize the
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span class="nav-link-icon"
-            >{% include "ui/icon.html" icon="checkbox" %}
+            >{% include ui/icon.html icon="checkbox" %}
           </span>
           <span class="nav-link-title"> Settings </span>
         </a>
@@ -91,4 +91,4 @@ The navbar can contain links, buttons, and other elements. You can customize the
   </div>
 </header>
 {%- endcapture %}
-{% include "docs/example.html" html=html raw class="pb-10" bg="surface-secondary" overflow="visible" %}
+{% include docs/example.html html=html raw class="pb-10" bg="surface-secondary" overflow="visible" %}

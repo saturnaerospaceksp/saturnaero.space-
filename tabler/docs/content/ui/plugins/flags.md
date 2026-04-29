@@ -23,7 +23,7 @@ To create a flag, add the `flag` class to a component and choose the country who
 {% capture html -%}
 <span class="flag flag-country-us"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 
 ## Country flags
@@ -35,7 +35,7 @@ To use the flag of a particular country, add the `flag-country-(country name)` c
 <span class="flag flag-country-br"></span>
 <span class="flag flag-country-pt"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Flag sizes
 
@@ -48,11 +48,11 @@ Using Bootstrap’s typical naming structure, you can create a standard flag, or
 <span class="flag flag-sm flag-country-us"></span>
 <span class="flag flag-xs flag-country-us"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Flags list
 
 The full list of countries can be found below.
 
-{% include "docs/flags.html" %}
+{% include docs/flags.html %}
 

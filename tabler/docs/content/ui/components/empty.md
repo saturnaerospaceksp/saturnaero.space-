@@ -57,7 +57,7 @@ Use the default empty state to engage users in the critical moments of their exp
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" %}
+{% include docs/example.html html=html bg="surface-secondary" %}
 
 ## Empty state with illustration
 
@@ -68,7 +68,7 @@ Do you need an illustration to enhance your web designs? We've got something for
 {% capture html -%}
 <div class="empty">
   <div class="empty-img">
-    {% include "ui/illustration.html" image="boy-with-key" alt="Empty state illustration" %}
+    {% include ui/illustration.html image="boy-with-key" alt="Empty state illustration" %}
   </div>
   <p class="empty-title">Invoices are managed from here</p>
   <p class="empty-subtitle text-secondary">
@@ -97,7 +97,7 @@ Do you need an illustration to enhance your web designs? We've got something for
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" %}
+{% include docs/example.html html=html bg="surface-secondary" %}
 
 ## Empty state with header
 
@@ -134,5 +134,5 @@ Instead of adding an icon or illustration you can simply give the text:
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html bg="surface-secondary" %}
+{% include docs/example.html html=html bg="surface-secondary" %}
 

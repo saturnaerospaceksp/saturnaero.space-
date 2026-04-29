@@ -26,7 +26,7 @@ You can also include additional Tabler plugins:
 
 Install Tabler in your Node.js powered apps with the npm package:
 
-{% include "docs/tabs-package.html" name="@tabler/core" %}
+{% include docs/tabs-package.html name="@tabler/core" %}
 
 ## 3rd-party Libraries
 

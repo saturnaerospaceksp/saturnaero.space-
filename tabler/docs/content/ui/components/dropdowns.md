@@ -19,7 +19,7 @@ With small markup changes, you can turn any `.btn` into a dropdown toggle and us
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="220px" %}
+{% include docs/example.html html=html height="220px" %}
 
 ## Dropdown divider
 
@@ -36,7 +36,7 @@ Use dropdown dividers to separate groups of dropdown items for greater clarity.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="240px" %}
+{% include docs/example.html html=html height="240px" %}
 
 ## Active state
 
@@ -52,7 +52,7 @@ Make a dropdown item look active, so that it highlights when a user hovers over 
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="220px" %}
+{% include docs/example.html html=html height="220px" %}
 
 ## Disabled state
 
@@ -68,7 +68,7 @@ Make a dropdown item look disabled to display options which are currently not av
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="220px" %}
+{% include docs/example.html html=html height="220px" %}
 
 ## Dropdown header
 
@@ -84,7 +84,7 @@ Add a dropdown header to group dropdown items into sections and name them accord
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="210px" %}
+{% include docs/example.html html=html height="210px" %}
 
 ## Dropdown with icons
 
@@ -138,7 +138,7 @@ Use icons in your dropdowns to add more visual content and make the options easy
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="210px" %}
+{% include docs/example.html html=html height="210px" %}
 
 ## Dropdown with arrow
 
@@ -153,7 +153,7 @@ Add an arrow that points at the dropdown button.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="190px" %}
+{% include docs/example.html html=html height="190px" %}
 
 ## Dropdown with badge
 
@@ -174,7 +174,7 @@ Add a badge to your dropdown items to show additional information related to an 
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="190px" %}
+{% include docs/example.html html=html height="190px" %}
 
 ## Dropdown with checkboxes
 
@@ -196,7 +196,7 @@ Use dropdowns with checkboxes to allow users to select options from a predefined
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="220px" %}
+{% include docs/example.html html=html height="220px" %}
 
 ## Dark dropdown
 
@@ -251,7 +251,7 @@ Make your dropdown suit the dark mode of your website or software.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="220px" %}
+{% include docs/example.html html=html height="220px" %}
 
 ## Dropdown with card content
 
@@ -309,4 +309,4 @@ Use a dropdown with card content to make it easy for users to get more informati
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html height="520px" %}
+{% include docs/example.html html=html height="520px" %}

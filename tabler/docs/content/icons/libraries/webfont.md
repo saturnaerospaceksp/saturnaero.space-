@@ -9,7 +9,7 @@ summary: Tabler Icons as a webfont allows you to easily include icons in your pr
 
 ## Installation
 
-{% include "docs/tabs-package.html" name="@tabler/icons-webfont" %}
+{% include docs/tabs-package.html name="@tabler/icons-webfont" %}
 
 or just [download from Github](https://github.com/tabler/tabler-icons/releases).
 

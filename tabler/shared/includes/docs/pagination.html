@@ -3,7 +3,7 @@
 <div class="mt-6 pt-6">
 	<div class="row row-deck row-cards">
 		{% for c in children %}
-		{% include "docs/docs-card.html" href=c.url title=c.data.title description=c.data.description icon=c.data.icon %}
+		{% include docs/docs-card.html href=c.url title=c.data.title description=c.data.description icon=c.data.icon %}
 		{% endfor %}
 	</div>
 </div>
@@ -16,7 +16,7 @@
 			<a class="page-link" href="{{ next-prev.prev.url }}">
 				<div class="row align-items-center">
 					<div class="col-auto">
-						{% include "ui/icon.html" icon="chevron-left" %}
+						{% include ui/icon.html icon="chevron-left" %}
 					</div>
 					<div class="col">
 						<div class="page-item-subtitle">previous</div>
@@ -35,7 +35,7 @@
 						<div class="page-item-title">{{ next-prev.next.data.title }}</div>
 					</div>
 					<div class="col-auto">
-						{% include "ui/icon.html" icon="chevron-right" %}
+						{% include ui/icon.html icon="chevron-right" %}
 					</div>
 				</div>
 			</a>

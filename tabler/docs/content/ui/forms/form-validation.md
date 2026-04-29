@@ -14,7 +14,7 @@ To apply the validation state to the form control, use the `.is-valid` and `.is-
 <input type="text" class="form-control is-valid" placeholder="Valid State..." />
 <input type="text" class="form-control is-invalid" placeholder="Invalid State..." />
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Validation feedback
 
@@ -27,7 +27,7 @@ To provide users with additional information about the validation state, you can
   <div class="invalid-feedback">Please provide a valid city.</div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 You can also use the `.valid-feedback` to provide users with positive feedback.
 
@@ -38,7 +38,7 @@ You can also use the `.valid-feedback` to provide users with positive feedback.
   <div class="valid-feedback">Looks good!</div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Subtle validation states
 
@@ -50,4 +50,4 @@ To do this, use the `.is-valid-lite` and `.is-invalid-lite` classes.
 <input type="text" class="form-control is-valid is-valid-lite" placeholder="Valid State..." />
 <input type="text" class="form-control is-invalid is-invalid-lite" placeholder="Invalid State..." />
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

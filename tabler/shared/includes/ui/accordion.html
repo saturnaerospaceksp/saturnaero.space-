@@ -11,14 +11,14 @@
 			<button class="accordion-button{% unless forloop.index == 1 %} collapsed{% endunless %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ forloop.index }}-{{ accordion-id }}" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}">
 				{% if include.show-icon %}
 				<div class="accordion-button-icon">
-					{% include "ui/icon.html" icon="link" %}
+					{% include ui/icon.html icon="link" %}
 				</div>
 				{% endif %}
 				
 				{{ question.question }}
 
 				<div class="accordion-button-toggle{% if include.toggle-icon %} accordion-button-toggle-plus{% endif %}">
-					{% include "ui/icon.html" icon=accordion-toggle-icon %}
+					{% include ui/icon.html icon=accordion-toggle-icon %}
 				</div>
 			</button>
 		</div>

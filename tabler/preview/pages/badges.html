@@ -33,10 +33,10 @@ permalink: badges.html
               {% assign sizes = "sm,md,lg" | split: "," %} {% for size in sizes %}
               <div class="badges-list">
                 <span class="badge{% if size != 'md' %} badge-{{ size }}{% endif %}">Default</span>
-                <span class="badge{% if size != 'md' %} badge-{{ size }}{% endif %}">{% include "ui/icon.html" icon="check" %} Left icon</span>
-                <span class="badge{% if size != 'md' %} badge-{{ size }}{% endif %}">Right icon{% include "ui/icon.html" icon="arrow-right" %}</span>
+                <span class="badge{% if size != 'md' %} badge-{{ size }}{% endif %}">{% include ui/icon.html icon="check" %} Left icon</span>
+                <span class="badge{% if size != 'md' %} badge-{{ size }}{% endif %}">Right icon{% include ui/icon.html icon="arrow-right" %}</span>
                 <span class="badge badge-icononly{% if size != 'md' %} badge-{{ size }}{% endif %}"
-                  >{% include "ui/icon.html" icon="star" type="filled" %}</span
+                  >{% include ui/icon.html icon="star" type="filled" %}</span
                 >
               </div>
               {% endfor %}
@@ -71,12 +71,12 @@ permalink: badges.html
               </button>
 
 				  <button type="button" class="btn btn-icon">
-                {% include "ui/icon.html" icon="bell" %}
+                {% include ui/icon.html icon="bell" %}
                 <span class="badge badge-dot bg-red badge-notification badge-blink"></span>
               </button>
 
 				  <button type="button" class="btn btn-icon btn-action">
-                {% include "ui/icon.html" icon="bell" %}
+                {% include ui/icon.html icon="bell" %}
                 <span class="badge badge-dot bg-red badge-notification"></span>
               </button>
             </div>
@@ -129,7 +129,7 @@ permalink: badges.html
             <h3 class="card-title">Badges with icons</h3>
             <div class="badges-list">
               {% for color in colors %}
-              <span class="badge bg-{{ color }} text-{{ color }}-fg"> {% include "ui/icon.html" icon="star" type="filled" %} {{ color | uc_first }} </span>
+              <span class="badge bg-{{ color }} text-{{ color }}-fg"> {% include ui/icon.html icon="star" type="filled" %} {{ color | uc_first }} </span>
               {% endfor %}
             </div>
           </div>
@@ -137,7 +137,7 @@ permalink: badges.html
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-3">{% include "ui/dropdown-menu.html" show=true badge=true arrow=true %}</div>
+  <div class="col-sm-6 col-lg-3">{% include ui/dropdown-menu.html show=true badge=true arrow=true %}</div>
   <div class="col-sm-6 col-lg-9">
     <div class="row row-cards">
       <div class="col-12">

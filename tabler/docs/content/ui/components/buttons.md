@@ -155,27 +155,27 @@ See all icons at [tabler.io/icons]({{ site.icons.link }}).
 
 {% capture html -%}
 <button type="button" class="btn">
-  {% include "ui/icon.html" icon="upload" -%}
+  {% include ui/icon.html icon="upload" -%}
   Upload
 </button>
 <button type="button" class="btn btn-warning">
-  {% include "ui/icon.html" icon="heart" -%}
+  {% include ui/icon.html icon="heart" -%}
   I like
 </button>
 <button type="button" class="btn btn-success">
-  {% include "ui/icon.html" icon="check" -%}
+  {% include ui/icon.html icon="check" -%}
   I agree
 </button>
 <button type="button" class="btn btn-primary">
-  {% include "ui/icon.html" icon="plus" -%}
+  {% include ui/icon.html icon="plus" -%}
   More
 </button>
 <button type="button" class="btn btn-danger">
-  {% include "ui/icon.html" icon="link" -%}
+  {% include ui/icon.html icon="link" -%}
   Link
 </button>
 <button type="button" class="btn btn-info">
-  {% include "ui/icon.html" icon="message" -%}
+  {% include ui/icon.html icon="message" -%}
   Comment
 </button>
 {%- endcapture -%}
@@ -546,31 +546,31 @@ Add a subtle animation effect to your buttons when users hover over them. This c
 {% capture html -%}
 <div class="btn-list">
   <a class="btn btn-animate-icon">
-    Save {% include "ui/icon.html" icon="arrow-right" class="icon-end" %}
+    Save {% include ui/icon.html icon="arrow-right" class="icon-end" %}
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-rotate">
-    {% include "ui/icon.html" icon="plus" %} Add
+    {% include ui/icon.html icon="plus" %} Add
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-shake">
-    {% include "ui/icon.html" icon="bell" %} Notifications
+    {% include ui/icon.html icon="bell" %} Notifications
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-rotate">
-    {% include "ui/icon.html" icon="settings" %} Settings
+    {% include ui/icon.html icon="settings" %} Settings
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-pulse">
-    {% include "ui/icon.html" icon="heart" %} Love
+    {% include ui/icon.html icon="heart" %} Love
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-rotate">
-    {% include "ui/icon.html" icon="x" %} Close
+    {% include ui/icon.html icon="x" %} Close
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-tada">
-    {% include "ui/icon.html" icon="check" %} Confirm
+    {% include ui/icon.html icon="check" %} Confirm
   </a>
   <a class="btn btn-animate-icon">
-    Next {% include "ui/icon.html" icon="chevron-right" class="icon-end" %}
+    Next {% include ui/icon.html icon="chevron-right" class="icon-end" %}
   </a>
   <a class="btn btn-animate-icon btn-animate-icon-move-start">
-    {% include "ui/icon.html" icon="chevron-left" %} Previous
+    {% include ui/icon.html icon="chevron-left" %} Previous
   </a>
 </div>
 {%- endcapture -%} 

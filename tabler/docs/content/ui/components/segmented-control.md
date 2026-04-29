@@ -31,7 +31,7 @@ To create a segmented control, use the `nav` element with the `nav-segmented` cl
   </button>
 </nav>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Full width
 
@@ -68,7 +68,7 @@ The results can be seen in the example below.
   </button>
 </nav>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## With emojis
 
@@ -102,7 +102,7 @@ You can also use emojis in the segmented control. To do this, add the emoji insi
   </button>
 </nav>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## With icons
 
@@ -118,24 +118,24 @@ You can also use icons in the segmented control. To do this, add the icon inside
     aria-selected="true"
     aria-current="page"
   >
-    {% include "ui/icon.html" icon="list" %}
+    {% include ui/icon.html icon="list" %}
     List
   </button>
   <button class="nav-link" role="tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1">
-    {% include "ui/icon.html" icon="layout" %}
+    {% include ui/icon.html icon="layout" %}
     Kanban
   </button>
   <button class="nav-link" role="tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1">
-    {% include "ui/icon.html" icon="calendar" %}
+    {% include ui/icon.html icon="calendar" %}
     Calendar
   </button>
   <button class="nav-link" role="tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1">
-    {% include "ui/icon.html" icon="files" %}
+    {% include ui/icon.html icon="files" %}
     Files
   </button>
 </nav>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Vertical direction
 
@@ -156,24 +156,24 @@ The results can be seen in the example below.
     aria-selected="true"
     aria-current="page"
   >
-    {% include "ui/icon.html" icon="list" %}
+    {% include ui/icon.html icon="list" %}
     List
   </button>
   <button class="nav-link" role="tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1">
-    {% include "ui/icon.html" icon="layout" %}
+    {% include ui/icon.html icon="layout" %}
     Kanban
   </button>
   <button class="nav-link" role="tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1">
-    {% include "ui/icon.html" icon="calendar" %}
+    {% include ui/icon.html icon="calendar" %}
     Calendar
   </button>
   <button class="nav-link" role="tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1">
-    {% include "ui/icon.html" icon="files" %}
+    {% include ui/icon.html icon="files" %}
     Files
   </button>
 </nav>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Sizes 
 
@@ -241,4 +241,4 @@ The results can be seen in the examples below.
   </button>
 </nav>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered vertical %}
+{% include docs/example.html html=html centered vertical %}

@@ -38,7 +38,7 @@ page-libs: [litepicker]
 							</div>
 
 							<div>
-								{% include "ui/button.html" color="primary" block text="Submit" %}
+								{% include ui/button.html color="primary" block text="Submit" %}
 							</div>
 						</form>
 					</div>
@@ -103,7 +103,7 @@ page-libs: [litepicker]
 								</div>
 
 								<div>
-									{% include "ui/button.html" color="primary" block text="Send Message" icon-end="arrow-right" %}
+									{% include ui/button.html color="primary" block text="Send Message" icon-end="arrow-right" %}
 								</div>
 							</div>
 						</form>
@@ -127,28 +127,28 @@ page-libs: [litepicker]
 					<div class="card-body">
 						<form class="space-y">
 							<div>
-								{% include "ui/form/input-icon.html" icon="user" placeholder="Username" prepend %}
+								{% include ui/form/input-icon.html icon="user" placeholder="Username" prepend %}
 							</div>
 
 							<div>
-								{% include "ui/form/input-icon.html" icon="mail" placeholder="Email address" prepend type="mail" %}
+								{% include ui/form/input-icon.html icon="mail" placeholder="Email address" prepend type="mail" %}
 							</div>
 
 							<div>
-								{% include "ui/form/input-icon.html" icon="lock" placeholder="Password" prepend type="password" %}
+								{% include ui/form/input-icon.html icon="lock" placeholder="Password" prepend type="password" %}
 							</div>
 
 							<div>
-								{% include "ui/form/input-icon.html" icon="lock" placeholder="Confirm Password" prepend type="password" %}
+								{% include ui/form/input-icon.html icon="lock" placeholder="Confirm Password" prepend type="password" %}
 							</div>
 
 							<div>
 								<div class="row align-items-center">
 									<div class="col">
-										{% include "ui/form/check.html" title="Remember me" class="m-0" %}
+										{% include ui/form/check.html title="Remember me" class="m-0" %}
 									</div>
 									<div class="col-auto">
-										{% include "ui/button.html" color="primary" text="Create Account" icon-end="arrow-right" %}
+										{% include ui/button.html color="primary" text="Create Account" icon-end="arrow-right" %}
 									</div>
 								</div>
 							</div>
@@ -158,7 +158,7 @@ page-libs: [litepicker]
 			</div>
 
 			<div class="col-12">
-				{% include "cards/form/layout.html" horizontal=true title="Horizontal form" %}
+				{% include cards/form/layout.html horizontal=true title="Horizontal form" %}
 			</div>
 
 			<div class="col-12">
@@ -217,7 +217,7 @@ page-libs: [litepicker]
 										</label>
 									
 										<div>
-											{% include "ui/datepicker.html" layout="icon" id="birth-date" %}
+											{% include ui/datepicker.html layout="icon" id="birth-date" %}
 										</div>
 									</div>
 								</div>
@@ -302,15 +302,15 @@ page-libs: [litepicker]
 										</label>
 
 										<div class="d-flex flex-row gap-4">
-											{% include "ui/form/check.html" title="Free" type="radio" name="membership" checked=true %}
-											{% include "ui/form/check.html" title="Paid" type="radio" name="membership" %}
+											{% include ui/form/check.html title="Free" type="radio" name="membership" checked=true %}
+											{% include ui/form/check.html title="Paid" type="radio" name="membership" %}
 										</div>
 									</div>
 								</div>
 
 								<div class="text-end">
-									{% include "ui/button.html" text="Cancel" %}
-									{% include "ui/button.html" color="primary" text="Save Changes" %}
+									{% include ui/button.html text="Cancel" %}
+									{% include ui/button.html color="primary" text="Save Changes" %}
 								</div>
 							</div>
 						</form>

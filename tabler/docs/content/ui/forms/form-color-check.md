@@ -16,16 +16,16 @@ Your input controls can come in a variety of colors, depending on your preferenc
 There is also an example of a color input:
 
 {% capture html -%}
-{% include "parts/form/input-color.html" type="checkbox" %}
+{% include parts/form/input-color.html type="checkbox" %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 If you need to select only one color, you can use the radio input type:
 
 {% capture html -%}
-{% include "parts/form/input-color.html" name="color-rounded" rounded=true %}
+{% include parts/form/input-color.html name="color-rounded" rounded=true %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Input color picker
 
@@ -42,5 +42,5 @@ Add an color picker to your form to let users customize it according to their pr
   />
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 

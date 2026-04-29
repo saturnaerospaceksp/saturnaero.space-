@@ -16,12 +16,12 @@ Line charts are an essential tool for visualizing data trends over time. They ar
 {% capture html -%}
 <div class="card">
   <div class="card-body">
-    {% include "ui/chart.html" chart-id="demo-line" legend height=15 %}
+    {% include ui/chart.html chart-id="demo-line" legend height=15 %}
   </div>
 </div>
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Area Chart
 
@@ -30,12 +30,12 @@ Area charts are ideal for representing cumulative data over time. They add visua
 {% capture html -%}
 <div class="card">
   <div class="card-body">
-    {% include "ui/chart.html" chart-id="demo-area" height=15 %}
+    {% include ui/chart.html chart-id="demo-area" height=15 %}
   </div>
 </div>
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Bar Chart
 
@@ -44,12 +44,12 @@ Bar charts are highly effective for comparing data across different categories. 
 {% capture html -%}
 <div class="card">
   <div class="card-body">
-	 {% include "ui/chart.html" chart-id="demo-bar" height=15 %}
+	 {% include ui/chart.html chart-id="demo-bar" height=15 %}
   </div>
 </div>
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Pie Chart
 
@@ -58,12 +58,12 @@ Pie charts are a simple and effective way to visualize proportions and ratios. T
 {% capture html -%}
 <div class="card">
   <div class="card-body">
-    {% include "ui/chart.html" chart-id="demo-pie" height=15 %}
+    {% include ui/chart.html chart-id="demo-pie" height=15 %}
   </div>
 </div>
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Heatmap Chart
 
@@ -72,12 +72,12 @@ Heatmaps provide a graphical representation of data where individual values are 
 {% capture html -%}
 <div class="card">
   <div class="card-body">
-	 {% include "ui/chart-heatmap.html" chart-id="demo-heatmap" height=15 %}
+	 {% include ui/chart-heatmap.html chart-id="demo-heatmap" height=15 %}
   </div>
 </div>
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Advanced example
 
@@ -86,9 +86,9 @@ For more complex data visualizations, you can create advanced charts with multip
 {% capture html -%}
 <div class="card">
   <div class="card-body">
-	 {% include "ui/chart.html" chart-id="social-referrals" height=15 %}
+	 {% include ui/chart.html chart-id="social-referrals" height=15 %}
   </div>
 </div>
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

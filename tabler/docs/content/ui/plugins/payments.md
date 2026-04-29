@@ -24,7 +24,7 @@ To create a payment provider icon, add the `payment` class to a component and sp
 <span class="payment payment-provider-visa"></span>
 <span class="payment payment-provider-paypal"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Payment sizes
 
@@ -37,10 +37,10 @@ Using Bootstrap’s typical naming structure, you can create a standard payment,
 <span class="payment payment-sm payment-provider-amazon"></span>
 <span class="payment payment-xs payment-provider-blik"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## List of available payment providers
 
 Select an icon from the list of payment providers. Each icon comes in two color variants - light and dark, so you can choose the one that goes well with your design.
 
-{% include "docs/payments.html" %}
+{% include docs/payments.html %}

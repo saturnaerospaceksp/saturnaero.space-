@@ -17,4 +17,4 @@ To create autosize textarea, add the `data-bs-toggle="autosize"` attribute to th
 <label class="form-label">Autosize example</label>
 <textarea class="form-control" data-bs-toggle="autosize" placeholder="Type something…"></textarea>
 {%- endcapture %}
-{% include "docs/example.html" html=html column vertical %}
+{% include docs/example.html html=html column vertical %}

@@ -9,7 +9,7 @@ docs-libs: imask
 
 To be able to use the input mask in your application you will need to install the imask dependency. You can do this by running the following command:
 
-{% include "docs/tabs-package.html" name="imask" %}
+{% include docs/tabs-package.html name="imask" %}
 
 And import or require:
 
@@ -56,7 +56,7 @@ Look at the example below to see how the input mask works:
   autocomplete="off"
 />
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## More examples
 

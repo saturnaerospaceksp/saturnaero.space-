@@ -41,7 +41,7 @@ Use tabs to let users access different sections within one context quickly and w
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Tabs with icons
 
@@ -145,7 +145,7 @@ Add icons to your tab labels, if you want to use a visual element and make the t
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Tabs only with icons
 
@@ -157,17 +157,17 @@ Use tabs without label names to save space and make the tab content easy to reco
     <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
       <li class="nav-item">
         <a href="#tabs-home-ex3" class="nav-link active" data-bs-toggle="tab">
-		    {% include "ui/icon.html" icon="home" %}
+		    {% include ui/icon.html icon="home" %}
         </a>
       </li>
       <li class="nav-item">
         <a href="#tabs-profile-ex3" class="nav-link" data-bs-toggle="tab">
-          {% include "ui/icon.html" icon="user" %}
+          {% include ui/icon.html icon="user" %}
         </a>
       </li>
       <li class="nav-item ms-auto">
         <a href="#tabs-settings-ex3" class="nav-link" title="Settings" data-bs-toggle="tab">
-          {% include "ui/icon.html" icon="settings" %}
+          {% include ui/icon.html icon="settings" %}
         </a>
       </li>
     </ul>
@@ -199,7 +199,7 @@ Use tabs without label names to save space and make the tab content easy to reco
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Tabs with dropdown
 
@@ -251,7 +251,7 @@ Make one or more of your tabs into a dropdown to add more options within one ele
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Full-width tabs
 
@@ -263,17 +263,17 @@ Add the `.nav-fill` class to make the tabs take up the full space of the parent 
     <ul class="nav nav-tabs card-header-tabs nav-fill" data-bs-toggle="tabs">
       <li class="nav-item">
         <a href="#tabs-home-ex5" class="nav-link active" data-bs-toggle="tab">
-		  	 {% include "ui/icon.html" icon="home" %}
+		  	 {% include ui/icon.html icon="home" %}
         </a>
       </li>
       <li class="nav-item">
         <a href="#tabs-profile-ex5" class="nav-link" data-bs-toggle="tab">
-		    {% include "ui/icon.html" icon="user" %}
+		    {% include ui/icon.html icon="user" %}
         </a>
       </li>
       <li class="nav-item">
         <a href="#tabs-activity-ex5" class="nav-link" data-bs-toggle="tab">
-          {% include "ui/icon.html" icon="activity" %}
+          {% include ui/icon.html icon="activity" %}
         </a>
       </li>
     </ul>
@@ -305,4 +305,4 @@ Add the `.nav-fill` class to make the tabs take up the full space of the parent 
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

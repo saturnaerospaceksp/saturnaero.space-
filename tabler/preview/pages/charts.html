@@ -9,7 +9,7 @@ permalink: charts.html
 
 <div class="row row-cards">
 	<div class="col-lg-12">
-		{% include "parts/charts/activity.html" %}
+		{% include parts/charts/activity.html %}
 	</div>
 
 	<div class="col-12">
@@ -18,10 +18,10 @@ permalink: charts.html
 				<div class="d-flex">
 					<h3 class="card-title">Social referrals</h3>
 					<div class="ms-auto">
-						{% include "parts/dropdown/days.html" id="social-referrals" label="Select time range for sales data" %}
+						{% include parts/dropdown/days.html id="social-referrals" label="Select time range for sales data" %}
 					</div>
 				</div>
-				{% include "ui/chart.html" chart-id="social-referrals" legend=true %}
+				{% include ui/chart.html chart-id="social-referrals" legend=true %}
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@ permalink: charts.html
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				{% include "ui/chart.html" chart-id="tasks-overview" height=20 %}
+				{% include ui/chart.html chart-id="tasks-overview" height=20 %}
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,7 @@ permalink: charts.html
 			</div>
 			{% endif %}
 			<div class="card-body">
-				{% include "ui/chart.html" chart-id=chart-id height=15 %}
+				{% include ui/chart.html chart-id=chart-id height=15 %}
 			</div>
 		</div>
 	</div>

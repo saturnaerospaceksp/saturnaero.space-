@@ -55,7 +55,7 @@ Borders can be applied to specific sides of an element using utility classes. Th
   7
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered hide-code %}
+{% include docs/example.html html=html centered hide-code %}
 
 
 ## Border size
@@ -85,7 +85,7 @@ Border size utilities allow you to control the thickness of borders, providing f
   3
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered hide-code %}
+{% include docs/example.html html=html centered hide-code %}
 
 ## Remove border
 
@@ -132,7 +132,7 @@ If you want to selectively remove borders from specific sides of an element, you
   6
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered hide-code %}
+{% include docs/example.html html=html centered hide-code %}
 
 
 ## Border color
@@ -192,7 +192,7 @@ Customizing the border color helps to enhance the visual appeal and consistency 
   8
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered hide-code %}
+{% include docs/example.html html=html centered hide-code %}
 
 ## Border radius
 
@@ -239,7 +239,7 @@ Adding border radius gives elements smooth, rounded edges, which can make design
   6
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered hide-code %}
+{% include docs/example.html html=html centered hide-code %}
 
 
 ## Border opacity
@@ -263,4 +263,4 @@ You can adjust the opacity of borders to create subtle visual effects or to blen
 </div>
 <div class="border border-success p-2 border-opacity-10">This is 10% opacity success border</div>
 {%- endcapture %}
-{% include "docs/example.html" html=html hide-code %}
+{% include docs/example.html html=html hide-code %}

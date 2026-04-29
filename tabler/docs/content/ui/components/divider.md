@@ -18,7 +18,7 @@ Use dividers to visually separate content into parts. You can use a line only or
   rerum, saepe sed, sit!
 </p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Text position
 
@@ -43,7 +43,7 @@ You can modify the position of the text which is to be included in a separator a
   rerum, saepe sed, sit!
 </p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Divider color
 
@@ -68,4 +68,4 @@ Customize the color of dividers to make them go well with your design. See the [
   rerum, saepe sed, sit!
 </p>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

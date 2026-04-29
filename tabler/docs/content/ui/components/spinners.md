@@ -12,7 +12,7 @@ Use the default spinner to notify users that an action they have taken is in pro
 {% capture html -%}
 <div class="spinner-border"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 
 ## Colors
@@ -33,7 +33,7 @@ Choose one of the available colors to customize the spinner and make it suit you
 <div class="spinner-border text-teal" role="status"></div>
 <div class="spinner-border text-cyan" role="status"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Size
 
@@ -43,7 +43,7 @@ Choose the size of your spinner. You can use the default size or use the `spinne
 <div class="spinner-border" role="status"></div>
 <div class="spinner-border spinner-border-sm" role="status"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Growing spinner
 
@@ -52,7 +52,7 @@ Use the growing spinner, if you are looking for a more original design than a bo
 {% capture html -%}
 <div class="spinner-grow" role="status"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 Growing spinners also come in a variety of colors to choose from.
 
@@ -70,7 +70,7 @@ Growing spinners also come in a variety of colors to choose from.
 <div class="spinner-grow text-teal" role="status"></div>
 <div class="spinner-grow text-cyan" role="status"></div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Button with spinner
 
@@ -98,7 +98,7 @@ Use buttons with spinners to notify users that an action they have taken by clic
   Button
 </a>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Animated dots
 
@@ -107,7 +107,7 @@ Use animated dots to show the loading state of a component. They provide feedbac
 {% capture html -%}
 <h1>Loading<span class="animated-dots"></span></h1>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 Use buttons with animated dots to notify users that an action they have taken by clicking the button is in progress and prevent them from clicking multiple times or giving up.
 
@@ -119,5 +119,5 @@ Use buttons with animated dots to notify users that an action they have taken by
 	Loading<span class="animated-dots"></span>
 </a>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 

@@ -25,7 +25,7 @@ Look at the example below to see how the horizontal navigation bar is displayed.
   </li>
 </ul>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Vertical nav
 
@@ -52,7 +52,7 @@ There is an example below to see how the vertical navigation bar is displayed.
   </li>
 </ul>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Tabs
 
@@ -79,7 +79,7 @@ The example below shows how the tabbed navigation interface is displayed.
   </li>
 </ul>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Pills
 
@@ -98,7 +98,7 @@ For a pill-shaped navigation style, use the `.nav-pills` class. This is a great 
   </li>
 </ul>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Underline
 
@@ -117,7 +117,7 @@ To create a navigation bar with an underline effect for active links, use the `.
   </li>
 </ul>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Tabs with Dropdown
 
@@ -175,4 +175,4 @@ Example below shows how tabs with dropdown menus are displayed.
   </li>
 </ul>
 {%- endcapture %}
-{% include "docs/example.html" html=html overflow="visible" %}
+{% include docs/example.html html=html overflow="visible" %}

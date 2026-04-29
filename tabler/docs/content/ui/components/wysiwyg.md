@@ -12,7 +12,7 @@ description: Flexible WYSIWYG editor for content.
 Initialize HugeRTE on any element (or elements) on the web page by passing an object containing a selector value to `hugerte.init()`. The selector value can be any valid CSS selector.
 
 {% capture html -%}
-{% include "ui/wysiwyg.html" %}
+{% include ui/wysiwyg.html %}
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

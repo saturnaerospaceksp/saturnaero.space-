@@ -12,11 +12,11 @@ Use the `ribbon` class to add the default ribbon to any section of your interfac
 <div class="card">
   <div class="card-body" style="height: 5rem"></div>
   <div class="ribbon">
-    {% include "ui/icon.html" icon="star" %}
+    {% include ui/icon.html icon="star" %}
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html card column %}
+{% include docs/example.html html=html card column %}
 
 ## Ribbon position
 
@@ -33,11 +33,11 @@ Using multiple classes at once will give you more position options. For example,
 <div class="card">
   <div class="card-body" style="height: 5rem"></div>
   <div class="ribbon ribbon-top ribbon-start">
-    {% include "ui/icon.html" icon="star" %}
+    {% include ui/icon.html icon="star" %}
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Ribbon color
 
@@ -47,11 +47,11 @@ Customize the ribbon's background color. See the [full list of available colors]
 <div class="card">
   <div class="card-body" style="height: 5rem"></div>
   <div class="ribbon bg-red">
-    {% include "ui/icon.html" icon="star" %}
+    {% include ui/icon.html icon="star" %}
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Ribbon text
 
@@ -63,7 +63,7 @@ Add your own text to a ribbon to display any additional information and make it 
   <div class="ribbon bg-green">NEW</div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}
 
 ## Bookmark ribbon
 
@@ -73,8 +73,8 @@ Use the `.ribbon-bookmark` class to create a bookmark ribbon. It is a special st
 <div class="card w-100">
   <div class="card-body" style="height: 5rem"></div>
   <div class="ribbon ribbon-bookmark bg-orange">
-    {% include "ui/icon.html" icon="star" %}
+    {% include ui/icon.html icon="star" %}
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html column %}
+{% include docs/example.html html=html column %}

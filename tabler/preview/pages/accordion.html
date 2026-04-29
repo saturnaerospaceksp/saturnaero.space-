@@ -10,40 +10,40 @@ permalink: accordion.html
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-body">
-				{% include "ui/accordion.html" %}
+				{% include ui/accordion.html %}
 			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="card">
-			{% include "ui/accordion.html" type="flush" id="flush" %}
+			{% include ui/accordion.html type="flush" id="flush" %}
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-body">
-				{% include "ui/accordion.html" type="tabs" id="tabs" %}
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="card">
-			<div class="card-body">
-				{% include "ui/accordion.html" type="inverted" id="inverted" %}
+				{% include ui/accordion.html type="tabs" id="tabs" %}
 			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-body">
-				{% include "ui/accordion.html" id="inverted-plus" type="inverted,plus" toggle-icon="plus" %}
+				{% include ui/accordion.html type="inverted" id="inverted" %}
 			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-body">
-				{% include "ui/accordion.html" id="icons" show-icon %}
+				{% include ui/accordion.html id="inverted-plus" type="inverted,plus" toggle-icon="plus" %}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card">
+			<div class="card-body">
+				{% include ui/accordion.html id="icons" show-icon %}
 			</div>
 		</div>
 	</div>

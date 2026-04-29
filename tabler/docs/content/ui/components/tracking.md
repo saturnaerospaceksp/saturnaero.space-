@@ -190,7 +190,7 @@ description: Monitor data activity visually.
   ></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Tracking inside a card
 
@@ -430,4 +430,4 @@ You can add a tracking component inside the cards to give your reports a fresh l
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

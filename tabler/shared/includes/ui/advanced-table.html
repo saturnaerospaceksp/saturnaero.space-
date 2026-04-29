@@ -3,7 +3,7 @@
 {% assign per-page = '10,20,50,100' | split: "," %}
 {% assign categories = 'Agencies,Individual,Event,Ticket' | split: "," %}
 {% assign tags = 'QTA,Event,Tickets,TODO|Event,Tickets|QTA,Event|Tickets' | split: "|" %}
-<!--{% include "js/tabler-list.html", parameters="[ 'sort-name', 'sort-content', 'sort-status', 'sort-date', 'sort-tags', 'sort-category']" %}-->
+<!--{% include js/tabler-list.html, parameters="[ 'sort-name', 'sort-content', 'sort-status', 'sort-date', 'sort-tags', 'sort-category']" %}-->
 <div class="card">
 	<div class="card-table">
 		<div class="card-header">
@@ -24,7 +24,7 @@
 					<div class="ms-auto d-flex flex-wrap btn-list">
 						<div class="input-group input-group-flat w-auto">
 							<span class="input-group-text">
-								{% include "ui/icon.html" icon="search" %}
+								{% include ui/icon.html icon="search" %}
 							</span>
 
 							<input id="{{ table-id }}-search" type="text" class="form-control" autocomplete="off">
@@ -35,10 +35,10 @@
 						</div>
 
 						<a href="#" class="btn btn-icon" aria-label="Button">
-							{% include "ui/icon.html" icon="dots" %}
+							{% include ui/icon.html icon="dots" %}
 						</a>
-						{% include "ui/dropdown.html" main-btn="Download" options="Action, Another action, Third action" %}
-						{% include "ui/button.html" %}
+						{% include ui/dropdown.html main-btn="Download" options="Action, Another action, Third action" %}
+						{% include ui/button.html %}
 					</div>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 									<input class="form-check-input m-0 align-middle table-selectable-check" type="checkbox" aria-label="Select invoice" value="true">
 								</td>
 								<td class="{{ headers[0].data-sort }}">
-									{% include "ui/avatar.html" person=person size="xs" class="me-2" %}
+									{% include ui/avatar.html person=person size="xs" class="me-2" %}
 									{{ person.full_name }}
 								</td>
 								<td class="{{ headers[1].data-sort }}">
@@ -102,7 +102,7 @@
 									</span>
 									<div class="on-checked">
 										<div class="d-flex justify-content-end">
-											{% include "ui/button.html" icon="dots" icon-only %}
+											{% include ui/button.html icon="dots" icon-only %}
 										</div>
 									</div>
 								</td>
@@ -124,7 +124,7 @@
 					</div>
 				</div>
 
-				{% include "ui/pagination.html" class="m-0 ms-auto" no-words="true" count=10 %}
+				{% include ui/pagination.html class="m-0 ms-auto" no-words="true" count=10 %}
 			</div>
 		</div>
 	</div>

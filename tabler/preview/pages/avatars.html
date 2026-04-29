@@ -12,7 +12,7 @@ page-header: Avatars
 		<div class="card">
 			<div class="card-body">
 				<h2 class="card-title">Default avatar</h2>
-				{% include "ui/avatar.html" %}
+				{% include ui/avatar.html %}
 			</div>
 		</div>
 	</div>
@@ -24,7 +24,7 @@ page-header: Avatars
 				{% assign icon-icons = "user,settings,car,balloon,users,users-group,apps,ghost" | split: "," %}
 				<div class="avatar-list">
 					{% for icon in icon-icons %}
-					{% include "ui/avatar.html" icon=icon %}
+					{% include ui/avatar.html icon=icon %}
 					{% endfor %}
 				</div>
 			</div>
@@ -37,7 +37,7 @@ page-header: Avatars
 
 				<div class="avatar-list">
 					{% for color in site.colors %}
-					{% include "ui/avatar.html" icon="user" color=color[0] %}
+					{% include ui/avatar.html icon="user" color=color[0] %}
 					{% endfor %}
 				</div>
 			</div>
@@ -49,7 +49,7 @@ page-header: Avatars
 				<h2 class="card-title">Simple avatar</h2>
 				<div class="avatar-list">
 					{% for person in people limit: 8 -%}
-					{% include "ui/avatar.html" person=person %}
+					{% include ui/avatar.html person=person %}
 					{%- endfor %}
 				</div>
 			</div>
@@ -62,7 +62,7 @@ page-header: Avatars
 				<div class="avatar-list">
 					{% for person in people limit: 8 %}
 					{% assign placeholder = person.full_name | first_letters %}
-					{% include "ui/avatar.html" placeholder=placeholder %}
+					{% include ui/avatar.html placeholder=placeholder %}
 					{% endfor %}
 				</div>
 			</div>
@@ -73,9 +73,9 @@ page-header: Avatars
 			<div class="card-body">
 				<h2 class="card-title">Avatar shapes</h2>
 				<div class="avatar-list">
-					{% include "ui/avatar.html" %}
-					{% include "ui/avatar.html" class="rounded-circle" %}
-					{% include "ui/avatar.html" class="rounded-0" %}
+					{% include ui/avatar.html %}
+					{% include ui/avatar.html class="rounded-circle" %}
+					{% include ui/avatar.html class="rounded-0" %}
 				</div>
 			</div>
 		</div>
@@ -87,22 +87,22 @@ page-header: Avatars
 				<div class="row">
 					<div class="col-6">
 						<div class="avatar-list">
-							{% include "ui/avatar.html" size="xxs" %}
-							{% include "ui/avatar.html" size="xs" %}
-							{% include "ui/avatar.html" size="sm" %}
-							{% include "ui/avatar.html" size="md" %}
-							{% include "ui/avatar.html" size="lg" %}
-							{% include "ui/avatar.html" size="xl" %}
+							{% include ui/avatar.html size="xxs" %}
+							{% include ui/avatar.html size="xs" %}
+							{% include ui/avatar.html size="sm" %}
+							{% include ui/avatar.html size="md" %}
+							{% include ui/avatar.html size="lg" %}
+							{% include ui/avatar.html size="xl" %}
 						</div>
 					</div>
 					<div class="col-6">
 						<div class="avatar-list">
-							{% include "ui/avatar.html" placeholder="PK" size="xxs" %}
-							{% include "ui/avatar.html" placeholder="PK" size="xs" %}
-							{% include "ui/avatar.html" placeholder="PK" size="sm" %}
-							{% include "ui/avatar.html" placeholder="PK" size="md" %}
-							{% include "ui/avatar.html" placeholder="PK" size="lg" %}
-							{% include "ui/avatar.html" placeholder="PK" size="xl" %}
+							{% include ui/avatar.html placeholder="PK" size="xxs" %}
+							{% include ui/avatar.html placeholder="PK" size="xs" %}
+							{% include ui/avatar.html placeholder="PK" size="sm" %}
+							{% include ui/avatar.html placeholder="PK" size="md" %}
+							{% include ui/avatar.html placeholder="PK" size="lg" %}
+							{% include ui/avatar.html placeholder="PK" size="xl" %}
 						</div>
 					</div>
 				</div>
@@ -119,17 +119,17 @@ page-header: Avatars
 					<div class="col-6">
 						<div class="avatar-list avatar-list-stacked avatar-list-{{ size }}">
 							{% for person in people limit: 5 %}
-							{% include "ui/avatar.html" person=person %}
+							{% include ui/avatar.html person=person %}
 							{% endfor %}
-							{% include "ui/avatar.html" icon="plus" link %}
+							{% include ui/avatar.html icon="plus" link %}
 						</div>
 					</div>
 					<div class="col-6">
 						<div class="avatar-list avatar-list-stacked avatar-list-{{ size }}">
 							{% for person in people limit: 5 %}
-							{% include "ui/avatar.html" person=person class="rounded-circle" %}
+							{% include ui/avatar.html person=person class="rounded-circle" %}
 							{% endfor %}
-							{% include "ui/avatar.html" icon="plus" link class="rounded-circle" %}
+							{% include ui/avatar.html icon="plus" link class="rounded-circle" %}
 						</div>
 					</div>
 					{% endfor %}
@@ -143,7 +143,7 @@ page-header: Avatars
 				<h2 class="card-title">Avatar placeholder</h2>
 				{% assign sizes = "xxs,xs,sm,md,lg,xl,2xl" | split: "," %}
 				{% for size in sizes %}
-				{% include "ui/avatar-upload.html" size=size %}
+				{% include ui/avatar-upload.html size=size %}
 				{% endfor %}
 			</div>
 		</div>
@@ -154,7 +154,7 @@ page-header: Avatars
 				<h2 class="card-title">Avatar statuses</h2>
 				{% assign colors = "red,green,blue,yellow,secondary" | split: "," %}
 				{% for color in colors %}
-				{% include "ui/avatar.html" person-id=forloop.index class="rounded-circle" status=color %}
+				{% include ui/avatar.html person-id=forloop.index class="rounded-circle" status=color %}
 				{% endfor %}
 			</div>
 		</div>
@@ -165,7 +165,7 @@ page-header: Avatars
 				<h2 class="card-title">Avatar brands</h2>
 				{% assign brands = "netflix,amazon,messenger,figma,twitch" | split: "," %}
 				{% for brand in brands %}
-				{% include "ui/avatar.html" person-id=forloop.index brand=brand %}
+				{% include ui/avatar.html person-id=forloop.index brand=brand %}
 				{% endfor %}
 			</div>
 		</div>

@@ -7,7 +7,7 @@ description: Download Tabler Icons in SVG format.
 
 ## Installation
 
-{% include "docs/tabs-package.html" name="@tabler/icons" %}
+{% include docs/tabs-package.html name="@tabler/icons" %}
 
 or just [download from Github](https://github.com/tabler/tabler-icons/releases).
 
@@ -29,7 +29,7 @@ You can paste the content of the icon file into your HTML code to display it on 
 
 ```html
 <a href="">
-  {% include "ui/icon.html" icon="disabled" %}
+  {% include ui/icon.html icon="disabled" %}
   Click me
 </a>
 ```

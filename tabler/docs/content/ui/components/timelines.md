@@ -9,16 +9,16 @@ description: Visualize events and processes clearly.
 The available timeline design is composed of many components that will help you visualize a process or show an outline of events. Thanks to the possibility of adding icons, avatars and links and the way of presenting the elements of content, your timeline will be clear for users and will make your website or app more attractive.
 
 {% capture html -%}
-{% include "ui/timeline.html" %}
+{% include ui/timeline.html %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Simple timeline
 
 Use a simplified version of the timeline, if it suits your design better. You can still make use of all the available timeline components.
 
 {% capture html -%}
-{% include "ui/timeline.html" simple %}
+{% include ui/timeline.html simple %}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 

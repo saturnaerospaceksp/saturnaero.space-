@@ -71,7 +71,7 @@ description: Examples of Tabler page headers.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## With meta, avatar and actions
 
@@ -134,7 +134,7 @@ description: Examples of Tabler page headers.
             <a href="#" class="text-reset">194 friends</a>
           </div>
           <div class="col-auto text-success">
-            {% include "ui/icon.html" icon="check" %}
+            {% include ui/icon.html icon="check" %}
             Verified
           </div>
         </div>
@@ -165,7 +165,7 @@ description: Examples of Tabler page headers.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## With meta, search and actions
 
@@ -182,12 +182,12 @@ description: Examples of Tabler page headers.
           <div class="input-icon">
             <input type="text" class="form-control" placeholder="Search…" />
             <span class="input-icon-addon">
-              {% include "ui/icon.html" icon="search" %}
+              {% include ui/icon.html icon="search" %}
             </span>
           </div>
         </div>
         <a href="#" class="btn btn-primary">
-          {% include "ui/icon.html" icon="plus" %}
+          {% include ui/icon.html icon="plus" %}
           Add photo
         </a>
       </div>
@@ -195,7 +195,7 @@ description: Examples of Tabler page headers.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Bordered header
 
@@ -262,7 +262,7 @@ A page header with a border to separate content is an effective way to organize 
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Header with breadcrumb and actions
 
@@ -322,5 +322,5 @@ In addition to the breadcrumb, the header often includes actions or buttons that
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 

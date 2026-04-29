@@ -41,7 +41,7 @@ The Dropzone form will now be active and ready to accept file uploads. When a us
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Add multiple files
 
@@ -65,7 +65,7 @@ By adding the `multiple` attribute to the input field, users can select multiple
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Custom Dropzone
 
@@ -87,6 +87,6 @@ You can further enhance the user experience by customizing the Dropzone interfac
   });
 </script>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 By customizing the drop area, you can align the file upload process with your application’s branding or specific requirements.

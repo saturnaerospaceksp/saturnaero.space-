@@ -19,7 +19,7 @@ To use vector maps in your project, you need to include the jsVectorMap library 
 Integrating the vector map into your website is straightforward. Below is a sample implementation for a world map:
 
 ```html
-{% include "ui/map-vector.html" map-id="empty" %}
+{% include ui/map-vector.html map-id="empty" %}
 {{ script }}
 ```
 
@@ -28,27 +28,27 @@ Integrating the vector map into your website is straightforward. Below is a samp
 Look at the example below to see how the vector map works with a world map.
 
 {% capture html -%}
-{% include "ui/map-vector.html" map-id="world" %}
+{% include ui/map-vector.html map-id="world" %}
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Markers
 
 You can add markers to the map to highlight specific locations. Below is a sample implementation for a world map with markers:
 
 {% capture html -%}
-{% include "ui/map-vector.html" map-id="world-markers" %}
+{% include ui/map-vector.html map-id="world-markers" %}
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Lines 
 
 You can also draw lines on the map to represent routes or connections between different locations. Below is a sample implementation for a world map with lines:
 
 {% capture html -%}
-{% include "ui/map-vector.html" map-id="world-lines" %}
+{% include ui/map-vector.html map-id="world-lines" %}
 {{ script }}
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}

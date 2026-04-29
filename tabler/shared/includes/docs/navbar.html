@@ -4,7 +4,7 @@
 			<div class="col">
 				<div class="d-flex align-items-center gap-4">
 					<a href="/" class="navbar-brand navbar-brand-autodark gap-4">
-						{% include "docs/logo.html" %}
+						{% include docs/logo.html %}
 					</a>
 					<div>
 						<span class="badge">v{{ package.version }}</span>
@@ -24,22 +24,22 @@
 					</div>
 					<li class="nav-item hide-theme-dark">
 						<a href="?theme=dark" class="btn btn-icon">
-							{% include "ui/icon.html" icon="moon" %}
+							{% include ui/icon.html icon="moon" %}
 						</a>
 					</li>
 					<li class="nav-item hide-theme-light">
 						<a href="?theme=light" class="btn btn-icon">
-							{% include "ui/icon.html" icon="sun" %}
+							{% include ui/icon.html icon="sun" %}
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="{{ site.githubUrl }}" class="btn btn-icon" target="_blank">
-							{% include "ui/icon.html" icon="brand-github" %}
+							{% include ui/icon.html icon="brand-github" %}
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="{{ site.previewUrl }}" class="btn btn-primary" target="_blank">
-							{% include "ui/icon.html" icon="eye" %} Preview
+							{% include ui/icon.html icon="eye" %} Preview
 						</a>
 					</li>
 				</ul>

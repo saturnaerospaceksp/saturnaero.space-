@@ -14,7 +14,7 @@ To create a default progress bar, add a `.progress` class to a `<div>` element. 
   <div class="progress-bar" style="width: 38%"></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Progress size
 
@@ -41,7 +41,7 @@ Look at the example below to see how it works:
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Indeterminate progress
 
@@ -52,7 +52,7 @@ You can create a progress bar which shows indeterminate progress by adding `.pro
   <div class="progress-bar progress-bar-indeterminate"></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Native progress element
 
@@ -61,7 +61,7 @@ You can also use the native HTML5 `<progress>` element. It is a great way to cre
 {% capture html -%}
 <progress class="progress progress-sm" value="15" max="100" />
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Progress color
 
@@ -123,7 +123,7 @@ See the [full list of available colors](/ui/base/colors) for more details.
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Multiple progress bars
 
@@ -150,7 +150,7 @@ This is how it looks:
   </div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical column %}
+{% include docs/example.html html=html vertical column %}
 
 ## Striped progress
 
@@ -161,7 +161,7 @@ You can create a striped progress bar by adding the `.progress-bar-striped` clas
   <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 60%"></div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html %}
+{% include docs/example.html html=html %}
 
 ## Progress background
 
@@ -206,4 +206,4 @@ Thanks to this you can create a nice looking statistics section:
   <div class="progressbg-value">15%</div>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html vertical card %}
+{% include docs/example.html html=html vertical card %}

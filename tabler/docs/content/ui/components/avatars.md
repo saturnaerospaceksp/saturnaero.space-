@@ -13,7 +13,7 @@ Use the `avatar` class to add an avatar to your interface design for greater cus
 <span class="avatar">JL</span>
 <span class="avatar" style="background-image: url(/static/avatars/004f.jpg)"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatar image
 
@@ -24,7 +24,7 @@ Set an image as the background to make users easy to indentify and create a pers
 <span class="avatar" style="background-image: url(/static/avatars/022m.jpg)"></span>
 <span class="avatar" style="background-image: url(/static/avatars/036m.jpg)"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Initials
 
@@ -37,7 +37,7 @@ You can also use initials instead of pictures.
 <span class="avatar">GH</span>
 <span class="avatar">IJ</span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatar icons
 
@@ -45,16 +45,16 @@ Besides pictures and initials, you can also use icons to make the avatars more u
 
 {% capture html -%}
 <span class="avatar">
-  {% include "ui/icon.html" icon="user" %}
+  {% include ui/icon.html icon="user" %}
 </span>
 <span class="avatar">
-  {% include "ui/icon.html" icon="plus" %}
+  {% include ui/icon.html icon="plus" %}
 </span>
 <span class="avatar">
-  {% include "ui/icon.html" icon="settings" %}
+  {% include ui/icon.html icon="settings" %}
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatar initials color
 
@@ -67,7 +67,7 @@ Customize the color of the avatars' background. See the [full list of available 
 <span class="avatar bg-primary-lt">GH</span>
 <span class="avatar bg-purple-lt">IJ</span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatar size
 
@@ -80,7 +80,7 @@ Using Bootstrap’s typical naming structure, you can create a standard avatar o
 <span class="avatar avatar-sm" style="background-image: url(/static/avatars/000m.jpg)"></span>
 <span class="avatar avatar-xs" style="background-image: url(/static/avatars/000m.jpg)"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatar status
 
@@ -102,7 +102,7 @@ Add a status indicator to your avatar to show, for instance, if a user is online
   <span class="badge bg-gray">5</span>
 </span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatar shape
 
@@ -115,7 +115,7 @@ Change the shape of an avatar with the default Bootstrap image classes. You can 
 <span class="avatar rounded-0" style="background-image: url(/static/avatars/043f.jpg)"></span>
 <span class="avatar rounded-3" style="background-image: url(/static/avatars/044f.jpg)"></span>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Avatars list
 
@@ -130,7 +130,7 @@ Create a list of avatars within one parent container.
   <span class="avatar rounded" style="background-image: url(/static/avatars/024m.jpg)"></span>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 ## Stacked list
 
@@ -146,7 +146,7 @@ Make the list stack once a certain number of avatars is reached to make it look 
   <span class="avatar">+8</span>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
 
 {% capture html -%}
 <div class="avatar-list avatar-list-stacked">
@@ -181,4 +181,4 @@ Make the list stack once a certain number of avatars is reached to make it look 
   ></span>
 </div>
 {%- endcapture %}
-{% include "docs/example.html" html=html centered %}
+{% include docs/example.html html=html centered %}
