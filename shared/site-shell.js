@@ -279,7 +279,7 @@
       </button>
       <div class="masthead__launch-menu" role="menu" aria-label="Upcoming launches">
         <div class="masthead__launch-list"></div>
-        <a class="masthead__launch-link" href="${root}upcoming-launches/index.html">All upcoming launches</a>
+        <a class="masthead__launch-link" href="${root}upcoming-launches/">All upcoming launches</a>
       </div>
     `;
 
@@ -308,7 +308,7 @@
       launches.slice(0, 3).forEach((launch) => {
         const item = document.createElement('a');
         item.className = 'masthead__launch-item';
-        item.href = `${root}upcoming-launches/index.html`;
+        item.href = `${root}upcoming-launches/`;
 
         const mission = document.createElement('p');
         mission.className = 'masthead__launch-mission';
@@ -413,7 +413,7 @@
     header.setAttribute('aria-label', 'Primary navigation');
     header.dataset.siteShell = 'header';
     header.innerHTML = `
-      <a class="masthead__home" href="${root}index.html" aria-label="Saturn Aerospace home" data-brand-cycle>#SATURN</a>
+      <a class="masthead__home" href="${root}" aria-label="Saturn Aerospace home" data-brand-cycle>#SATURN</a>
       <nav class="nav" aria-label="Site sections">
         <div class="nav__group" data-nav-group>
           <button class="nav__button" type="button" aria-expanded="false">Vehicles</button>
@@ -424,23 +424,23 @@
         <div class="nav__group" data-nav-group>
           <button class="nav__button" type="button" aria-expanded="false">Technologies</button>
           <div class="nav__menu" role="menu" aria-label="Technologies">
-            <a class="nav__link" href="${root}scom/index.html">SCOM</a>
-            <a class="nav__link" href="${root}mnswt/index.html">MNSWT</a>
+            <a class="nav__link" href="${root}scom/">SCOM</a>
+            <a class="nav__link" href="${root}mnswt/">MNSWT</a>
           </div>
         </div>
         <div class="nav__group" data-nav-group>
           <button class="nav__button" type="button" aria-expanded="false">Company</button>
           <div class="nav__menu" role="menu" aria-label="Company">
-            <a class="nav__link" href="${root}team/index.html">Team</a>
-            <a class="nav__link" href="${root}careers/index.html">Careers</a>
-            <a class="nav__link" href="${root}our-goal/index.html">Our Goal</a>
+            <a class="nav__link" href="${root}team/">Team</a>
+            <a class="nav__link" href="${root}careers/">Careers</a>
+            <a class="nav__link" href="${root}our-goal/">Our Goal</a>
           </div>
         </div>
         <div class="nav__group" data-nav-group>
           <button class="nav__button" type="button" aria-expanded="false">Launches</button>
           <div class="nav__menu" role="menu" aria-label="Launches">
-            <a class="nav__link" href="${root}upcoming-launches/index.html">Upcoming Launches</a>
-            <a class="nav__link" href="${root}launch-with-us/index.html">Launch With Us</a>
+            <a class="nav__link" href="${root}upcoming-launches/">Upcoming Launches</a>
+            <a class="nav__link" href="${root}launch-with-us/">Launch With Us</a>
           </div>
         </div>
       </nav>
@@ -461,11 +461,11 @@
     footer.innerHTML = `
       <div class="site-footer__inner">
         <nav class="site-footer__links" aria-label="Important pages">
-          <a href="${root}careers/index.html">Careers</a>
-          <a href="${root}launch-with-us/index.html">Launch With Us</a>
-          <a href="${root}our-goal/index.html">Our Goal</a>
-          <a href="${root}upcoming-launches/index.html">Upcoming Launches</a>
-          <a href="${root}privacy-policy/index.html">Privacy Policy</a>
+          <a href="${root}careers/">Careers</a>
+          <a href="${root}launch-with-us/">Launch With Us</a>
+          <a href="${root}our-goal/">Our Goal</a>
+          <a href="${root}upcoming-launches/">Upcoming Launches</a>
+          <a href="${root}privacy-policy/">Privacy Policy</a>
         </nav>
         <p class="site-footer__copyright">Copyright Saturn Aerospace 2026 - All Rights Reserved</p>
       </div>
