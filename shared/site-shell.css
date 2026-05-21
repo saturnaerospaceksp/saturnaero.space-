@@ -3,6 +3,9 @@ html {
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   letter-spacing: 0;
 }
 
@@ -378,6 +381,7 @@ body {
 }
 
 .site-footer {
+  margin-top: auto;
   padding: 18px 20px 22px;
   background: linear-gradient(180deg, rgba(4, 6, 18, 1), rgba(3, 5, 15, 1));
   color: #f7f8ff;
