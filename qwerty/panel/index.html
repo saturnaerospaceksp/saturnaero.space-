@@ -1,0 +1,1491 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05070d" />
+    <link rel="icon" href="../../img/favicon.webp" type="image/webp" data-site-icon data-root="../../" />
+    <title>Admin Panel | Saturn Aerospace</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --site-bg: #05070d;
+        --site-bg-soft: #090d18;
+        --site-line: rgba(247, 248, 255, 0.12);
+        --site-text: #f7f8ff;
+        --site-text-soft: rgba(247, 248, 255, 0.74);
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: var(--site-bg);
+        color: var(--site-text);
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at top, rgba(58, 82, 160, 0.12), transparent 42%),
+          linear-gradient(180deg, var(--site-bg-soft), var(--site-bg));
+      }
+
+      .panel {
+        width: min(100% - 32px, 76rem);
+        margin: 0 auto;
+        padding: 40px 0 56px;
+        display: grid;
+        gap: 28px;
+      }
+
+      .panel__intro {
+        display: grid;
+        gap: 10px;
+      }
+
+      .panel__title {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .panel__lead {
+        margin: 0;
+        max-width: 54rem;
+        color: var(--site-text-soft);
+        line-height: 1.65;
+      }
+
+      .section {
+        border-top: 1px solid var(--site-line);
+        padding-top: 20px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .section__head {
+        display: grid;
+        gap: 6px;
+      }
+
+      .section__title {
+        margin: 0;
+        font-size: 0.98rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+
+      .section__text {
+        margin: 0;
+        color: var(--site-text-soft);
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+
+      .stats-form,
+      .role-create {
+        display: grid;
+        gap: 14px;
+      }
+
+      .stats-form__row,
+      .role-create__row,
+      .role-editor__field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .stats-form__label,
+      .role-create__label,
+      .role-editor__label {
+        color: rgba(247, 248, 255, 0.82);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .stats-form__input,
+      .role-create__input,
+      .role-editor__input,
+      .role-editor__select,
+      .role-editor__textarea {
+        min-height: 48px;
+        padding: 0 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--site-text);
+        font: inherit;
+        box-sizing: border-box;
+      }
+
+      .role-editor__textarea {
+        min-height: 88px;
+        padding: 12px 14px;
+        resize: vertical;
+      }
+
+      .stats-form__input:focus,
+      .role-create__input:focus,
+      .role-editor__input:focus,
+      .role-editor__select:focus,
+      .role-editor__textarea:focus {
+        outline: 2px solid rgba(194, 215, 255, 0.24);
+        outline-offset: 1px;
+      }
+
+      .stats-form__actions,
+      .role-create__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+
+      .stats-form__button,
+      .role-create__button,
+      .role-editor__remove {
+        min-height: 46px;
+        padding: 0 16px;
+        border: 1px solid rgba(242, 222, 176, 0.28);
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(242, 222, 176, 0.16), rgba(194, 215, 255, 0.06));
+        color: #fff;
+        font: inherit;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .role-editor__remove {
+        min-height: 38px;
+        padding: 0 12px;
+        border-color: rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 0.72rem;
+      }
+
+      .role-editor__save {
+        min-height: 38px;
+        padding: 0 12px;
+        border-color: rgba(167, 245, 186, 0.28);
+        background: linear-gradient(180deg, rgba(167, 245, 186, 0.16), rgba(194, 215, 255, 0.06));
+        font-size: 0.72rem;
+      }
+
+      .stats-form__status,
+      .role-create__status,
+      .panel__status {
+        min-height: 1.4em;
+        margin: 0;
+        color: rgba(167, 245, 186, 0.92);
+        font-size: 0.92rem;
+      }
+
+      .role-list {
+        display: grid;
+      }
+
+      .role-editor {
+        border-top: 1px solid var(--site-line);
+      }
+
+      .role-editor:last-child {
+        border-bottom: 1px solid var(--site-line);
+      }
+
+      .role-editor__summary {
+        list-style: none;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 14px;
+        align-items: center;
+        padding: 18px 0;
+        cursor: pointer;
+      }
+
+      .role-editor__summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .role-editor__summary-main {
+        display: grid;
+        gap: 6px;
+      }
+
+      .role-editor__title {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .role-editor__meta {
+        margin: 0;
+        color: var(--site-text-soft);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .role-editor__summary-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-self: end;
+      }
+
+      .role-editor__status {
+        display: inline-flex;
+        align-items: center;
+        min-height: 26px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .role-editor__status--open {
+        background: rgba(70, 116, 170, 0.2);
+      }
+
+      .role-editor__status--closed {
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(247, 248, 255, 0.7);
+      }
+
+      .role-editor__chevron {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        color: rgba(247, 248, 255, 0.72);
+        transition: transform 180ms ease;
+      }
+
+      .role-editor[open] .role-editor__chevron {
+        transform: rotate(180deg);
+      }
+
+      .role-editor__body {
+        padding: 0 0 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .role-editor__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .publish-tools {
+        display: grid;
+        gap: 14px;
+      }
+
+      .publish-tools__row {
+        display: grid;
+        gap: 8px;
+      }
+
+      .publish-tools__label {
+        color: rgba(247, 248, 255, 0.82);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .publish-tools__input {
+        min-height: 48px;
+        padding: 0 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--site-text);
+        font: inherit;
+        box-sizing: border-box;
+      }
+
+      .publish-tools__input:focus {
+        outline: 2px solid rgba(194, 215, 255, 0.24);
+        outline-offset: 1px;
+      }
+
+      .publish-tools__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .publish-tools__button {
+        min-height: 46px;
+        padding: 0 16px;
+        border: 1px solid rgba(167, 245, 186, 0.28);
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(167, 245, 186, 0.16), rgba(194, 215, 255, 0.06));
+        color: #fff;
+        font: inherit;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .publish-tools__toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--site-text-soft);
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .publish-tools__toggle input {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+      }
+
+      .publish-tools__status {
+        min-height: 1.4em;
+        margin: 0;
+        color: rgba(167, 245, 186, 0.92);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 720px) {
+        .panel {
+          width: min(100% - 24px, 76rem);
+          padding-top: 30px;
+        }
+
+        .role-editor__summary {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .role-editor__summary-right {
+          justify-self: start;
+          flex-wrap: wrap;
+        }
+
+        .role-editor__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+
+        if (window.sessionStorage.getItem('saturn-admin-unlocked') !== 'true') {
+          window.location.replace('../../');
+        }
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body>
+    <main class="panel">
+      <section class="panel__intro">
+        <h1 class="panel__title">Admin Panel</h1>
+        <p class="panel__lead">Update the homepage statistics and manage the roles shown on the careers page.</p>
+      </section>
+
+      <section class="section" aria-label="Homepage statistics">
+        <div class="section__head">
+          <h2 class="section__title">Homepage Statistics</h2>
+          <p class="section__text">These values feed the animated counters on the homepage.</p>
+        </div>
+
+        <form class="stats-form" id="stats-form">
+          <label class="stats-form__row">
+            <span class="stats-form__label">Completed Launches</span>
+            <input class="stats-form__input" name="completed" type="number" min="0" step="1" inputmode="numeric" />
+          </label>
+
+          <label class="stats-form__row">
+            <span class="stats-form__label">Payloads Launched</span>
+            <input class="stats-form__input" name="payloads" type="number" min="0" step="1" inputmode="numeric" />
+          </label>
+
+          <label class="stats-form__row">
+            <span class="stats-form__label">Vehicles Reflown</span>
+            <input class="stats-form__input" name="reflown" type="number" min="0" step="1" inputmode="numeric" />
+          </label>
+
+          <div class="stats-form__actions">
+            <button class="stats-form__button" type="submit">Save Stats</button>
+          </div>
+
+          <p class="stats-form__status" id="stats-status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="section" aria-label="Careers roles">
+        <div class="section__head">
+          <h2 class="section__title">Careers Roles</h2>
+          <p class="section__text">Add, edit, or remove roles that appear on the careers page.</p>
+        </div>
+
+        <p class="panel__status" id="roles-status" aria-live="polite"></p>
+        <div class="role-list" id="role-list"></div>
+
+        <form class="role-create" id="role-create">
+          <div class="role-editor__grid">
+            <label class="role-create__row">
+              <span class="role-create__label">Title</span>
+              <input class="role-create__input" name="title" type="text" required />
+            </label>
+            <label class="role-create__row">
+              <span class="role-create__label">Location</span>
+              <input class="role-create__input" name="location" type="text" required />
+            </label>
+          </div>
+
+          <div class="role-editor__grid">
+            <label class="role-create__row">
+              <span class="role-create__label">Type</span>
+              <input class="role-create__input" name="type" type="text" required />
+            </label>
+            <label class="role-create__row">
+              <span class="role-create__label">Status</span>
+              <select class="role-create__input" name="status" required>
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="role-create__row">
+            <span class="role-create__label">Summary</span>
+            <textarea class="role-editor__textarea" name="summary" rows="3" required></textarea>
+          </label>
+
+          <label class="role-create__row">
+            <span class="role-create__label">Role Description</span>
+            <textarea class="role-editor__textarea" name="roleDescription" rows="5" required></textarea>
+          </label>
+
+          <label class="role-create__row">
+            <span class="role-create__label">Experience Required</span>
+            <textarea class="role-editor__textarea" name="experienceRequired" rows="4" required></textarea>
+          </label>
+
+          <div class="role-create__actions">
+            <button class="role-create__button" type="submit">Add Role</button>
+          </div>
+
+          <p class="role-create__status" id="role-create-status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="section" aria-label="Launch schedule">
+        <div class="section__head">
+          <h2 class="section__title">Launch Schedule</h2>
+          <p class="section__text">Add, edit, or remove upcoming launches shown across the site.</p>
+        </div>
+
+        <p class="panel__status" id="launches-status" aria-live="polite"></p>
+        <div class="role-list" id="launch-list"></div>
+
+        <form class="role-create" id="launch-create">
+          <div class="role-editor__grid">
+            <label class="role-create__row">
+              <span class="role-create__label">Mission Name</span>
+              <input class="role-create__input" name="missionName" type="text" required />
+            </label>
+            <label class="role-create__row">
+              <span class="role-create__label">Orbit Type</span>
+              <input class="role-create__input" name="orbitType" type="text" required />
+            </label>
+          </div>
+
+          <div class="role-editor__grid">
+            <label class="role-create__row">
+              <span class="role-create__label">Launch Date &amp; Time</span>
+              <input class="role-create__input" name="launchDateTime" type="datetime-local" required />
+            </label>
+            <label class="role-create__row">
+              <span class="role-create__label">Launch Site</span>
+              <input class="role-create__input" name="launchSite" type="text" required />
+            </label>
+          </div>
+
+          <label class="role-create__row">
+            <span class="role-create__label">Mission Description</span>
+            <textarea class="role-editor__textarea" name="missionDescription" rows="4" required></textarea>
+          </label>
+
+          <label class="role-create__row">
+            <span class="role-create__label">Vehicle</span>
+            <input class="role-create__input" name="vehicle" type="text" required />
+          </label>
+
+          <div class="role-create__actions">
+            <button class="role-create__button" type="submit">Add Launch</button>
+          </div>
+
+          <p class="role-create__status" id="launch-create-status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="section" aria-label="GitHub publishing">
+        <div class="section__head">
+          <h2 class="section__title">GitHub Publish</h2>
+          <p class="section__text">
+            Publish the combined site state to `data/site-state.json` so GitHub Pages picks up the
+            latest careers, launch, and homepage stats data.
+          </p>
+        </div>
+
+        <div class="publish-tools">
+          <label class="publish-tools__row">
+            <span class="publish-tools__label">GitHub Token</span>
+            <input class="publish-tools__input" id="github-token" type="password" autocomplete="off" spellcheck="false" />
+          </label>
+
+          <label class="publish-tools__toggle">
+            <input id="github-token-remember" type="checkbox" />
+            <span>Remember this token on this device</span>
+          </label>
+
+          <label class="publish-tools__toggle">
+            <input id="github-auto-publish" type="checkbox" />
+            <span>Publish automatically after each save</span>
+          </label>
+
+          <div class="publish-tools__actions">
+            <button class="publish-tools__button" id="github-publish-button" type="button">Publish to GitHub</button>
+          </div>
+
+          <p class="publish-tools__status" id="github-publish-status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const statsStorageKey = 'saturn-home-stats';
+        const roleStorageKey = 'saturn-careers-roles';
+        const defaultStats = { completed: 13, payloads: 8, reflown: 10 };
+        const defaultRoles = [
+          {
+            id: 'launch-operations-engineer',
+            title: 'Launch Operations Engineer',
+            location: 'Cape Canaveral',
+            type: 'Full-time',
+            status: 'open',
+            summary: 'Support launch campaigns, countdown readiness, and pad-side coordination.',
+            roleDescription:
+              'Work with vehicle teams, mission control, and ground systems to keep each launch moving cleanly from rollout to liftoff.',
+            experienceRequired:
+              'Experience in launch operations, range support, aerospace systems, or a related technical role is preferred.',
+          },
+          {
+            id: 'vehicle-integration-technician',
+            title: 'Vehicle Integration Technician',
+            location: 'Launch Site',
+            type: 'Full-time',
+            status: 'open',
+            summary: 'Help prepare flight hardware and support assembly and test milestones.',
+            roleDescription:
+              'Handle vehicle preparation, integration checks, and launch site coordination with the wider operations team.',
+            experienceRequired:
+              'Hands-on mechanical or integration experience with flight hardware, test equipment, or launch site work is useful.',
+          },
+          {
+            id: 'mission-planner',
+            title: 'Mission Planner',
+            location: 'Hybrid',
+            type: 'Full-time',
+            status: 'closed',
+            summary: 'Shape launch timelines and mission readiness from campaign start to flight.',
+            roleDescription:
+              'Coordinate schedules, readiness reviews, and flight support while keeping launch planning practical and clear.',
+            experienceRequired:
+              'Prior mission planning, operations coordination, or scheduling experience in a technical environment is valuable.',
+          },
+        ];
+
+        const statsForm = document.getElementById('stats-form');
+        const statsStatus = document.getElementById('stats-status');
+        const roleList = document.getElementById('role-list');
+        const roleCreate = document.getElementById('role-create');
+        const roleCreateStatus = document.getElementById('role-create-status');
+        const rolesStatus = document.getElementById('roles-status');
+        const launchList = document.getElementById('launch-list');
+        const launchCreate = document.getElementById('launch-create');
+        const launchCreateStatus = document.getElementById('launch-create-status');
+        const launchesStatus = document.getElementById('launches-status');
+        const launchAPI = window.SaturnLaunches;
+        const siteStateAPI = window.SaturnSiteState;
+        const githubOwner = 'saturnaerospaceksp';
+        const githubRepo = 'saturnaero.space-';
+        const githubBranch = 'main';
+        const githubStatePath = 'data/site-state.json';
+        const githubTokenInput = document.getElementById('github-token');
+        const githubTokenRemember = document.getElementById('github-token-remember');
+        const githubPublishButton = document.getElementById('github-publish-button');
+        const githubPublishStatus = document.getElementById('github-publish-status');
+        const githubAutoPublishToggle = document.getElementById('github-auto-publish');
+        const githubTokenStorageKey = 'saturn-github-token';
+        const githubTokenRememberKey = 'saturn-github-token-remember';
+        const githubAutoPublishKey = 'saturn-github-auto-publish';
+
+        const readStats = () => {
+          const stats = siteStateAPI?.getStats?.();
+          return {
+            completed: Number.isFinite(Number(stats?.completed)) ? Math.max(0, Math.floor(Number(stats.completed))) : defaultStats.completed,
+            payloads: Number.isFinite(Number(stats?.payloads)) ? Math.max(0, Math.floor(Number(stats.payloads))) : defaultStats.payloads,
+            reflown: Number.isFinite(Number(stats?.reflown)) ? Math.max(0, Math.floor(Number(stats.reflown))) : defaultStats.reflown,
+          };
+        };
+
+        const writeStats = (values) => {
+          stats = {
+            completed: Math.max(0, Math.floor(Number(values.completed || 0))),
+            payloads: Math.max(0, Math.floor(Number(values.payloads || 0))),
+            reflown: Math.max(0, Math.floor(Number(values.reflown || 0))),
+          };
+          persistLocalSiteState();
+        };
+
+        const readRoles = () => {
+          const roles = siteStateAPI?.getRoles?.();
+          return Array.isArray(roles) ? roles : [];
+        };
+
+        const readLaunches = () => {
+          const launches = siteStateAPI?.getLaunches?.();
+          return Array.isArray(launches) ? launches : (launchAPI ? launchAPI.readLaunches() : []);
+        };
+
+        let stats = readStats();
+        let roles = readRoles();
+        let expandedIds = new Set(roles.slice(0, 2).map((role) => role.id));
+        let roleDrafts = {};
+        let launches = readLaunches();
+        let launchExpandedIds = new Set(launches.slice(0, 2).map((launch) => launch.id));
+        let launchDrafts = {};
+
+        const getCurrentSiteState = () => {
+          const normalized = siteStateAPI?.normalizeSiteState
+            ? siteStateAPI.normalizeSiteState({ stats, roles, launches })
+            : {
+                stats,
+                roles,
+                launches,
+              };
+
+          return normalized;
+        };
+
+        const persistLocalSiteState = () => {
+          const nextState = getCurrentSiteState();
+          if (siteStateAPI?.writeLegacySiteState) {
+            siteStateAPI.writeLegacySiteState(nextState);
+          } else {
+            window.localStorage.setItem(statsStorageKey, JSON.stringify(nextState.stats));
+            window.localStorage.setItem(roleStorageKey, JSON.stringify(nextState.roles));
+            if (launchAPI?.writeLaunches) {
+              launchAPI.writeLaunches(nextState.launches);
+            }
+          }
+        };
+
+        const writeRoles = () => {
+          persistLocalSiteState();
+        };
+
+        const toLaunchInputValue = (iso) => {
+          const date = new Date(iso);
+          if (!Number.isFinite(date.getTime())) return '';
+
+          const pad = (value) => String(value).padStart(2, '0');
+          return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        };
+
+        const writeLaunches = (items) => {
+          launches = Array.isArray(items) ? items : [];
+          persistLocalSiteState();
+        };
+
+        const getLaunchDraftValue = (launchId, field, fallback) => {
+          const draft = launchDrafts[launchId];
+          return draft && field in draft ? draft[field] : fallback;
+        };
+
+        const getDraftValue = (roleId, field, fallback) => {
+          const draft = roleDrafts[roleId];
+          return draft && field in draft ? draft[field] : fallback;
+        };
+
+        const saveExpandedFromDOM = () => {
+          const openIds = Array.from(roleList.querySelectorAll('details[open]')).map((node) => node.dataset.roleId);
+          expandedIds = new Set(openIds.filter(Boolean));
+        };
+
+        const fillStatsForm = () => {
+          statsForm.elements.completed.value = String(stats.completed);
+          statsForm.elements.payloads.value = String(stats.payloads);
+          statsForm.elements.reflown.value = String(stats.reflown);
+        };
+
+        const renderLaunches = () => {
+          launchList.innerHTML = '';
+
+          if (!launches.length) {
+            launchesStatus.textContent = 'No launches are currently defined.';
+            return;
+          }
+
+          launchesStatus.textContent = `${launches.length} launch${launches.length === 1 ? '' : 'es'} saved.`;
+
+          launches.forEach((launch) => {
+            const details = document.createElement('details');
+            details.className = 'role-editor';
+            details.dataset.launchId = launch.id;
+            details.open = launchExpandedIds.has(launch.id);
+
+            const summary = document.createElement('summary');
+            summary.className = 'role-editor__summary';
+
+            const main = document.createElement('div');
+            main.className = 'role-editor__summary-main';
+
+            const title = document.createElement('h3');
+            title.className = 'role-editor__title';
+            title.textContent = launch.missionName;
+
+            const meta = document.createElement('p');
+            meta.className = 'role-editor__meta';
+            meta.textContent = `${launch.orbitType} | ${launch.launchSite} | ${launchAPI ? launchAPI.formatLaunchDateTime(launch.launchDateTime) : launch.launchDateTime}`;
+
+            main.append(title, meta);
+
+            const right = document.createElement('div');
+            right.className = 'role-editor__summary-right';
+
+            const status = document.createElement('span');
+            status.className = `role-editor__status ${new Date(launch.launchDateTime).getTime() >= Date.now() ? 'role-editor__status--open' : 'role-editor__status--closed'}`;
+            status.textContent = new Date(launch.launchDateTime).getTime() >= Date.now() ? 'Upcoming' : 'Past';
+
+            const chevron = document.createElement('span');
+            chevron.className = 'role-editor__chevron';
+            chevron.textContent = 'v';
+
+            const save = document.createElement('button');
+            save.className = 'role-editor__save';
+            save.type = 'button';
+            save.textContent = 'Save';
+            save.dataset.saveLaunch = launch.id;
+
+            const remove = document.createElement('button');
+            remove.className = 'role-editor__remove';
+            remove.type = 'button';
+            remove.textContent = 'Remove';
+            remove.dataset.removeLaunch = launch.id;
+
+            right.append(status, chevron, save, remove);
+            summary.append(main, right);
+
+            const body = document.createElement('div');
+            body.className = 'role-editor__body';
+
+            const gridTop = document.createElement('div');
+            gridTop.className = 'role-editor__grid';
+
+            const missionField = document.createElement('label');
+            missionField.className = 'role-editor__field';
+            missionField.innerHTML = '<span class="role-editor__label">Mission Name</span>';
+            const missionInput = document.createElement('input');
+            missionInput.className = 'role-editor__input';
+            missionInput.type = 'text';
+            missionInput.value = getLaunchDraftValue(launch.id, 'missionName', launch.missionName);
+            missionInput.dataset.launchField = 'missionName';
+            missionField.append(missionInput);
+
+            const orbitField = document.createElement('label');
+            orbitField.className = 'role-editor__field';
+            orbitField.innerHTML = '<span class="role-editor__label">Orbit Type</span>';
+            const orbitInput = document.createElement('input');
+            orbitInput.className = 'role-editor__input';
+            orbitInput.type = 'text';
+            orbitInput.value = getLaunchDraftValue(launch.id, 'orbitType', launch.orbitType);
+            orbitInput.dataset.launchField = 'orbitType';
+            orbitField.append(orbitInput);
+
+            const dateField = document.createElement('label');
+            dateField.className = 'role-editor__field';
+            dateField.innerHTML = '<span class="role-editor__label">Launch Date &amp; Time</span>';
+            const dateInput = document.createElement('input');
+            dateInput.className = 'role-editor__input';
+            dateInput.type = 'datetime-local';
+            dateInput.value = getLaunchDraftValue(launch.id, 'launchDateTime', toLaunchInputValue(launch.launchDateTime));
+            dateInput.dataset.launchField = 'launchDateTime';
+            dateField.append(dateInput);
+
+            const siteField = document.createElement('label');
+            siteField.className = 'role-editor__field';
+            siteField.innerHTML = '<span class="role-editor__label">Launch Site</span>';
+            const siteInput = document.createElement('input');
+            siteInput.className = 'role-editor__input';
+            siteInput.type = 'text';
+            siteInput.value = getLaunchDraftValue(launch.id, 'launchSite', launch.launchSite);
+            siteInput.dataset.launchField = 'launchSite';
+            siteField.append(siteInput);
+
+            gridTop.append(missionField, orbitField, dateField, siteField);
+
+            const descriptionField = document.createElement('label');
+            descriptionField.className = 'role-editor__field';
+            descriptionField.innerHTML = '<span class="role-editor__label">Mission Description</span>';
+            const descriptionInput = document.createElement('textarea');
+            descriptionInput.className = 'role-editor__textarea';
+            descriptionInput.rows = 4;
+            descriptionInput.value = getLaunchDraftValue(launch.id, 'missionDescription', launch.missionDescription);
+            descriptionInput.dataset.launchField = 'missionDescription';
+            descriptionField.append(descriptionInput);
+
+            const vehicleField = document.createElement('label');
+            vehicleField.className = 'role-editor__field';
+            vehicleField.innerHTML = '<span class="role-editor__label">Vehicle</span>';
+            const vehicleInput = document.createElement('input');
+            vehicleInput.className = 'role-editor__input';
+            vehicleInput.type = 'text';
+            vehicleInput.value = getLaunchDraftValue(launch.id, 'vehicle', launch.vehicle);
+            vehicleInput.dataset.launchField = 'vehicle';
+            vehicleField.append(vehicleInput);
+
+            body.append(gridTop, descriptionField, vehicleField);
+            details.append(summary, body);
+            launchList.append(details);
+          });
+        };
+
+        const renderRoles = () => {
+          roleList.innerHTML = '';
+
+          if (!roles.length) {
+            rolesStatus.textContent = 'No roles are currently defined.';
+            return;
+          }
+
+          rolesStatus.textContent = `${roles.length} role${roles.length === 1 ? '' : 's'} saved.`;
+
+          roles.forEach((role) => {
+            const details = document.createElement('details');
+            details.className = 'role-editor';
+            details.dataset.roleId = role.id;
+            details.open = expandedIds.has(role.id);
+
+            const summary = document.createElement('summary');
+            summary.className = 'role-editor__summary';
+
+            const main = document.createElement('div');
+            main.className = 'role-editor__summary-main';
+
+            const title = document.createElement('h3');
+            title.className = 'role-editor__title';
+            title.textContent = role.title;
+
+            const meta = document.createElement('p');
+            meta.className = 'role-editor__meta';
+            meta.textContent = `${role.location} | ${role.type}`;
+
+            main.append(title, meta);
+
+            const right = document.createElement('div');
+            right.className = 'role-editor__summary-right';
+
+            const status = document.createElement('span');
+            status.className = `role-editor__status role-editor__status--${role.status}`;
+            status.textContent = role.status === 'open' ? 'Open' : 'Closed';
+
+            const chevron = document.createElement('span');
+            chevron.className = 'role-editor__chevron';
+            chevron.textContent = 'v';
+
+            const save = document.createElement('button');
+            save.className = 'role-editor__save';
+            save.type = 'button';
+            save.textContent = 'Save';
+            save.dataset.saveRole = role.id;
+
+            const remove = document.createElement('button');
+            remove.className = 'role-editor__remove';
+            remove.type = 'button';
+            remove.textContent = 'Remove';
+            remove.dataset.removeRole = role.id;
+
+            right.append(status, chevron, save, remove);
+            summary.append(main, right);
+
+            const body = document.createElement('div');
+            body.className = 'role-editor__body';
+
+            const gridTop = document.createElement('div');
+            gridTop.className = 'role-editor__grid';
+
+            const titleField = document.createElement('label');
+            titleField.className = 'role-editor__field';
+            titleField.innerHTML = '<span class="role-editor__label">Title</span>';
+            const titleInput = document.createElement('input');
+            titleInput.className = 'role-editor__input';
+            titleInput.type = 'text';
+            titleInput.value = getDraftValue(role.id, 'title', role.title);
+            titleInput.dataset.roleField = 'title';
+            titleField.append(titleInput);
+
+            const locationField = document.createElement('label');
+            locationField.className = 'role-editor__field';
+            locationField.innerHTML = '<span class="role-editor__label">Location</span>';
+            const locationInput = document.createElement('input');
+            locationInput.className = 'role-editor__input';
+            locationInput.type = 'text';
+            locationInput.value = getDraftValue(role.id, 'location', role.location);
+            locationInput.dataset.roleField = 'location';
+            locationField.append(locationInput);
+
+            const typeField = document.createElement('label');
+            typeField.className = 'role-editor__field';
+            typeField.innerHTML = '<span class="role-editor__label">Type</span>';
+            const typeInput = document.createElement('input');
+            typeInput.className = 'role-editor__input';
+            typeInput.type = 'text';
+            typeInput.value = getDraftValue(role.id, 'type', role.type);
+            typeInput.dataset.roleField = 'type';
+            typeField.append(typeInput);
+
+            const statusField = document.createElement('label');
+            statusField.className = 'role-editor__field';
+            statusField.innerHTML = '<span class="role-editor__label">Status</span>';
+            const statusInput = document.createElement('select');
+            statusInput.className = 'role-editor__select';
+            statusInput.dataset.roleField = 'status';
+            statusInput.innerHTML = '<option value="open">Open</option><option value="closed">Closed</option>';
+            statusInput.value = getDraftValue(role.id, 'status', role.status);
+            statusField.append(statusInput);
+
+            gridTop.append(titleField, locationField, typeField, statusField);
+
+            const summaryField = document.createElement('label');
+            summaryField.className = 'role-editor__field';
+            summaryField.innerHTML = '<span class="role-editor__label">Summary</span>';
+            const summaryInput = document.createElement('textarea');
+            summaryInput.className = 'role-editor__textarea';
+            summaryInput.rows = 3;
+            summaryInput.value = getDraftValue(role.id, 'summary', role.summary);
+            summaryInput.dataset.roleField = 'summary';
+            summaryField.append(summaryInput);
+
+            const roleDescriptionField = document.createElement('label');
+            roleDescriptionField.className = 'role-editor__field';
+            roleDescriptionField.innerHTML = '<span class="role-editor__label">Role Description</span>';
+            const roleDescriptionInput = document.createElement('textarea');
+            roleDescriptionInput.className = 'role-editor__textarea';
+            roleDescriptionInput.rows = 5;
+            roleDescriptionInput.value = getDraftValue(role.id, 'roleDescription', role.roleDescription || '');
+            roleDescriptionInput.dataset.roleField = 'roleDescription';
+            roleDescriptionField.append(roleDescriptionInput);
+
+            const experienceField = document.createElement('label');
+            experienceField.className = 'role-editor__field';
+            experienceField.innerHTML = '<span class="role-editor__label">Experience Required</span>';
+            const experienceInput = document.createElement('textarea');
+            experienceInput.className = 'role-editor__textarea';
+            experienceInput.rows = 4;
+            experienceInput.value = getDraftValue(role.id, 'experienceRequired', role.experienceRequired || '');
+            experienceInput.dataset.roleField = 'experienceRequired';
+            experienceField.append(experienceInput);
+
+            body.append(gridTop, summaryField, roleDescriptionField, experienceField);
+            details.append(summary, body);
+            roleList.append(details);
+          });
+        };
+
+        const syncFromPublishedState = (state) => {
+          const normalized = siteStateAPI?.normalizeSiteState ? siteStateAPI.normalizeSiteState(state) : state;
+          stats = normalized?.stats || stats;
+          roles = Array.isArray(normalized?.roles) ? normalized.roles : roles;
+          launches = Array.isArray(normalized?.launches) ? normalized.launches : launches;
+          expandedIds = new Set(roles.slice(0, 2).map((role) => role.id));
+          launchExpandedIds = new Set(launches.slice(0, 2).map((launch) => launch.id));
+          roleDrafts = {};
+          launchDrafts = {};
+          fillStatsForm();
+          renderRoles();
+          renderLaunches();
+        };
+
+        const hasMeaningfulDraftState = (state) => {
+          if (!state) return false;
+          const statsMatch =
+            Number(state?.stats?.completed) === defaultStats.completed &&
+            Number(state?.stats?.payloads) === defaultStats.payloads &&
+            Number(state?.stats?.reflown) === defaultStats.reflown;
+          return Boolean(!statsMatch || (Array.isArray(state?.roles) && state.roles.length) || (Array.isArray(state?.launches) && state.launches.length));
+        };
+
+        const initialStateSnapshot = getCurrentSiteState();
+
+        fillStatsForm();
+        renderRoles();
+        renderLaunches();
+
+        if (siteStateAPI?.ready) {
+          siteStateAPI.ready.then((state) => {
+            syncFromPublishedState(hasMeaningfulDraftState(initialStateSnapshot) ? initialStateSnapshot : state);
+          });
+        }
+
+        const readGithubToken = () => {
+          try {
+            return window.sessionStorage.getItem(githubTokenStorageKey) || window.localStorage.getItem(githubTokenStorageKey) || '';
+          } catch {
+            return '';
+          }
+        };
+
+        const storeGithubToken = (token, remember = false) => {
+          try {
+            window.sessionStorage.removeItem(githubTokenStorageKey);
+            window.localStorage.removeItem(githubTokenStorageKey);
+            if (token) {
+              if (remember) {
+                window.localStorage.setItem(githubTokenStorageKey, token);
+              } else {
+                window.sessionStorage.setItem(githubTokenStorageKey, token);
+              }
+            }
+          } catch {
+            // Ignore storage failures.
+          }
+        };
+
+        const readGithubRememberSetting = () => {
+          try {
+            return window.localStorage.getItem(githubTokenRememberKey) === 'true';
+          } catch {
+            return false;
+          }
+        };
+
+        const setGithubRememberSetting = (remember) => {
+          try {
+            window.localStorage.setItem(githubTokenRememberKey, String(Boolean(remember)));
+          } catch {
+            // Ignore storage failures.
+          }
+        };
+
+        const readGithubAutoPublishSetting = () => {
+          try {
+            return window.localStorage.getItem(githubAutoPublishKey) === 'true';
+          } catch {
+            return false;
+          }
+        };
+
+        const setGithubAutoPublishSetting = (enabled) => {
+          try {
+            window.localStorage.setItem(githubAutoPublishKey, String(Boolean(enabled)));
+          } catch {
+            // Ignore storage failures.
+          }
+        };
+
+        const encodeUtf8Base64 = (text) => {
+          const bytes = new TextEncoder().encode(text);
+          let binary = '';
+          bytes.forEach((byte) => {
+            binary += String.fromCharCode(byte);
+          });
+          return window.btoa(binary);
+        };
+
+        const publishSiteState = async () => {
+          const token = String(githubTokenInput.value || '').trim();
+          if (!token) {
+            githubPublishStatus.textContent = 'Add a GitHub token first.';
+            return false;
+          }
+
+          githubPublishButton.disabled = true;
+          githubPublishStatus.textContent = 'Publishing to GitHub...';
+
+          const currentState = getCurrentSiteState();
+          const fileUrl = `https://api.github.com/repos/${githubOwner}/${githubRepo}/contents/${githubStatePath}`;
+
+          try {
+            let sha = null;
+            const lookup = await fetch(`${fileUrl}?ref=${encodeURIComponent(githubBranch)}`, {
+              headers: {
+                Accept: 'application/vnd.github+json',
+                Authorization: `Bearer ${token}`,
+              },
+            });
+
+            if (lookup.ok) {
+              const existing = await lookup.json();
+              sha = existing?.sha || null;
+            } else if (lookup.status !== 404) {
+              throw new Error(`Lookup failed with ${lookup.status}`);
+            }
+
+            const response = await fetch(fileUrl, {
+              method: 'PUT',
+              headers: {
+                Accept: 'application/vnd.github+json',
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                branch: githubBranch,
+                message: 'Update site state from admin panel',
+                content: encodeUtf8Base64(`${JSON.stringify(currentState, null, 2)}\n`),
+                ...(sha ? { sha } : {}),
+              }),
+            });
+
+            if (!response.ok) {
+              const text = await response.text();
+              throw new Error(text || `Publish failed with ${response.status}`);
+            }
+
+            githubPublishStatus.textContent = 'Published to GitHub.';
+            return true;
+          } catch (error) {
+            githubPublishStatus.textContent = `GitHub publish failed: ${error?.message || 'Unknown error'}`;
+            return false;
+          } finally {
+            githubPublishButton.disabled = false;
+          }
+        };
+
+        githubTokenInput.value = readGithubToken();
+        githubTokenRemember.checked = readGithubRememberSetting();
+        githubAutoPublishToggle.checked = readGithubAutoPublishSetting();
+        githubTokenInput.addEventListener('input', () => {
+          storeGithubToken(githubTokenInput.value.trim(), githubTokenRemember.checked);
+        });
+        githubTokenRemember.addEventListener('change', () => {
+          setGithubRememberSetting(githubTokenRemember.checked);
+          storeGithubToken(githubTokenInput.value.trim(), githubTokenRemember.checked);
+        });
+        githubAutoPublishToggle.addEventListener('change', () => {
+          setGithubAutoPublishSetting(githubAutoPublishToggle.checked);
+        });
+        githubPublishButton.addEventListener('click', async () => {
+          await publishSiteState();
+        });
+
+        const maybeAutoPublish = () => {
+          if (githubAutoPublishToggle.checked) {
+            void publishSiteState();
+          }
+        };
+
+        statsForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const values = {
+            completed: Math.max(0, Math.floor(Number(statsForm.elements.completed.value || 0))),
+            payloads: Math.max(0, Math.floor(Number(statsForm.elements.payloads.value || 0))),
+            reflown: Math.max(0, Math.floor(Number(statsForm.elements.reflown.value || 0))),
+          };
+
+          writeStats(values);
+          statsStatus.textContent = 'Homepage stats updated.';
+          maybeAutoPublish();
+        });
+
+        roleCreate.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(roleCreate);
+          const newRole = {
+            id: `role-${Date.now()}`,
+            title: String(formData.get('title') || '').trim(),
+            location: String(formData.get('location') || '').trim(),
+            type: String(formData.get('type') || '').trim(),
+            status: formData.get('status') === 'closed' ? 'closed' : 'open',
+            summary: String(formData.get('summary') || '').trim(),
+            roleDescription: String(formData.get('roleDescription') || '').trim(),
+            experienceRequired: String(formData.get('experienceRequired') || '').trim(),
+          };
+
+          if (!newRole.title || !newRole.location || !newRole.type || !newRole.summary || !newRole.roleDescription || !newRole.experienceRequired) {
+            roleCreateStatus.textContent = 'Please complete every field before adding a role.';
+            return;
+          }
+
+          roles = [...roles, newRole];
+          expandedIds.add(newRole.id);
+          writeRoles();
+          delete roleDrafts[newRole.id];
+          renderRoles();
+          roleCreate.reset();
+          roleCreate.elements.status.value = 'open';
+          roleCreateStatus.textContent = 'Role added.';
+          maybeAutoPublish();
+        });
+
+        roleList.addEventListener('input', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const field = target.dataset.roleField;
+          if (!field) return;
+
+          const editor = target.closest('.role-editor');
+          const id = editor?.dataset.roleId;
+          if (!id) return;
+
+          roleDrafts[id] = {
+            ...(roleDrafts[id] || {}),
+            [field]: target.value,
+          };
+        });
+
+        roleList.addEventListener('change', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const field = target.dataset.roleField;
+          if (!field) return;
+
+          const editor = target.closest('.role-editor');
+          const id = editor?.dataset.roleId;
+          if (!id) return;
+
+          roleDrafts[id] = {
+            ...(roleDrafts[id] || {}),
+            [field]: target.value,
+          };
+        });
+
+        roleList.addEventListener('click', (event) => {
+          const saveButton = event.target.closest('[data-save-role]');
+          if (saveButton) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id = saveButton.getAttribute('data-save-role');
+            const role = roles.find((item) => item.id === id);
+            const draft = id ? roleDrafts[id] : null;
+            if (!role || !draft) return;
+
+            const merged = {
+              ...role,
+              ...draft,
+            };
+
+            merged.status = merged.status === 'closed' ? 'closed' : 'open';
+            merged.title = String(merged.title || '').trim();
+            merged.location = String(merged.location || '').trim();
+            merged.type = String(merged.type || '').trim();
+            merged.summary = String(merged.summary || '').trim();
+            merged.roleDescription = String(merged.roleDescription || '').trim();
+            merged.experienceRequired = String(merged.experienceRequired || '').trim();
+
+            if (
+              !merged.title ||
+              !merged.location ||
+              !merged.type ||
+              !merged.summary ||
+              !merged.roleDescription ||
+              !merged.experienceRequired
+            ) {
+              roleCreateStatus.textContent = 'Please complete every field before saving that role.';
+              return;
+            }
+
+            Object.assign(role, merged);
+            delete roleDrafts[id];
+            writeRoles();
+            renderRoles();
+            rolesStatus.textContent = 'Role saved.';
+            maybeAutoPublish();
+            return;
+          }
+
+          const removeButton = event.target.closest('[data-remove-role]');
+          if (!removeButton) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          const id = removeButton.getAttribute('data-remove-role');
+          roles = roles.filter((role) => role.id !== id);
+          expandedIds.delete(id || '');
+          delete roleDrafts[id || ''];
+          writeRoles();
+          renderRoles();
+          maybeAutoPublish();
+        });
+
+        launchCreate.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(launchCreate);
+          const launchDateTimeValue = String(formData.get('launchDateTime') || '').trim();
+          const launchDateTime = launchDateTimeValue ? new Date(launchDateTimeValue).toISOString() : '';
+          const newLaunch = {
+            id: `launch-${Date.now()}`,
+            missionName: String(formData.get('missionName') || '').trim(),
+            missionDescription: String(formData.get('missionDescription') || '').trim(),
+            orbitType: String(formData.get('orbitType') || '').trim(),
+            launchDateTime,
+            launchSite: String(formData.get('launchSite') || '').trim(),
+            vehicle: String(formData.get('vehicle') || '').trim(),
+          };
+
+          if (
+            !newLaunch.missionName ||
+            !newLaunch.missionDescription ||
+            !newLaunch.orbitType ||
+            !newLaunch.launchDateTime ||
+            !newLaunch.launchSite ||
+            !newLaunch.vehicle
+          ) {
+            launchCreateStatus.textContent = 'Please complete every field before adding a launch.';
+            return;
+          }
+
+          launches = [...launches, newLaunch].sort((a, b) => new Date(a.launchDateTime).getTime() - new Date(b.launchDateTime).getTime());
+          launchExpandedIds.add(newLaunch.id);
+          writeLaunches(launches);
+          delete launchDrafts[newLaunch.id];
+          renderLaunches();
+          launchCreate.reset();
+          launchCreateStatus.textContent = 'Launch added.';
+          maybeAutoPublish();
+        });
+
+        launchList.addEventListener('input', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const field = target.dataset.launchField;
+          if (!field) return;
+
+          const editor = target.closest('.role-editor');
+          const id = editor?.dataset.launchId;
+          if (!id) return;
+
+          launchDrafts[id] = {
+            ...(launchDrafts[id] || {}),
+            [field]: target.value,
+          };
+        });
+
+        launchList.addEventListener('change', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const field = target.dataset.launchField;
+          if (!field) return;
+
+          const editor = target.closest('.role-editor');
+          const id = editor?.dataset.launchId;
+          if (!id) return;
+
+          launchDrafts[id] = {
+            ...(launchDrafts[id] || {}),
+            [field]: target.value,
+          };
+        });
+
+        launchList.addEventListener('click', (event) => {
+          const saveButton = event.target.closest('[data-save-launch]');
+          if (saveButton) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id = saveButton.getAttribute('data-save-launch');
+            const launch = launches.find((item) => item.id === id);
+            const draft = id ? launchDrafts[id] : null;
+            if (!launch || !draft) return;
+
+            const merged = {
+              ...launch,
+              ...draft,
+            };
+
+            merged.missionName = String(merged.missionName || '').trim();
+            merged.missionDescription = String(merged.missionDescription || '').trim();
+            merged.orbitType = String(merged.orbitType || '').trim();
+            merged.launchDateTime = merged.launchDateTime ? new Date(merged.launchDateTime).toISOString() : '';
+            merged.launchSite = String(merged.launchSite || '').trim();
+            merged.vehicle = String(merged.vehicle || '').trim();
+
+            if (
+              !merged.missionName ||
+              !merged.missionDescription ||
+              !merged.orbitType ||
+              !merged.launchDateTime ||
+              !merged.launchSite ||
+              !merged.vehicle
+            ) {
+              launchCreateStatus.textContent = 'Please complete every field before saving that launch.';
+              return;
+            }
+
+            Object.assign(launch, merged);
+            delete launchDrafts[id];
+            writeLaunches(launches);
+            renderLaunches();
+            launchesStatus.textContent = 'Launch saved.';
+            maybeAutoPublish();
+            return;
+          }
+
+          const removeButton = event.target.closest('[data-remove-launch]');
+          if (!removeButton) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          const id = removeButton.getAttribute('data-remove-launch');
+          launches = launches.filter((launch) => launch.id !== id);
+          launchExpandedIds.delete(id || '');
+          delete launchDrafts[id || ''];
+          writeLaunches(launches);
+          renderLaunches();
+          maybeAutoPublish();
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+

@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05070d" />
+    <title>MNSWT | Saturn Aerospace</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+      :root {
+        --bg: #05070d;
+        --bg-soft: #090d19;
+        --panel: rgba(10, 13, 24, 0.72);
+        --panel-strong: rgba(7, 9, 16, 0.9);
+        --line: rgba(255, 255, 255, 0.12);
+        --line-strong: rgba(190, 205, 255, 0.18);
+        --text: #f7f8ff;
+        --muted: rgba(247, 248, 255, 0.74);
+        --muted-strong: rgba(247, 248, 255, 0.86);
+        --accent: #9ec5ff;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+
+      body {
+        position: relative;
+      }
+
+      .page {
+        display: grid;
+        gap: 0;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        min-height: 100svh;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        background:
+          radial-gradient(circle at 50% 34%, rgba(126, 158, 214, 0.16), transparent 30%),
+          linear-gradient(180deg, rgba(5, 7, 13, 0.18) 0%, rgba(5, 7, 13, 0.36) 44%, rgba(5, 7, 13, 0.9) 100%),
+          url('../img/img_mnswt_splash.webp') center center / cover no-repeat;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(5, 7, 13, 0.12) 0%, rgba(5, 7, 13, 0.02) 50%, rgba(5, 7, 13, 0.12) 100%),
+          linear-gradient(180deg, rgba(5, 7, 13, 0.12) 0%, rgba(5, 7, 13, 0.08) 22%, rgba(5, 7, 13, 0.34) 100%);
+      }
+
+      .hero__content {
+        position: relative;
+        z-index: 1;
+        width: min(100% - 32px, 920px);
+        display: grid;
+        justify-items: center;
+        gap: 12px;
+        padding: 32px 0 18px;
+      }
+
+      .hero__title {
+        margin: 0;
+        font-size: clamp(2.7rem, 6.2vw, 6rem);
+        line-height: 0.92;
+        letter-spacing: -0.08em;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-shadow: 0 14px 36px rgba(0, 0, 0, 0.38);
+      }
+
+      .hero__subtitle {
+        margin: 0;
+        max-width: 28ch;
+        color: rgba(247, 248, 255, 0.78);
+        font-size: clamp(0.92rem, 1.5vw, 1.12rem);
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .content {
+        position: relative;
+        isolation: isolate;
+        background:
+          radial-gradient(circle at 14% 18%, rgba(74, 96, 141, 0.18), transparent 28%),
+          radial-gradient(circle at 86% 82%, rgba(73, 91, 134, 0.14), transparent 24%),
+          linear-gradient(180deg, #060811 0%, #070b14 100%);
+      }
+
+      .content__inner {
+        width: min(100% - 32px, 1180px);
+        margin: 0 auto;
+        padding: 82px 0 76px;
+        display: grid;
+        gap: 28px;
+      }
+
+      .closing {
+        position: relative;
+        isolation: isolate;
+        min-height: 100svh;
+        overflow: hidden;
+        display: grid;
+        align-items: center;
+        background:
+          linear-gradient(180deg, rgba(5, 7, 13, 0.22) 0%, rgba(5, 7, 13, 0.38) 26%, rgba(5, 7, 13, 0.9) 100%),
+          url('../img/img_mnswt_moving.webp') center center / cover no-repeat;
+      }
+
+      .closing::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 18% 18%, rgba(151, 176, 224, 0.12), transparent 26%),
+          radial-gradient(circle at 82% 72%, rgba(120, 154, 214, 0.16), transparent 28%),
+          linear-gradient(90deg, rgba(5, 7, 13, 0.18) 0%, rgba(5, 7, 13, 0.04) 50%, rgba(5, 7, 13, 0.18) 100%);
+      }
+
+      .closing__inner {
+        position: relative;
+        z-index: 1;
+        width: min(100% - 32px, 1120px);
+        margin: 0 auto;
+        padding: 92px 0 84px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+        gap: 28px;
+        align-items: end;
+      }
+
+      .closing__copy {
+        max-width: 48rem;
+        display: grid;
+        gap: 18px;
+      }
+
+      .closing__title {
+        margin: 0;
+        font-size: clamp(2.7rem, 5.8vw, 5.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.07em;
+        font-weight: 900;
+        max-width: 12ch;
+      }
+
+      .closing__text {
+        margin: 0;
+        max-width: 43rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.32vw, 1.14rem);
+        line-height: 1.72;
+      }
+
+      .closing__text strong {
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      .closing__note {
+        margin: 0;
+        max-width: 43rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.32vw, 1.14rem);
+        line-height: 1.72;
+      }
+
+      .closing__aside {
+        display: grid;
+        gap: 12px;
+        align-self: stretch;
+      }
+
+      .closing__panel {
+        display: grid;
+        gap: 12px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 22px;
+        background: rgba(7, 10, 18, 0.5);
+        backdrop-filter: blur(12px);
+      }
+
+      .closing__kicker {
+        margin: 0;
+        color: rgba(247, 248, 255, 0.68);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.7rem;
+        font-weight: 800;
+      }
+
+      .closing__stat {
+        margin: 0;
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1.55;
+        font-weight: 700;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .intro__copy {
+        max-width: 52rem;
+        display: grid;
+        gap: 18px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: rgba(247, 248, 255, 0.68);
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 0.74rem;
+        font-weight: 800;
+      }
+
+      .intro__title {
+        margin: 0;
+        max-width: 13ch;
+        font-size: clamp(2.3rem, 4.5vw, 4.9rem);
+        line-height: 0.95;
+        letter-spacing: -0.07em;
+        font-weight: 900;
+      }
+
+      .intro__lede {
+        margin: 0;
+        max-width: 44rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.3vw, 1.14rem);
+        line-height: 1.72;
+      }
+
+      .intro__lede strong {
+        color: var(--muted-strong);
+        font-weight: 800;
+      }
+
+      .media-card {
+        position: relative;
+        min-height: 540px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.02);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+        cursor: zoom-in;
+      }
+
+      .media-card__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        filter: none;
+      }
+
+      .media-card__hit {
+        position: absolute;
+        inset: 0;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        cursor: zoom-in;
+      }
+
+      .media-card__label {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(5, 7, 13, 0.34);
+        backdrop-filter: blur(12px);
+        color: rgba(247, 248, 255, 0.9);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .media-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: grid;
+        place-items: center;
+        padding: 22px;
+        background: rgba(3, 4, 8, 0.86);
+        backdrop-filter: blur(16px);
+      }
+
+      .media-modal[hidden] {
+        display: none;
+      }
+
+      .media-modal__panel {
+        position: relative;
+        width: min(100%, 1240px);
+        max-height: calc(100vh - 44px);
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        background: rgba(7, 9, 16, 0.96);
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+
+      .media-modal__image {
+        display: block;
+        width: 100%;
+        max-height: calc(100vh - 44px);
+        object-fit: contain;
+        background: #05070d;
+      }
+
+      .media-modal__close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        height: 38px;
+        padding: 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        background: rgba(5, 7, 13, 0.66);
+        color: var(--text);
+        font: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 4px;
+      }
+
+      .fact {
+        position: relative;
+        display: grid;
+        gap: 9px;
+        align-content: start;
+        padding: 18px 18px 18px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-left: 3px solid var(--line-strong);
+        border-radius: 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0.018) 100%);
+        backdrop-filter: blur(10px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+
+      .fact__label {
+        margin: 0;
+        color: rgba(247, 248, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.72rem;
+        font-weight: 800;
+      }
+
+      .fact__text {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.58;
+      }
+
+      .facts__lead {
+        grid-column: 1 / -1;
+        max-width: 54rem;
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.22vw, 1.16rem);
+        line-height: 1.72;
+      }
+
+      .facts__lead strong {
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      .facts__group {
+        grid-column: 1 / -1;
+        display: grid;
+        gap: 14px;
+      }
+
+      @media (max-width: 980px) {
+        .intro {
+          grid-template-columns: 1fr;
+        }
+
+        .media-card {
+          min-height: 420px;
+        }
+
+        .facts {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .hero__content {
+          width: min(100% - 22px, 920px);
+          gap: 10px;
+          padding-top: 24px;
+        }
+
+        .hero__title {
+          font-size: clamp(2.2rem, 16vw, 3.8rem);
+        }
+
+        .hero__subtitle {
+          max-width: 20ch;
+          letter-spacing: 0.14em;
+          line-height: 1.55;
+          font-size: 0.8rem;
+        }
+
+        .content__inner {
+          width: min(100% - 22px, 1180px);
+          padding: 64px 0 58px;
+        }
+
+        .intro__title {
+          max-width: 100%;
+          font-size: clamp(2rem, 11vw, 3.4rem);
+        }
+
+        .media-card {
+          min-height: 360px;
+          border-radius: 18px;
+        }
+
+        .media-card__label {
+          left: 14px;
+          top: 14px;
+        }
+
+        .media-modal {
+          padding: 12px;
+        }
+
+        .fact {
+          padding: 16px 16px 16px 18px;
+        }
+
+        .closing__inner {
+          grid-template-columns: 1fr;
+          width: min(100% - 22px, 1120px);
+          padding: 72px 0 68px;
+        }
+
+        .closing__title {
+          max-width: 100%;
+          font-size: clamp(2.2rem, 12vw, 3.8rem);
+        }
+      }
+    </style>
+    <link rel="icon" href="../img/favicon.webp" type="image/webp" data-site-icon data-root="../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+      (() => {
+        if (document.getElementById('site-shell-loader')) return;
+        const script = document.createElement('script');
+        script.id = 'site-shell-loader';
+        const marker = '/saturnaero.space-/';
+        const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+        const markerIndex = path.indexOf(marker);
+        const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+        const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+        const root = depth > 0 ? '../'.repeat(depth) : './';
+        script.src = root + 'shared/site-shell.js';
+        document.head.appendChild(script);
+      })();
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero" aria-label="MNSWT introduction">
+        <div class="hero__content">
+          <h1 class="hero__title">MNSWT</h1>
+          <p class="hero__subtitle">Martian Nuclear SaltWater Transporter</p>
+        </div>
+      </section>
+
+      <section class="content" aria-label="MNSWT overview">
+        <div class="content__inner">
+          <div class="intro">
+            <article class="intro__copy">
+              <p class="eyebrow">Mars Transport System</p>
+              <h2 class="intro__title">Built for sustained acceleration to Mars.</h2>
+              <p class="intro__lede">
+                The Martian Nuclear Saltwater Transporter is Saturn Aerospace's primary interplanetary
+                transport station for high-speed Mars operations. Built around continuously running
+                nuclear saltwater engines, MNSWT is designed to keep accelerating through the transfer
+                instead of relying on short chemical burns.
+              </p>
+              <p class="intro__lede">
+                In its standard mission profile, the transporter can complete Earth-to-Mars transit in
+                under four days, making it the backbone of our planned crew, cargo, and infrastructure
+                movement between the inner planets.
+              </p>
+            </article>
+
+            <aside class="media-card" aria-label="MNSWT vehicle image">
+              <img class="media-card__image" src="../img/img_mnswt_full.webp" alt="MNSWT full vehicle image" />
+              <button
+                class="media-card__hit"
+                type="button"
+                aria-label="Expand MNSWT image"
+                data-mnswt-expand
+              ></button>
+              <span class="media-card__label">MNSWT Full Stack</span>
+            </aside>
+          </div>
+
+          <div class="facts" aria-label="MNSWT facts">
+            <p class="facts__lead">
+              <strong>MNSWT</strong> is the transport station we use when speed matters, range matters,
+              and the mission needs a propulsion profile that stays on the boil instead of stepping
+              through short burns.
+            </p>
+
+            <article class="fact">
+              <p class="fact__label">Transit</p>
+              <p class="fact__text">
+                Under four days from Earth to Mars in the nominal transfer profile.
+              </p>
+            </article>
+
+            <article class="fact">
+              <p class="fact__label">Propulsion</p>
+              <p class="fact__text">
+                Constant-thrust nuclear saltwater engines for sustained interplanetary acceleration.
+              </p>
+            </article>
+
+            <article class="fact">
+              <p class="fact__label">Role</p>
+              <p class="fact__text">
+                Main Saturn vehicle for Mars crew rotation, cargo transfer, and station logistics.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing" aria-label="MNSWT future mission">
+        <div class="closing__inner">
+          <article class="closing__copy">
+            <p class="eyebrow">Lunar Orbit / 2026</p>
+            <h2 class="closing__title">MNSWT To The Moon</h2>
+            <p class="closing__text">
+              We are working toward putting MNSWT in lunar orbit in 2026. That is the next step we want
+              to make real, not just something we talk about. The idea is simple: build a station crews
+              can actually use and trust, so the trip to the Moon starts to feel like a route we know
+              how to make happen.
+            </p>
+            <p class="closing__text">
+              We want to send four Rhea vehicles to the station, then bring them down to the Moon and
+              start the work that follows. That means power, cargo, habitat hardware, and all the small
+              pieces that turn a plan into something people can actually live with.
+            </p>
+            <p class="closing__note">
+              It is a big target, and we are not pretending otherwise. But that is the point. MNSWT is
+              there to make the distance shorter, the work steadier, and the next step feel less like a
+              leap. One station, one transfer, one piece of the surface at a time, until the first city
+              starts to feel less like a dream and more like something we are building for real.
+            </p>
+          </article>
+
+          <aside class="closing__aside" aria-label="MNSWT mission focus">
+            <div class="closing__panel">
+              <p class="closing__kicker">Mission Focus</p>
+              <p class="closing__stat">
+                Keep the station moving, keep the crew supported, and make the path to the Moon
+                practical enough to repeat.
+              </p>
+            </div>
+            <div class="closing__panel">
+              <p class="closing__kicker">What Comes Next</p>
+              <p class="closing__stat">
+                A working orbiting hub, four Rhea deliveries, and the first real construction steps on
+                the lunar surface.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div class="media-modal" hidden data-mnswt-modal aria-hidden="true">
+      <div class="media-modal__panel" role="dialog" aria-modal="true" aria-label="Expanded MNSWT image">
+        <button class="media-modal__close" type="button" aria-label="Close expanded image" data-mnswt-close>
+          ×
+        </button>
+        <img class="media-modal__image" src="../img/img_mnswt_full.webp" alt="Expanded MNSWT full vehicle image" />
+      </div>
+    </div>
+    <script>
+      (() => {
+        const openButton = document.querySelector('[data-mnswt-expand]');
+        const modal = document.querySelector('[data-mnswt-modal]');
+        const closeButton = document.querySelector('[data-mnswt-close]');
+
+        if (!openButton || !modal || !closeButton) {
+          return;
+        }
+
+        const openModal = () => {
+          modal.hidden = false;
+          modal.setAttribute('aria-hidden', 'false');
+          closeButton.focus();
+          document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+          modal.hidden = true;
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          openButton.focus();
+        };
+
+        openButton.addEventListener('click', openModal);
+        closeButton.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !modal.hidden) {
+            closeModal();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

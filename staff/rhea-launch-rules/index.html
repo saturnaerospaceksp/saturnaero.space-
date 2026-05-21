@@ -1,0 +1,1717 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Internal Rhea operations sheet for Saturn Aerospace."
+    />
+    <meta name="theme-color" content="#05070d" />
+    <link rel="stylesheet" href="../../src/styles.css" />
+    <title>Saturn | Rhea Operations</title>
+    <style>
+      .staff-page {
+        min-height: 100vh;
+        padding: 120px 0 0;
+      }
+
+      .staff-countdown {
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        z-index: 40;
+        width: min(860px, calc(100vw - 18px));
+        transform: translateX(-50%);
+        padding: 10px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        background: rgba(5, 7, 13, 0.9);
+        box-shadow:
+          0 18px 36px rgba(0, 0, 0, 0.32),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(18px);
+      }
+
+      .staff-countdown__shell {
+        display: grid;
+        gap: 8px;
+      }
+
+      .staff-countdown__top {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+      }
+
+      .staff-countdown__eyebrow {
+        margin: 0 0 4px;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .staff-countdown__value {
+        display: block;
+        color: var(--fg);
+        font-size: clamp(1.75rem, 3vw, 2.65rem);
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 0 18px rgba(194, 215, 255, 0.18);
+      }
+
+      .staff-countdown__state {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.7rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .staff-countdown__meta {
+        display: grid;
+        gap: 2px;
+        justify-items: center;
+        text-align: center;
+        grid-column: 2;
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .staff-countdown.is-dragging .staff-countdown__meta {
+        cursor: grabbing;
+      }
+
+      .staff-countdown__compact-toggle {
+        min-width: 34px;
+        min-height: 34px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--fg);
+        font: inherit;
+        font-size: 1rem;
+        line-height: 1;
+        cursor: pointer;
+        justify-self: end;
+        grid-column: 3;
+      }
+
+      .staff-countdown__compact-toggle:hover {
+        border-color: rgba(194, 215, 255, 0.4);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .staff-countdown__toolbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        justify-items: center;
+        align-items: center;
+      }
+
+      .staff-countdown__buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .staff-countdown__button {
+        min-height: 42px;
+        padding: 0 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--fg);
+        font: inherit;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          background-color 160ms ease;
+      }
+
+      .staff-countdown__button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(194, 215, 255, 0.4);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .staff-countdown__button--hold {
+        color: #f4d58d;
+      }
+
+      .staff-countdown__button--continue {
+        color: #8ee6a5;
+      }
+
+      .staff-countdown__button--abort {
+        color: #ff8f8f;
+      }
+
+      .staff-countdown__sync {
+        display: grid;
+        gap: 8px;
+        justify-items: start;
+      }
+
+      .staff-countdown__sync-label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .staff-countdown__sync-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .staff-countdown__input {
+        width: 124px;
+        min-height: 40px;
+        padding: 0 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(5, 7, 13, 0.72);
+        color: var(--fg);
+        font: inherit;
+        letter-spacing: 0.16em;
+        text-align: center;
+        outline: none;
+      }
+
+      .staff-countdown__input:focus {
+        border-color: rgba(194, 215, 255, 0.42);
+        box-shadow: 0 0 0 3px rgba(194, 215, 255, 0.08);
+      }
+
+      .staff-countdown__input[aria-invalid='true'] {
+        border-color: rgba(255, 143, 143, 0.72);
+        box-shadow: 0 0 0 3px rgba(255, 143, 143, 0.08);
+      }
+
+      .staff-countdown__sync-button {
+        min-height: 40px;
+        padding: 0 16px;
+        border: 1px solid rgba(194, 215, 255, 0.18);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(194, 215, 255, 0.16), rgba(255, 255, 255, 0.04));
+        color: var(--fg);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .staff-countdown__sync-button:hover {
+        border-color: rgba(194, 215, 255, 0.42);
+      }
+
+      .staff-countdown__hint {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.78rem;
+        line-height: 1.45;
+        text-align: left;
+      }
+
+      .staff-countdown[data-expanded='false'] {
+        width: min(560px, calc(100vw - 18px));
+      }
+
+      .staff-countdown[data-expanded='false'] .staff-countdown__top {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      }
+
+      .staff-countdown[data-expanded='false'] .staff-countdown__sync,
+      .staff-countdown[data-expanded='false'] .staff-countdown__button--abort,
+      .staff-countdown[data-expanded='false'] .staff-countdown__hint,
+      .staff-countdown[data-expanded='false'] .staff-countdown__eyebrow,
+      .staff-countdown[data-expanded='false'] .staff-countdown__state {
+        display: none;
+      }
+
+      .staff-countdown[data-expanded='false'] .staff-countdown__buttons {
+        width: 100%;
+      }
+
+      .staff-countdown[data-expanded='false'] .staff-countdown__meta {
+        justify-self: center;
+      }
+
+      .staff-page__inner {
+        width: 100%;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        background:
+          linear-gradient(180deg, rgba(8, 11, 20, 0.98), rgba(5, 7, 13, 0.98));
+      }
+
+      .staff-page__left,
+      .staff-page__right {
+        min-width: 0;
+        padding: 42px 28px 56px;
+      }
+
+      .staff-page__left {
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        background:
+          radial-gradient(circle at 22% 18%, rgba(194, 215, 255, 0.09), transparent 24%),
+          linear-gradient(180deg, rgba(10, 14, 28, 0.88), rgba(4, 6, 11, 0.94));
+      }
+
+      .staff-page__right {
+        display: flex;
+        flex-direction: column;
+        background:
+          radial-gradient(circle at 70% 18%, rgba(242, 222, 176, 0.05), transparent 22%),
+          linear-gradient(180deg, rgba(6, 8, 14, 0.82), rgba(4, 6, 11, 0.96));
+      }
+
+      .staff-page__eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .staff-page__title {
+        margin: 0;
+        font-size: clamp(2.3rem, 6vw, 4.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .staff-page__lead {
+        max-width: 74ch;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.75;
+      }
+
+      .staff-page__grid {
+        display: grid;
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .staff-panel {
+        padding: 22px 22px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .staff-panel h2 {
+        margin: 0 0 12px;
+        font-size: 1rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .staff-panel--workspace {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .staff-panel--roles {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .staff-panel--workspace h2 {
+        margin: 0 0 14px;
+      }
+
+      .staff-roles {
+        display: grid;
+        gap: 12px;
+      }
+
+      .staff-roles__intro {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .staff-role {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .staff-role__summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px;
+        cursor: pointer;
+        list-style: none;
+        color: var(--fg);
+        font-size: 0.95rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .staff-role__summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .staff-role__summary::after {
+        content: '+';
+        color: var(--accent);
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .staff-role[open] > .staff-role__summary::after {
+        content: '-';
+      }
+
+      .staff-role__body {
+        padding: 0 18px 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .staff-role__body p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .staff-role__lines {
+        display: grid;
+        gap: 8px;
+      }
+
+      .staff-role__line {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .staff-role__line strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--accent);
+        font-size: 0.74rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .staff-role__line span {
+        display: block;
+        color: var(--fg);
+        line-height: 1.55;
+      }
+
+      .staff-panel p,
+      .staff-panel li {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .staff-checklist {
+        display: grid;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .staff-check {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .staff-check__copy {
+        display: grid;
+        gap: 3px;
+      }
+
+      .staff-check__copy strong {
+        color: var(--fg);
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .staff-check__copy span {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .staff-check__controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .staff-check__input {
+        width: 108px;
+        min-height: 40px;
+        padding: 0 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(5, 7, 13, 0.7);
+        color: var(--fg);
+        font: inherit;
+        outline: none;
+      }
+
+      .staff-check__input:focus {
+        border-color: rgba(194, 215, 255, 0.34);
+        box-shadow: 0 0 0 4px rgba(194, 215, 255, 0.08);
+      }
+
+      .staff-check__unit {
+        color: rgba(247, 248, 255, 0.52);
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .staff-check__state {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(247, 248, 255, 0.7);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .staff-check.is-pass {
+        border-color: rgba(142, 240, 168, 0.26);
+        background: rgba(142, 240, 168, 0.08);
+      }
+
+      .staff-check.is-pass .staff-check__state {
+        color: #9ff1b7;
+        border-color: rgba(142, 240, 168, 0.24);
+        background: rgba(142, 240, 168, 0.12);
+      }
+
+      .staff-check.is-fail {
+        border-color: rgba(255, 112, 112, 0.28);
+        background: rgba(255, 112, 112, 0.08);
+      }
+
+      .staff-check.is-fail .staff-check__state {
+        color: #ff9494;
+        border-color: rgba(255, 112, 112, 0.25);
+        background: rgba(255, 112, 112, 0.12);
+      }
+
+      .staff-check__hint {
+        margin: 4px 0 0;
+        color: rgba(247, 248, 255, 0.46);
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .staff-panel ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .staff-accordion {
+        display: grid;
+        gap: 12px;
+      }
+
+      .staff-accordion__item {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .staff-accordion__summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px;
+        cursor: pointer;
+        list-style: none;
+        color: var(--fg);
+        font-size: 0.95rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .staff-accordion__summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .staff-accordion__summary::after {
+        content: '+';
+        color: var(--accent);
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .staff-accordion__item[open] > .staff-accordion__summary::after {
+        content: '-';
+      }
+
+      .staff-accordion__body {
+        padding: 0 18px 18px;
+      }
+
+      .staff-accordion__body p:first-child {
+        margin-top: 0;
+      }
+
+      .staff-accordion__body p:last-child {
+        margin-bottom: 0;
+      }
+
+      .staff-accordion__body ul {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .staff-meta {
+        display: grid;
+        gap: 12px;
+      }
+
+      .staff-workspace {
+        display: grid;
+        gap: 14px;
+        flex: 1 1 auto;
+      }
+
+      .staff-workspace__intro {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .staff-workspace__canvas {
+        flex: 1 1 auto;
+        min-height: 0;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+          rgba(255, 255, 255, 0.02);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .staff-workspace__canvas::before {
+        content: '';
+        position: absolute;
+        inset: 16px;
+        border-radius: 16px;
+        border: 1px dashed rgba(194, 215, 255, 0.18);
+      }
+
+      .staff-workspace__canvas--script {
+        min-height: 620px;
+        padding: 16px;
+        overflow: auto;
+      }
+
+      .staff-workspace__canvas--script::before {
+        display: none;
+      }
+
+      .staff-script {
+        display: grid;
+        gap: 18px;
+      }
+
+      .staff-script__section {
+        display: grid;
+        gap: 10px;
+      }
+
+      .staff-script__section h3 {
+        margin: 0;
+        color: var(--fg);
+        font-size: 0.86rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .staff-script__list {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .staff-script__line {
+        display: grid;
+        grid-template-columns: 54px 96px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .staff-script__role,
+      .staff-script__time {
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        line-height: 1.45;
+      }
+
+      .staff-script__copy {
+        color: var(--fg);
+        line-height: 1.45;
+      }
+
+      .staff-workspace__hint {
+        position: absolute;
+        inset: 50% 20px auto;
+        transform: translateY(-50%);
+        text-align: center;
+        color: rgba(247, 248, 255, 0.5);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      .staff-meta__item {
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .staff-meta__item strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--accent);
+        font-size: 0.78rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .staff-meta__item span {
+        color: var(--fg);
+        line-height: 1.55;
+      }
+
+      .staff-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        margin: 0;
+        padding: 18px 28px 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background:
+          linear-gradient(180deg, rgba(5, 7, 13, 0), rgba(5, 7, 13, 0.86));
+      }
+
+      .staff-footer a {
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .staff-footer a:hover {
+        color: var(--accent);
+      }
+
+      .staff-note {
+        margin-top: 16px;
+        padding: 16px 18px;
+        border-left: 2px solid var(--accent-strong);
+        border-radius: 14px;
+        background: rgba(242, 222, 176, 0.05);
+        color: var(--muted);
+        line-height: 1.7;
+        word-break: break-word;
+      }
+
+      .staff-kicker {
+        margin-top: 18px;
+        color: rgba(247, 248, 255, 0.5);
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 920px) {
+        .staff-page {
+          padding: 156px 14px 0;
+        }
+
+        .staff-countdown {
+          width: calc(100vw - 12px);
+          top: 8px;
+          padding: 10px;
+        }
+
+        .staff-countdown__top,
+        .staff-countdown__toolbar {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .staff-countdown[data-expanded='false'] {
+          width: calc(100vw - 12px);
+        }
+
+        .staff-countdown[data-expanded='false'] .staff-countdown__top {
+          grid-template-columns: 1fr;
+        }
+
+        .staff-countdown[data-expanded='false'] .staff-countdown__meta,
+        .staff-countdown[data-expanded='false'] .staff-countdown__compact-toggle {
+          grid-column: auto;
+          justify-self: center;
+        }
+
+        .staff-countdown__hint {
+          text-align: left;
+        }
+
+        .staff-page__inner {
+          grid-template-columns: 1fr;
+        }
+
+        .staff-page__left,
+        .staff-page__right {
+          padding: 22px 18px 28px;
+        }
+
+        .staff-page__left {
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .staff-footer {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 18px 18px 22px;
+        }
+
+        .staff-script__line {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+    </style>
+      <link rel="icon" href="../../img/favicon.webp" type="image/webp" data-site-icon data-root="../../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body class="page-content">
+    <main class="staff-page">
+      <div class="staff-countdown" role="region" aria-label="Countdown controls" data-expanded="false">
+        <div class="staff-countdown__shell">
+          <div class="staff-countdown__top">
+            <div class="staff-countdown__sync">
+              <label class="staff-countdown__sync-label" for="countdown-sync-input">Set new time</label>
+              <div class="staff-countdown__sync-row">
+                <input
+                  id="countdown-sync-input"
+                  class="staff-countdown__input"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="8"
+                  placeholder="00:00:00"
+                  aria-describedby="countdown-sync-hint"
+                  data-countdown-input
+                />
+                <button class="staff-countdown__sync-button" type="button" data-countdown-sync>Sync</button>
+              </div>
+              <p class="staff-countdown__hint" id="countdown-sync-hint">
+                Strict HH:MM:SS only. Digits are auto-shaped into the format.
+              </p>
+            </div>
+            <div class="staff-countdown__meta">
+              <p class="staff-countdown__eyebrow">Countdown</p>
+              <strong class="staff-countdown__value" data-countdown-display>01:00:00</strong>
+              <p class="staff-countdown__state" data-countdown-state>READY FOR SYNC</p>
+            </div>
+            <button class="staff-countdown__compact-toggle" type="button" data-countdown-toggle>+</button>
+          </div>
+          <div class="staff-countdown__toolbar">
+            <div class="staff-countdown__buttons" aria-label="Countdown actions">
+              <button class="staff-countdown__button staff-countdown__button--hold" type="button" data-countdown-action="hold">Hold</button>
+              <button class="staff-countdown__button staff-countdown__button--continue" type="button" data-countdown-action="continue">Continue</button>
+              <button class="staff-countdown__button staff-countdown__button--abort" type="button" data-countdown-action="abort">Abort</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="staff-page__inner" aria-label="Rhea operations">
+                <div class="staff-page__left">
+          <p class="staff-page__eyebrow">Staff Only</p>
+          <h1 class="staff-page__title">Rhea Operations</h1>
+          <p class="staff-page__lead">
+            This sheet merges the Rhea launch rules package and mission control
+            script into one internal page. Launch rules stay on the left, while
+            the script area on the right is reserved for the next build.
+          </p>
+
+          <article class="staff-panel">
+            <h2>Launch Rules</h2>
+            <div class="staff-accordion">
+              <details class="staff-accordion__item" open>
+                <summary class="staff-accordion__summary">Launch Commit Policy</summary>
+                <div class="staff-accordion__body">
+                  <p>
+                    Rhea is GO when the stack is healthy, the orbital target is
+                    locked, Range has cleared the window, and the Iapetus / Rhea
+                    configuration is still matched to the mission.
+                  </p>
+                  <p>
+                    The launch director keeps the vehicle in a clean state, with
+                    telemetry, staging, and command links green before terminal
+                    count continues.
+                  </p>
+                </div>
+              </details>
+
+              <details class="staff-accordion__item">
+                <summary class="staff-accordion__summary">Weather Criteria</summary>
+                <div class="staff-accordion__body">
+                  <p>
+                    Rhea can fly through more weather than the smaller vehicles, but
+                    the pad still needs enough margin to keep the climb and recovery
+                    safe.
+                  </p>
+                  <ul>
+                    <li>Thunderstorms and CB clouds stay outside the launch chart.</li>
+                    <li>Surface wind stays below the allowed limit for pad work and liftoff.</li>
+                    <li>Fog is acceptable if the range picture remains usable.</li>
+                    <li>Rain is acceptable only when the outside air temperature stays above freezing at cloud top.</li>
+                    <li>Snow and sandstorms remain no-fly or no-test conditions.</li>
+                  </ul>
+                  <div class="staff-checklist">
+                    <div class="staff-check" data-rule-mode="min" data-rule-threshold="8">
+                      <div class="staff-check__copy">
+                        <strong>Thunderstorm radius</strong>
+                        <span>Storm cells should stay well clear of the launch site.</span>
+                        <div class="staff-check__hint">GO when value is 8 or higher.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="1" placeholder="mi" data-rule-input />
+                        <span class="staff-check__unit">mi</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="min" data-rule-threshold="12">
+                      <div class="staff-check__copy">
+                        <strong>Thunderstorm lead time</strong>
+                        <span>Weather must stay ahead of the pad and not drift in late.</span>
+                        <div class="staff-check__hint">GO when value is 12 or higher.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="1" placeholder="min" data-rule-input />
+                        <span class="staff-check__unit">min</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="max" data-rule-threshold="70">
+                      <div class="staff-check__copy">
+                        <strong>Surface wind</strong>
+                        <span>Pad winds should stay within the relaxed launch limit.</span>
+                        <div class="staff-check__hint">GO when value is 70 or lower.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="1" placeholder="kt" data-rule-input />
+                        <span class="staff-check__unit">kt</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="max" data-rule-threshold="190">
+                      <div class="staff-check__copy">
+                        <strong>Upper wind at 40k ft</strong>
+                        <span>High altitude winds are allowed a little more room for this stack.</span>
+                        <div class="staff-check__hint">GO when value is 190 or lower.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="1" placeholder="kt" data-rule-input />
+                        <span class="staff-check__unit">kt</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="min" data-rule-threshold="0">
+                      <div class="staff-check__copy">
+                        <strong>Cloud ceiling</strong>
+                        <span>No ceiling requirement. Rhea does not need the sky to be open.</span>
+                        <div class="staff-check__hint">GO when value is 0 or higher.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="50" placeholder="ft" data-rule-input />
+                        <span class="staff-check__unit">ft</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="min" data-rule-threshold="3">
+                      <div class="staff-check__copy">
+                        <strong>Visibility</strong>
+                        <span>The range still needs enough sightline for pad and ascent tracking.</span>
+                        <div class="staff-check__hint">GO when value is 3 or higher.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="0.5" placeholder="mi" data-rule-input />
+                        <span class="staff-check__unit">mi</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-accordion__item">
+                <summary class="staff-accordion__summary">Vehicle Limitations (Structural)</summary>
+                <div class="staff-accordion__body">
+                  <p>
+                    Rhea can take more load than the smaller stack, but the pad
+                    still needs a guardrail so the launch stays inside the approved
+                    envelope.
+                  </p>
+                  <ul>
+                    <li>Rhea in any configuration can withstand +5g to -4g.</li>
+                    <li>Rhea cannot deviate more than 5 degrees from its path.</li>
+                    <li>If the stack is flexing hard enough to look wrong, stop and recheck.</li>
+                  </ul>
+                  <div class="staff-checklist">
+                    <div class="staff-check" data-rule-mode="max" data-rule-threshold="5">
+                      <div class="staff-check__copy">
+                        <strong>Positive g-load ceiling</strong>
+                        <span>Keep the climb load inside the approved structural ceiling.</span>
+                        <div class="staff-check__hint">GO when value is 5 or lower.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="0.1" placeholder="g" data-rule-input />
+                        <span class="staff-check__unit">g</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="max" data-rule-threshold="4">
+                      <div class="staff-check__copy">
+                        <strong>Negative g-load ceiling</strong>
+                        <span>Keep the vehicle from dipping below the safe negative load limit.</span>
+                        <div class="staff-check__hint">GO when value is 4 or lower.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="0.1" placeholder="g" data-rule-input />
+                        <span class="staff-check__unit">g</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                    <div class="staff-check" data-rule-mode="max" data-rule-threshold="5">
+                      <div class="staff-check__copy">
+                        <strong>Attitude deviation</strong>
+                        <span>Hold if the stack drifts more than the allowed angle off path.</span>
+                        <div class="staff-check__hint">GO when value is 5 or lower.</div>
+                      </div>
+                      <div class="staff-check__controls">
+                        <input class="staff-check__input" type="number" min="0" step="0.1" placeholder="deg" data-rule-input />
+                        <span class="staff-check__unit">deg</span>
+                        <span class="staff-check__state" aria-live="polite">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-accordion__item">
+                <summary class="staff-accordion__summary">Vehicle Limitations (Orbital)</summary>
+                <div class="staff-accordion__body">
+                  <p>
+                    Orbital limits are mission specific. If the target orbit changes,
+                    Range and the flight lead must confirm the updated envelope before
+                    terminal count resumes.
+                  </p>
+                  <ul>
+                    <li>Do not commit to an orbit that violates the approved mission margins.</li>
+                    <li>Keep the staging and recovery plan matched to the current flight profile.</li>
+                    <li>If the target orbit is not locked, stop the count and re-clear the mission.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <div class="staff-kicker">Controlled internal note for Rhea operations and MCC</div>
+        </div>
+        <div class="staff-page__right">
+          <aside class="staff-panel staff-panel--roles">
+            <h2>Mission Control Roles</h2>
+            <div class="staff-roles">
+              <p class="staff-roles__intro">
+                Crew roles and launch callouts for Rhea from the 2026 MCC script.
+                Open a role to see the sequence it owns through countdown and flight.
+              </p>
+
+              <details class="staff-role">
+                <summary class="staff-role__summary">Launch Director (LD)</summary>
+                <div class="staff-role__body">
+                  <p>Owns all-station polls, launch briefings, the liftoff count, major phase calls, and debrief.</p>
+                  <div class="staff-role__lines">
+                    <div class="staff-role__line"><strong>T-1:00:00</strong><span>Initial status information: G/NG.</span></div>
+                    <div class="staff-role__line"><strong>T-45:00</strong><span>Initial G/NG for Rhea fueling sequence across all stations.</span></div>
+                    <div class="staff-role__line"><strong>T-15:00</strong><span>Initial poll: G/NG across all stations.</span></div>
+                    <div class="staff-role__line"><strong>T-06:15</strong><span>Call Range and check weather restraints.</span></div>
+                    <div class="staff-role__line"><strong>T-05:00</strong><span>LD brief: mission name, orbit, weather status, and stations prepare desks.</span></div>
+                    <div class="staff-role__line"><strong>T-01:30</strong><span>Final poll: G/NG across all stations.</span></div>
+                    <div class="staff-role__line"><strong>T-00:40</strong><span>Designated hold zone has been bypassed.</span></div>
+                    <div class="staff-role__line"><strong>T-00:30</strong><span>Engines and tanks at correct temperatures.</span></div>
+                    <div class="staff-role__line"><strong>T-00:10</strong><span>10, 9, 8, 7, QD retract, 5, ignition, 3, 2, 1, liftoff.</span></div>
+                    <div class="staff-role__line"><strong>TOWER CLEARED</strong><span>Rhea has cleared the tower.</span></div>
+                    <div class="staff-role__line"><strong>T+HOTSTAGING</strong><span>Hotstage maneuver complete.</span></div>
+                    <div class="staff-role__line"><strong>T+SECO</strong><span>Rhea engine cutoff.</span></div>
+                    <div class="staff-role__line"><strong>T+05:50</strong><span>Iapetus entering atmospheric guidance phase.</span></div>
+                    <div class="staff-role__line"><strong>T+SWING</strong><span>Iapetus is entering terminal chopsticks guidance.</span></div>
+                    <div class="staff-role__line"><strong>T+SES-1</strong><span>Rhea orbit insertion burn startup.</span></div>
+                    <div class="staff-role__line"><strong>T+SECO-2</strong><span>Rhea orbit insertion burn shutdown.</span></div>
+                    <div class="staff-role__line"><strong>T+DEORBIT</strong><span>Rhea deorbit burn startup.</span></div>
+                    <div class="staff-role__line"><strong>T+SECO-3</strong><span>Rhea deorbit burn shutdown.</span></div>
+                    <div class="staff-role__line"><strong>LANDING+30</strong><span>LD debrief.</span></div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-role">
+                <summary class="staff-role__summary">Range (RNG)</summary>
+                <div class="staff-role__body">
+                  <p>Tracks weather, flight-zone clearance, trajectory status, and landing-area readiness.</p>
+                  <div class="staff-role__lines">
+                    <div class="staff-role__line"><strong>T-25:30</strong><span>Weather balloon release.</span></div>
+                    <div class="staff-role__line"><strong>T-13:00</strong><span>Weather balloon release.</span></div>
+                    <div class="staff-role__line"><strong>T-08:30</strong><span>Weather balloon release.</span></div>
+                    <div class="staff-role__line"><strong>T-04:00</strong><span>Final weather balloon.</span></div>
+                    <div class="staff-role__line"><strong>T-02:15</strong><span>Final spaceport alarm sounded.</span></div>
+                    <div class="staff-role__line"><strong>T-00:50</strong><span>Weather balloons cleared from flight zone.</span></div>
+                    <div class="staff-role__line"><strong>T+00:25</strong><span>Trajectory is nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+03:15</strong><span>Rhea, Iapetus, and trajectories are nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+7:50</strong><span>Landing area is clear.</span></div>
+                    <div class="staff-role__line"><strong>T+15:00</strong><span>Rhea trajectory is nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+ACA+15</strong><span>Rhea trajectory is off-nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+ACA+15</strong><span>Rhea trajectory is nominal, looking at a good entry interface.</span></div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-role">
+                <summary class="staff-role__summary">Rhea Control (RC)</summary>
+                <div class="staff-role__body">
+                  <p>Owns Rhea fueling, payload interface checks, engine chill, telemetry, entry, and landing callouts.</p>
+                  <div class="staff-role__lines">
+                    <div class="staff-role__line"><strong>T-27:25</strong><span>Rhea LOX loading sequence start.</span></div>
+                    <div class="staff-role__line"><strong>T-27:20</strong><span>Rhea methane loading sequence start.</span></div>
+                    <div class="staff-role__line"><strong>T-21:00</strong><span>Rhea tank levels nominal/off-nominal.</span></div>
+                    <div class="staff-role__line"><strong>T-12:15</strong><span>Rhea is at 60% fuel.</span></div>
+                    <div class="staff-role__line"><strong>T-09:35</strong><span>Ask Payload Master to confirm the payload is interfacing correctly with Rhea.</span></div>
+                    <div class="staff-role__line"><strong>T-02:20</strong><span>Rhea final fuel top off.</span></div>
+                    <div class="staff-role__line"><strong>T-01:45</strong><span>Rhea initial engine chill.</span></div>
+                    <div class="staff-role__line"><strong>ACA</strong><span>Rhea flap testing complete.</span></div>
+                    <div class="staff-role__line"><strong>T-01:00</strong><span>Rhea flight computers in startup.</span></div>
+                    <div class="staff-role__line"><strong>T+00:40</strong><span>Rhea final engine chill.</span></div>
+                    <div class="staff-role__line"><strong>T+RHEA IGNITE</strong><span>Rhea engine ignition.</span></div>
+                    <div class="staff-role__line"><strong>T+02:30</strong><span>Rhea fuel feed nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+03:30</strong><span>Rhea avionics, power, and telemetry nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+4:40</strong><span>Rhea chamber pressures nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+18:00</strong><span>Rhea engine chill.</span></div>
+                    <div class="staff-role__line"><strong>T+135KM</strong><span>Rhea vent starting, calculating optimal entry profile.</span></div>
+                    <div class="staff-role__line"><strong>T+132KM</strong><span>Rhea engine chilldown.</span></div>
+                    <div class="staff-role__line"><strong>T+REORIENTING</strong><span>Rhea is reorienting for deorbit burn.</span></div>
+                    <div class="staff-role__line"><strong>T+REORIENTING</strong><span>Rhea is reorienting for atmospheric entry.</span></div>
+                    <div class="staff-role__line"><strong>T+80KM</strong><span>Noticeable drag now affecting Rhea.</span></div>
+                    <div class="staff-role__line"><strong>T+65KM</strong><span>External temperatures starting to rise.</span></div>
+                    <div class="staff-role__line"><strong>T+60KM</strong><span>Flaps have control authority over the vehicle.</span></div>
+                    <div class="staff-role__line"><strong>T+50KM</strong><span>Max entry heating.</span></div>
+                    <div class="staff-role__line"><strong>T+45KM</strong><span>Max entry dynamic pressure.</span></div>
+                    <div class="staff-role__line"><strong>T+20KM</strong><span>Rhea external temperatures are decreasing.</span></div>
+                    <div class="staff-role__line"><strong>T+14KM</strong><span>Rhea is entering the bellyflop phase of flight.</span></div>
+                    <div class="staff-role__line"><strong>T+LNDBURN</strong><span>Rhea landing burn startup.</span></div>
+                    <div class="staff-role__line"><strong>T+3&gt;2</strong><span>Landing mode switch, 3 to 2.</span></div>
+                    <div class="staff-role__line"><strong>T+2&gt;1</strong><span>Landing mode switch, 2 to 1.</span></div>
+                    <div class="staff-role__line"><strong>T+LANDING</strong><span>Rhea has landed. Recovery operators move in to secure the vehicle.</span></div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-role">
+                <summary class="staff-role__summary">Iapetus Control (IC)</summary>
+                <div class="staff-role__body">
+                  <p>Owns Iapetus fueling, engine chill, avionics, boostback, and landing-burn callouts.</p>
+                  <div class="staff-role__lines">
+                    <div class="staff-role__line"><strong>T-29:30</strong><span>Iapetus LOX loading sequence start.</span></div>
+                    <div class="staff-role__line"><strong>T-28:45</strong><span>Iapetus methane loading sequence start.</span></div>
+                    <div class="staff-role__line"><strong>T-22:00</strong><span>Iapetus tank levels nominal/off-nominal.</span></div>
+                    <div class="staff-role__line"><strong>T-11:30</strong><span>Iapetus fueling continuing to look nominal.</span></div>
+                    <div class="staff-role__line"><strong>T-07:00</strong><span>Initial engine chill - IAP.</span></div>
+                    <div class="staff-role__line"><strong>T-05:20</strong><span>Iapetus is at 85% fuel.</span></div>
+                    <div class="staff-role__line"><strong>T-02:50</strong><span>Iapetus final fuel top off.</span></div>
+                    <div class="staff-role__line"><strong>T-02:35</strong><span>Final Iapetus engine chill begins.</span></div>
+                    <div class="staff-role__line"><strong>T-01:05</strong><span>Iapetus flight computers in startup.</span></div>
+                    <div class="staff-role__line"><strong>T+00:15</strong><span>Iapetus thrust is nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+01:02</strong><span>MAXQ.</span></div>
+                    <div class="staff-role__line"><strong>T+01:30</strong><span>Iapetus avionics, power, and telemetry nominal.</span></div>
+                    <div class="staff-role__line"><strong>T+MECO</strong><span>Majority engine cut-off.</span></div>
+                    <div class="staff-role__line"><strong>T+BOOSTBACK</strong><span>Iapetus boostback burn underway.</span></div>
+                    <div class="staff-role__line"><strong>T+BB SHUTDOWN</strong><span>Iapetus boostback shutdown.</span></div>
+                    <div class="staff-role__line"><strong>T+7:00</strong><span>Iapetus FTS is safed.</span></div>
+                    <div class="staff-role__line"><strong>T+LANDING</strong><span>Landing burn startup.</span></div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-role">
+                <summary class="staff-role__summary">Recovery (RR)</summary>
+                <div class="staff-role__body">
+                  <p>Owns recovery vessel posture, tower catch hardware, return polling, and landing-area recovery status.</p>
+                  <div class="staff-role__lines">
+                    <div class="staff-role__line"><strong>T-18:30</strong><span>Recovery vessels are in final launch position.</span></div>
+                    <div class="staff-role__line"><strong>T-16:30</strong><span>Recovery teams are in standby mode.</span></div>
+                    <div class="staff-role__line"><strong>T-09:00</strong><span>Recovery site status: green/red.</span></div>
+                    <div class="staff-role__line"><strong>T-08:00</strong><span>Recovery vessels report small/medium/large ocean swells.</span></div>
+                    <div class="staff-role__line"><strong>T-03:00</strong><span>Chopsticks commanded to open.</span></div>
+                    <div class="staff-role__line"><strong>T-02:00</strong><span>QD unlocked for retraction.</span></div>
+                    <div class="staff-role__line"><strong>T+ACA</strong><span>Booster return GO/NO-GO, polling all stations apart from Rhea and Payload.</span></div>
+                    <div class="staff-role__line"><strong>T+4:00</strong><span>Chopsticks in catch position.</span></div>
+                    <div class="staff-role__line"><strong>T+GRIDFINS</strong><span>Iapetus gridfins have been deployed.</span></div>
+                    <div class="staff-role__line"><strong>T+CPSTK CLOSE</strong><span>Chopsticks have been commanded to close.</span></div>
+                    <div class="staff-role__line"><strong>T+17:00</strong><span>Rhea recovery teams are awaiting vehicle arrival.</span></div>
+                    <div class="staff-role__line"><strong>T+35KM</strong><span>Rhea recovery teams have secured a dynamic lock on the vehicle.</span></div>
+                    <div class="staff-role__line"><strong>T+LANDING+10</strong><span>Good track on vehicle; waiting for toxic gases to be expelled before approach.</span></div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="staff-role">
+                <summary class="staff-role__summary">Payload Master (PM)</summary>
+                <div class="staff-role__body">
+                  <p>Owns payload power, health, deployment readiness, and customer handoff callouts.</p>
+                  <div class="staff-role__lines">
+                    <div class="staff-role__line"><strong>T-10:45</strong><span>Payload initial system startup.</span></div>
+                    <div class="staff-role__line"><strong>T-09:45</strong><span>Payload power update: green/red. Client on site.</span></div>
+                    <div class="staff-role__line"><strong>T-09:15</strong><span>Confirm good connection between Rhea and the payload.</span></div>
+                    <div class="staff-role__line"><strong>T+10:00</strong><span>Payload health showing good.</span></div>
+                    <div class="staff-role__line"><strong>T+12:30</strong><span>Payload intermediate system power up.</span></div>
+                    <div class="staff-role__line"><strong>T+13:00</strong><span>Payload systems showing good. Awaiting deployment.</span></div>
+                    <div class="staff-role__line"><strong>T+26:00</strong><span>Payload bay doors are opening.</span></div>
+                    <div class="staff-role__line"><strong>T+27:30</strong><span>Payload deployment confirmed.</span></div>
+                    <div class="staff-role__line"><strong>T+30:00</strong><span>Final payload system power up confirmed.</span></div>
+                    <div class="staff-role__line"><strong>T+31:00</strong><span>Payload is showing good health - contacting customer.</span></div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </aside>
+
+          <aside class="staff-panel staff-panel--workspace" style="margin-top: 22px;">
+            <h2>Mission Control Script</h2>
+            <div class="staff-workspace">
+              <p class="staff-workspace__intro">
+                Complete Rhea MCC countdown and post-liftoff callout sequence from the
+                2026 script. Keep wording consistent between rehearsals and launch day.
+              </p>
+              <div class="staff-workspace__canvas staff-workspace__canvas--script" aria-label="Rhea mission control script">
+                <div class="staff-script">
+                  <section class="staff-script__section" aria-label="Countdown script">
+                    <h3>Countdown</h3>
+                    <ol class="staff-script__list">
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-1:00:00</span><span class="staff-script__copy">Initial status information: G/NG.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-45:00</span><span class="staff-script__copy">Initial G/NG for Rhea fueling sequence across all stations.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-29:30</span><span class="staff-script__copy">Iapetus LOX loading sequence start.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-28:45</span><span class="staff-script__copy">Iapetus methane loading sequence start.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-27:25</span><span class="staff-script__copy">Rhea LOX loading sequence start.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-27:20</span><span class="staff-script__copy">Rhea methane loading sequence start.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T-25:30</span><span class="staff-script__copy">Weather balloon release.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-22:00</span><span class="staff-script__copy">Iapetus tank levels nominal/off-nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-21:00</span><span class="staff-script__copy">Rhea tank levels nominal/off-nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T-18:30</span><span class="staff-script__copy">Recovery vessels are in final launch position.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T-16:30</span><span class="staff-script__copy">Recovery teams are in standby mode.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-15:00</span><span class="staff-script__copy">Initial poll: G/NG across all stations.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T-13:00</span><span class="staff-script__copy">Weather balloon release.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-12:15</span><span class="staff-script__copy">Rhea is at 60% fuel.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-11:30</span><span class="staff-script__copy">Iapetus fueling continuing to look nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T-10:45</span><span class="staff-script__copy">Payload initial system startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T-09:45</span><span class="staff-script__copy">Payload power update: green/red. Client on site.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-09:35</span><span class="staff-script__copy">Ask Payload Master to confirm the payload is interfacing correctly with Rhea.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T-09:15</span><span class="staff-script__copy">Payload Master confirms good connection between Rhea and the payload.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T-09:00</span><span class="staff-script__copy">Recovery site status: green/red.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T-08:30</span><span class="staff-script__copy">Weather balloon release.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T-08:00</span><span class="staff-script__copy">Recovery vessels report small/medium/large ocean swells.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-07:00</span><span class="staff-script__copy">Initial engine chill - IAP.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-06:15</span><span class="staff-script__copy">Call Range and check weather restraints.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-05:20</span><span class="staff-script__copy">Iapetus is at 85% fuel.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-05:00</span><span class="staff-script__copy">LD brief: mission name, orbit, weather status, and stations prepare desks.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T-04:00</span><span class="staff-script__copy">Final weather balloon.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T-03:00</span><span class="staff-script__copy">Chopsticks commanded to open.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-02:50</span><span class="staff-script__copy">Iapetus final fuel top off.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-02:35</span><span class="staff-script__copy">Final Iapetus engine chill begins.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-02:20</span><span class="staff-script__copy">Rhea final fuel top off.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T-02:15</span><span class="staff-script__copy">Final spaceport alarm sounded.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T-02:00</span><span class="staff-script__copy">QD unlocked for retraction.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-01:45</span><span class="staff-script__copy">Rhea initial engine chill.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-01:30</span><span class="staff-script__copy">Final poll: G/NG across all stations.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">ACA</span><span class="staff-script__copy">Rhea flap testing complete.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T-01:05</span><span class="staff-script__copy">Iapetus flight computers in startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T-01:00</span><span class="staff-script__copy">Rhea flight computers in startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T-00:50</span><span class="staff-script__copy">Weather balloons cleared from flight zone.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-00:40</span><span class="staff-script__copy">Designated hold zone has been bypassed.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-00:30</span><span class="staff-script__copy">Engines and tanks at correct temperatures.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T-00:10</span><span class="staff-script__copy">10, 9, 8, 7, QD retract, 5, ignition, 3, 2, 1, liftoff.</span></li>
+                    </ol>
+                  </section>
+
+                  <section class="staff-script__section" aria-label="Post-liftoff script">
+                    <h3>Post Liftoff</h3>
+                    <ol class="staff-script__list">
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">TOWER CLEARED</span><span class="staff-script__copy">Rhea has cleared the tower.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+00:15</span><span class="staff-script__copy">Iapetus thrust is nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T+00:25</span><span class="staff-script__copy">Trajectory is nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+00:40</span><span class="staff-script__copy">Rhea final engine chill.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+01:02</span><span class="staff-script__copy">MAXQ.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+01:30</span><span class="staff-script__copy">Iapetus avionics, power, and telemetry nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+MECO</span><span class="staff-script__copy">Majority engine cut-off.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+RHEA IGNITE</span><span class="staff-script__copy">Rhea engine ignition.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+HOTSTAGING</span><span class="staff-script__copy">Hotstage maneuver complete.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+BOOSTBACK</span><span class="staff-script__copy">Iapetus boostback burn underway.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+02:30</span><span class="staff-script__copy">Rhea fuel feed nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+BB SHUTDOWN</span><span class="staff-script__copy">Iapetus boostback shutdown.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+ACA</span><span class="staff-script__copy">Booster return GO/NO-GO, polling all stations apart from Rhea and Payload.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T+03:15</span><span class="staff-script__copy">Rhea, Iapetus, and trajectories are nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+03:30</span><span class="staff-script__copy">Rhea avionics, power, and telemetry nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+4:00</span><span class="staff-script__copy">Chopsticks in catch position.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+4:40</span><span class="staff-script__copy">Rhea chamber pressures nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+SECO</span><span class="staff-script__copy">Rhea engine cutoff.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+05:50</span><span class="staff-script__copy">Iapetus entering atmospheric guidance phase.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+GRIDFINS</span><span class="staff-script__copy">Iapetus gridfins have been deployed.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+7:00</span><span class="staff-script__copy">Iapetus FTS is safed.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T+7:50</span><span class="staff-script__copy">Landing area is clear.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">IC</span><span class="staff-script__time">T+LANDING</span><span class="staff-script__copy">Landing burn startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+SWING</span><span class="staff-script__copy">Iapetus is entering terminal chopsticks guidance.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+CPSTK CLOSE</span><span class="staff-script__copy">Chopsticks have been commanded to close.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+10:00</span><span class="staff-script__copy">Payload health showing good.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+12:30</span><span class="staff-script__copy">Payload intermediate system power up.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+13:00</span><span class="staff-script__copy">Payload systems showing good. Awaiting deployment.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T+15:00</span><span class="staff-script__copy">Rhea trajectory is nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+17:00</span><span class="staff-script__copy">Rhea recovery teams are awaiting vehicle arrival.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+18:00</span><span class="staff-script__copy">Rhea engine chill.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+SES-1</span><span class="staff-script__copy">Rhea orbit insertion burn startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+SECO-2</span><span class="staff-script__copy">Rhea orbit insertion burn shutdown.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T+ACA+15</span><span class="staff-script__copy">Rhea trajectory is off-nominal.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+26:00</span><span class="staff-script__copy">Payload bay doors are opening.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+27:30</span><span class="staff-script__copy">Payload deployment confirmed.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+30:00</span><span class="staff-script__copy">Final payload system power up confirmed.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">PM</span><span class="staff-script__time">T+31:00</span><span class="staff-script__copy">Payload is showing good health - contacting customer.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+135KM</span><span class="staff-script__copy">Rhea vent starting, calculating optimal entry profile.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+132KM</span><span class="staff-script__copy">Rhea engine chilldown.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+REORIENTING</span><span class="staff-script__copy">Rhea is reorienting for deorbit burn.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+DEORBIT</span><span class="staff-script__copy">Rhea deorbit burn startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">T+SECO-3</span><span class="staff-script__copy">Rhea deorbit burn shutdown.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RNG</span><span class="staff-script__time">T+ACA+15</span><span class="staff-script__copy">Rhea trajectory is nominal, looking at a good entry interface.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+REORIENTING</span><span class="staff-script__copy">Rhea is reorienting for atmospheric entry.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+80KM</span><span class="staff-script__copy">Noticeable drag now affecting Rhea.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+65KM</span><span class="staff-script__copy">External temperatures starting to rise.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+60KM</span><span class="staff-script__copy">Flaps have control authority over the vehicle.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+50KM</span><span class="staff-script__copy">Max entry heating.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+45KM</span><span class="staff-script__copy">Max entry dynamic pressure.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+35KM</span><span class="staff-script__copy">Rhea recovery teams have secured a dynamic lock on the vehicle.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+20KM</span><span class="staff-script__copy">Rhea external temperatures are decreasing.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+14KM</span><span class="staff-script__copy">Rhea is entering the bellyflop phase of flight.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+LNDBURN</span><span class="staff-script__copy">Rhea landing burn startup.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+3&gt;2</span><span class="staff-script__copy">Landing mode switch, 3 to 2.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+2&gt;1</span><span class="staff-script__copy">Landing mode switch, 2 to 1.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RC</span><span class="staff-script__time">T+LANDING</span><span class="staff-script__copy">Rhea has landed. Recovery operators move in to secure the vehicle.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">RR</span><span class="staff-script__time">T+LANDING+10</span><span class="staff-script__copy">Good track on vehicle; waiting for toxic gases to be expelled before approach.</span></li>
+                      <li class="staff-script__line"><span class="staff-script__role">LD</span><span class="staff-script__time">LANDING+30</span><span class="staff-script__copy">LD debrief.</span></li>
+                    </ol>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <div class="staff-footer">
+            <a href="../index.html">Back to Staff Hub</a>
+            <span>Do not add this page to the main navigation.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const suites = Array.from(document.querySelectorAll('.staff-check'));
+
+      const updateCheck = (check) => {
+        const input = check.querySelector('[data-rule-input]');
+        const state = check.querySelector('.staff-check__state');
+        const value = Number.parseFloat(input?.value);
+        const mode = check.dataset.ruleMode;
+        const threshold = Number.parseFloat(check.dataset.ruleThreshold || '0');
+        const hasValue = Number.isFinite(value);
+        let pass = false;
+
+        if (hasValue) {
+          if (mode === 'min') {
+            pass = value >= threshold;
+          } else if (mode === 'max') {
+            pass = value <= threshold;
+          } else if (mode === 'eq') {
+            pass = value === threshold;
+          }
+        }
+
+        check.classList.toggle('is-pass', pass);
+        check.classList.toggle('is-fail', hasValue && !pass);
+        if (state) {
+          state.textContent = hasValue ? (pass ? '\u2713' : '\u2715') : '\u2014';
+        }
+      };
+
+      suites.forEach((check) => {
+        const input = check.querySelector('[data-rule-input]');
+        if (!input) {
+          return;
+        }
+
+        input.addEventListener('input', () => updateCheck(check));
+        input.addEventListener('change', () => updateCheck(check));
+        updateCheck(check);
+      });
+
+      const countdownDisplay = document.querySelector('[data-countdown-display]');
+      const countdownState = document.querySelector('[data-countdown-state]');
+      const countdownInput = document.querySelector('[data-countdown-input]');
+      const countdownSyncButton = document.querySelector('[data-countdown-sync]');
+      const countdownToggle = document.querySelector('[data-countdown-toggle]');
+      const countdownActions = Array.from(document.querySelectorAll('[data-countdown-action]'));
+
+      const formatSeconds = (seconds) => {
+        const safeSeconds = Math.max(0, Math.floor(seconds));
+        const hours = String(Math.floor(safeSeconds / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((safeSeconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(safeSeconds % 60).padStart(2, '0');
+        return `${hours}:${minutes}:${secs}`;
+      };
+
+      const sanitizeCountdownInput = (value) => {
+        const digits = value.replace(/\D/g, '').slice(0, 6);
+        if (digits.length <= 2) {
+          return digits;
+        }
+
+        if (digits.length <= 4) {
+          return `${digits.slice(0, 2)}:${digits.slice(2)}`;
+        }
+
+        return `${digits.slice(0, 2)}:${digits.slice(2, 4)}:${digits.slice(4)}`;
+      };
+
+      const parseCountdownInput = (value) => {
+        const match = /^(\d{2}):(\d{2}):(\d{2})$/.exec(value);
+        if (!match) {
+          return null;
+        }
+
+        const hours = Number.parseInt(match[1], 10);
+        const minutes = Number.parseInt(match[2], 10);
+        const seconds = Number.parseInt(match[3], 10);
+
+        if (minutes > 59 || seconds > 59) {
+          return null;
+        }
+
+        return (hours * 3600) + (minutes * 60) + seconds;
+      };
+
+      let countdownSeconds = 60 * 60;
+      let countdownMode = 'synced';
+      let countdownTimer = null;
+      const countdownPanel = document.querySelector('.staff-countdown');
+      const countdownDragHandle = document.querySelector('.staff-countdown__meta');
+      let countdownExpanded = false;
+      let countdownDragState = null;
+      const countdownPositionKey = `saturn-countdown-x:${window.location.pathname}`;
+
+      const clampCountdownCenter = (centerX) => {
+        if (!countdownPanel) {
+          return centerX;
+        }
+
+        const panelWidth = countdownPanel.getBoundingClientRect().width;
+        const margin = 6;
+        const min = (panelWidth / 2) + margin;
+        const max = window.innerWidth - (panelWidth / 2) - margin;
+        return Math.min(Math.max(centerX, min), max);
+      };
+
+      const moveCountdownPanel = (centerX, persist = false) => {
+        if (!countdownPanel) {
+          return;
+        }
+
+        const clamped = clampCountdownCenter(centerX);
+        countdownPanel.style.left = `${clamped}px`;
+        countdownPanel.style.transform = 'translateX(-50%)';
+
+        if (persist) {
+          try {
+            window.localStorage.setItem(countdownPositionKey, String(clamped));
+          } catch {
+            // Ignore storage failures; dragging should still work.
+          }
+        }
+      };
+
+      const restoreCountdownPosition = () => {
+        if (!countdownPanel) {
+          return;
+        }
+
+        try {
+          const saved = Number.parseFloat(window.localStorage.getItem(countdownPositionKey) || '');
+          if (Number.isFinite(saved)) {
+            moveCountdownPanel(saved, false);
+          }
+        } catch {
+          // Ignore storage failures; the default centered position is fine.
+        }
+      };
+
+      const updateCountdownDrag = (event) => {
+        if (!countdownDragState) {
+          return;
+        }
+
+        const nextCenter = countdownDragState.startCenter + (event.clientX - countdownDragState.startX);
+        moveCountdownPanel(nextCenter, false);
+      };
+
+      const stopCountdownDrag = (event) => {
+        if (!countdownDragState || !countdownPanel) {
+          return;
+        }
+
+        const rect = countdownPanel.getBoundingClientRect();
+        moveCountdownPanel(rect.left + (rect.width / 2), true);
+        countdownPanel.classList.remove('is-dragging');
+
+        if (countdownDragHandle && typeof countdownDragHandle.releasePointerCapture === 'function') {
+          try {
+            countdownDragHandle.releasePointerCapture(event.pointerId);
+          } catch {
+            // The pointer may already be released.
+          }
+        }
+
+        countdownDragState = null;
+      };
+
+      if (countdownPanel && countdownDragHandle) {
+        countdownDragHandle.setAttribute('title', 'Drag left or right to move the timer');
+        countdownDragHandle.addEventListener('pointerdown', (event) => {
+          if (event.button !== 0) {
+            return;
+          }
+
+          const rect = countdownPanel.getBoundingClientRect();
+          countdownDragState = {
+            startX: event.clientX,
+            startCenter: rect.left + (rect.width / 2),
+          };
+          countdownPanel.classList.add('is-dragging');
+          countdownDragHandle.setPointerCapture(event.pointerId);
+          event.preventDefault();
+        });
+        countdownDragHandle.addEventListener('pointermove', updateCountdownDrag);
+        countdownDragHandle.addEventListener('pointerup', stopCountdownDrag);
+        countdownDragHandle.addEventListener('pointercancel', stopCountdownDrag);
+        window.addEventListener('resize', () => {
+          const rect = countdownPanel.getBoundingClientRect();
+          moveCountdownPanel(rect.left + (rect.width / 2), true);
+        });
+        restoreCountdownPosition();
+      }
+
+      const updateCountdown = () => {
+        if (countdownDisplay) {
+          countdownDisplay.textContent = formatSeconds(countdownSeconds);
+        }
+
+        if (countdownState) {
+          const labels = {
+            synced: 'READY FOR SYNC',
+            running: 'COUNTING DOWN',
+            hold: 'HOLD',
+            abort: 'ABORTED',
+            liftoff: 'T-0 REACHED',
+          };
+          countdownState.textContent = labels[countdownMode] || 'READY FOR SYNC';
+        }
+      };
+
+      const updateCountdownPanel = () => {
+        if (countdownPanel) {
+          countdownPanel.dataset.expanded = countdownExpanded ? 'true' : 'false';
+        }
+
+        if (countdownToggle) {
+          countdownToggle.textContent = countdownExpanded ? 'âˆ’' : '+';
+          countdownToggle.setAttribute('aria-label', countdownExpanded ? 'Collapse countdown' : 'Expand countdown');
+        }
+      };
+
+      const stopCountdown = () => {
+        if (countdownTimer) {
+          window.clearInterval(countdownTimer);
+          countdownTimer = null;
+        }
+      };
+
+      const startCountdown = () => {
+        if (countdownTimer) {
+          return;
+        }
+
+        countdownTimer = window.setInterval(() => {
+          if (countdownMode !== 'running') {
+            return;
+          }
+
+          countdownSeconds = Math.max(0, countdownSeconds - 1);
+          if (countdownSeconds === 0) {
+            countdownMode = 'liftoff';
+            stopCountdown();
+          }
+
+          updateCountdown();
+        }, 1000);
+      };
+
+      if (countdownInput) {
+        countdownInput.value = formatSeconds(countdownSeconds);
+        countdownInput.addEventListener('input', () => {
+          countdownInput.value = sanitizeCountdownInput(countdownInput.value);
+          countdownInput.removeAttribute('aria-invalid');
+        });
+      }
+
+      if (countdownToggle) {
+        countdownToggle.addEventListener('click', () => {
+          countdownExpanded = !countdownExpanded;
+          updateCountdownPanel();
+        });
+      }
+
+      countdownActions.forEach((button) => {
+        button.addEventListener('click', () => {
+          const action = button.dataset.countdownAction;
+
+          if (action === 'hold') {
+            if (countdownMode === 'running') {
+              countdownMode = 'hold';
+              stopCountdown();
+            }
+          } else if (action === 'continue') {
+            if (countdownMode !== 'abort') {
+              countdownMode = 'running';
+              startCountdown();
+            }
+          } else if (action === 'abort') {
+            countdownMode = 'abort';
+            stopCountdown();
+          }
+
+          updateCountdown();
+        });
+      });
+
+      if (countdownSyncButton && countdownInput) {
+        countdownSyncButton.addEventListener('click', () => {
+          const parsed = parseCountdownInput(countdownInput.value);
+
+          if (parsed === null) {
+            countdownInput.setAttribute('aria-invalid', 'true');
+            countdownInput.focus();
+            return;
+          }
+
+          countdownSeconds = parsed;
+          countdownMode = 'synced';
+          stopCountdown();
+          updateCountdown();
+        });
+      }
+
+      updateCountdownPanel();
+      updateCountdown();
+
+    </script>
+  </body>
+</html>
+
+
+
+
+

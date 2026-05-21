@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aegir | Saturn Aerospace</title>
+    <style>
+      html, body { margin: 0; width: 100%; height: 100%; background: #05070d; }
+    </style>
+      <link rel="icon" href="../img/favicon.webp" type="image/webp" data-site-icon data-root="../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body></body>
+</html>
+
+

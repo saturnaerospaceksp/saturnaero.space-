@@ -1,0 +1,399 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Internal staff hub for Saturn Aerospace." />
+    <meta name="theme-color" content="#05070d" />
+    <link rel="stylesheet" href="../src/styles.css" />
+    <title>Saturn | Staff Hub</title>
+    <style>
+      .staff-hub {
+        min-height: 100vh;
+        padding: 42px 20px 56px;
+      }
+
+      .staff-hub__inner {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+        padding: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(10, 14, 28, 0.9), rgba(4, 6, 11, 0.92));
+        box-shadow:
+          0 32px 80px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .staff-hub__eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .staff-hub__title {
+        margin: 0;
+        font-size: clamp(2.3rem, 6vw, 4.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .staff-hub__lead {
+        max-width: 72ch;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.75;
+      }
+
+      .staff-hub__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .staff-hub__section {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .staff-hub__section + .staff-hub__section {
+        margin-top: 16px;
+      }
+
+      .staff-hub__section > summary {
+        display: block;
+        list-style: none;
+        cursor: pointer;
+        padding: 22px;
+      }
+
+      .staff-hub__section > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .staff-hub__section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+
+      .staff-hub__section-title strong {
+        color: var(--fg);
+        font-size: 1rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .staff-hub__section-title::after {
+        content: '+';
+        color: var(--accent);
+        font-size: 1.1rem;
+        line-height: 1;
+        transition: transform 240ms ease, color 240ms ease;
+      }
+
+      .staff-hub__section[open] .staff-hub__section-title::after {
+        content: '-';
+      }
+
+      .staff-hub__section-copy {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .staff-hub__section-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition:
+          grid-template-rows 260ms ease,
+          opacity 220ms ease,
+          transform 220ms ease;
+      }
+
+      .staff-hub__section[open] .staff-hub__section-body {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .staff-hub__section-body-inner {
+        overflow: hidden;
+        padding: 0 22px 22px;
+      }
+
+      .staff-hub__stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .staff-hub__entry {
+        display: block;
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        color: inherit;
+        text-decoration: none;
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          background-color 160ms ease;
+      }
+
+      .staff-hub__entry:hover {
+        transform: translateY(-1px);
+        border-color: rgba(194, 215, 255, 0.45);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .staff-hub__entry strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--fg);
+        font-size: 0.92rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .staff-hub__entry span {
+        display: block;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .staff-hub__external {
+        display: block;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--fg);
+        text-decoration: none;
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          background-color 160ms ease;
+      }
+
+      .staff-hub__external:hover {
+        transform: translateY(-1px);
+        border-color: rgba(194, 215, 255, 0.45);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .staff-hub__external strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.92rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .staff-hub__external span {
+        display: block;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .staff-hub__footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        margin-top: 28px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--muted);
+      }
+
+      .staff-hub__footer a {
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .staff-hub__footer a:hover {
+        color: var(--accent);
+      }
+
+      @media (max-width: 920px) {
+        .staff-hub {
+          padding-inline: 14px;
+        }
+
+        .staff-hub__inner {
+          padding: 22px;
+          border-radius: 24px;
+        }
+
+        .staff-hub__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .staff-hub__footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+      <link rel="icon" href="../img/favicon.webp" type="image/webp" data-site-icon data-root="../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body class="page-content">
+    <main class="staff-hub">
+      <section class="staff-hub__inner" aria-label="Staff hub">
+        <p class="staff-hub__eyebrow">Staff Only</p>
+        <h1 class="staff-hub__title">Staff Hub</h1>
+        <p class="staff-hub__lead">
+          This is the internal landing page for Saturn Aerospace staff pages.
+          Use it to open launch rules, merged operations pages, and control
+          sheets without exposing them in the public site navigation.
+        </p>
+
+        <div class="staff-hub__grid">
+          <details class="staff-hub__section" open>
+            <summary>
+              <div class="staff-hub__section-title">
+                <strong>Vehicle Operations</strong>
+              </div>
+              <p class="staff-hub__section-copy">
+                Open a vehicle card to reach its operations page or merged mission-control workspace.
+              </p>
+            </summary>
+            <div class="staff-hub__section-body">
+              <div class="staff-hub__section-body-inner">
+                <div class="staff-hub__stack">
+                  <a class="staff-hub__entry" href="daphnis-launch-rules/index.html">
+                    <strong>Daphnis Operations</strong>
+                    <span>Launch rules on the left and a script workspace on the right.</span>
+                  </a>
+                  <a class="staff-hub__entry" href="hyperion-launch-rules/index.html">
+                    <strong>Hyperion Launch Rules</strong>
+                    <span>Placeholder for the Hyperion launch rules page.</span>
+                  </a>
+                  <a class="staff-hub__entry" href="rhea-launch-rules/index.html">
+                    <strong>Rhea Operations</strong>
+                    <span>Launch rules on the left and the Rhea MCC script on the right.</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="staff-hub__section">
+            <summary>
+              <div class="staff-hub__section-title">
+                <strong>Mission Control Scripts</strong>
+              </div>
+              <p class="staff-hub__section-copy">
+                Open the control script docs for Hyperion and Rhea.
+              </p>
+            </summary>
+            <div class="staff-hub__section-body">
+              <div class="staff-hub__section-body-inner">
+                <div class="staff-hub__stack">
+                  <a class="staff-hub__external" href="https://docs.google.com/document/d/1-eay97Mxz1DQmfWkKLDAcgDXlldVZW2XD0YllG_CYrc/edit?usp=drive_link" target="_blank" rel="noreferrer">
+                    <strong>Hyperion script doc</strong>
+                    <span>Google Doc reference for Hyperion mission control scripts.</span>
+                  </a>
+                  <a class="staff-hub__external" href="https://docs.google.com/document/d/1FJsG4rt3grcKZ2RtwhwVkmYOTqITxAuXGo-T21P0zd8/edit?usp=drive_link" target="_blank" rel="noreferrer">
+                    <strong>Rhea script doc</strong>
+                    <span>Google Doc reference for Rhea mission control scripts.</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="staff-hub__section">
+            <summary>
+              <div class="staff-hub__section-title">
+                <strong>Vehicle Tracker</strong>
+              </div>
+              <p class="staff-hub__section-copy">
+                Open the live vehicle tracker sheet for fleet status and tracking notes.
+              </p>
+            </summary>
+            <div class="staff-hub__section-body">
+              <div class="staff-hub__section-body-inner">
+                <div class="staff-hub__stack">
+                  <a class="staff-hub__external" href="https://docs.google.com/spreadsheets/d/1V39FVkudp-D_aSBgxSI53N9Wubkp_SD_tmr5fw6nQ9A/edit?usp=sharing" target="_blank" rel="noreferrer">
+                    <strong>Vehicle Tracker</strong>
+                    <span>Live fleet tracker spreadsheet for internal status and vehicle references.</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="staff-hub__section">
+            <summary>
+              <div class="staff-hub__section-title">
+                <strong>Trello Boards</strong>
+              </div>
+              <p class="staff-hub__section-copy">
+                Open the boards used for launch scheduling and MCC work.
+              </p>
+            </summary>
+            <div class="staff-hub__section-body">
+              <div class="staff-hub__section-body-inner">
+                <div class="staff-hub__stack">
+                  <a class="staff-hub__external" href="https://trello.com/b/oUP2faW4/main-launch-test-calendar" target="_blank" rel="noreferrer">
+                    <strong>Launch Calendar</strong>
+                    <span>Main launch and test calendar board.</span>
+                  </a>
+                  <a class="staff-hub__external" href="https://trello.com/b/XmDJtHHK/daphnis-mcc" target="_blank" rel="noreferrer">
+                    <strong>Daphnis MCC Trello</strong>
+                    <span>Mission control board for Daphnis operations.</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="staff-hub__footer">
+          <a href="../index.html">Back to site</a>
+          <span>Staff hub only. Not exposed in the main navigation.</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+

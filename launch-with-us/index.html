@@ -1,0 +1,307 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launch With Us | Saturn Aerospace</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --site-bg: #050717;
+        --site-text: #f7f8ff;
+        --site-text-soft: rgba(247, 248, 255, 0.76);
+        --site-line: rgba(247, 248, 255, 0.12);
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: var(--site-bg);
+        color: var(--site-text);
+        font-family: 'Inter', system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+
+      body {
+        position: relative;
+      }
+
+      .page {
+        width: min(100% - 32px, 1120px);
+        margin: 0 auto;
+        padding: 108px 0 80px;
+        display: grid;
+        gap: 26px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 12px;
+        max-width: 58rem;
+      }
+
+      .hero__eyebrow {
+        margin: 0;
+        color: rgba(247, 248, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 0.26em;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .hero__title {
+        margin: 0;
+        font-size: clamp(2.4rem, 4.6vw, 5rem);
+        line-height: 0.94;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+      }
+
+      .hero__text {
+        margin: 0;
+        max-width: 46rem;
+        color: var(--site-text-soft);
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .links {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 20px;
+        padding-top: 22px;
+        border-top: 1px solid var(--site-line);
+        align-items: start;
+      }
+
+      .links__caption {
+        grid-column: 1 / -1;
+        margin: 0;
+        justify-self: center;
+        max-width: 52rem;
+        color: var(--site-text-soft);
+        font-size: 0.94rem;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .press-kit {
+        display: grid;
+        gap: 14px;
+        justify-items: center;
+        padding: 24px 0 0;
+        margin-top: 2px;
+        border-top: 1px solid var(--site-line);
+        text-align: center;
+      }
+
+      .press-kit__title {
+        margin: 0;
+        color: var(--site-text);
+        font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+        font-weight: 800;
+      }
+
+      .press-kit__text {
+        margin: 0;
+        max-width: 46rem;
+        color: var(--site-text-soft);
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+
+      .press-kit__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--site-text);
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease;
+      }
+
+      .press-kit__button:hover,
+      .press-kit__button:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.24);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .embed-block {
+        display: grid;
+        gap: 12px;
+      }
+
+      .embed-block__label {
+        margin: 0;
+        height: 2.2rem;
+        line-height: 2.2rem;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        color: rgba(247, 248, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+
+      .embed-frame {
+        position: relative;
+        width: 100%;
+        height: 82vh;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        overflow: hidden;
+      }
+
+      .embed-frame--guidelines {
+        height: 82vh;
+      }
+
+      .embed-frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      @media (max-width: 980px) {
+        .links {
+          grid-template-columns: 1fr;
+        }
+
+        .embed-frame,
+        .embed-frame--guidelines {
+          height: 72vh;
+          margin-top: 0;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          width: min(100% - 24px, 1120px);
+          padding-top: 118px;
+        }
+
+        .embed-block__label {
+          white-space: normal;
+        }
+
+        .embed-frame,
+        .embed-frame--guidelines {
+          height: 68vh;
+          margin-top: 0;
+        }
+
+        .press-kit {
+          padding-top: 20px;
+        }
+      }
+    </style>
+      <link rel="icon" href="../img/favicon.webp" type="image/webp" data-site-icon data-root="../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero" aria-label="Launch with us introduction">
+        <p class="hero__eyebrow">Launch With Us</p>
+        <h1 class="hero__title">Payloads and Flight Opportunities</h1>
+        <p class="hero__text">
+          Submit your payload and review the design guidance before you start. We want the
+          process to stay clear, practical, and easy to follow.
+        </p>
+      </section>
+
+      <section class="links" aria-label="Launch with us resources">
+        <section class="embed-block" aria-label="Payload submission form">
+          <p class="embed-block__label">Payload Submission</p>
+          <div class="embed-frame">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLScgys42QwiQrEUqb2MD-PZF43ZKHJEGF_7I5x8lr12rcMbDAA/viewform?embedded=true"
+              title="Payload submission form"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </section>
+
+        <section class="embed-block" aria-label="Payload design guidelines">
+          <p class="embed-block__label">Payload Design Guidelines</p>
+          <div class="embed-frame embed-frame--guidelines">
+            <iframe
+              src="https://docs.google.com/document/d/1bIsoRgM6RmvY_v896KYberid1-qRZqY36x9zLJZ10lw/preview?tab=t.0#heading=h.qn29f6jdwo2i"
+              title="Payload design guidelines"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </section>
+
+        <p class="links__caption">
+          Use the guidelines to make sure your payload matches our integration and launch
+          requirements before submitting.
+        </p>
+      </section>
+
+      <section class="press-kit" aria-label="Press kit download">
+        <p class="press-kit__title">Press Kit</p>
+        <p class="press-kit__text">
+          Download the current press kit for logos, approved imagery, and a quick overview of
+          Saturn Aerospace.
+        </p>
+        <a
+          class="press-kit__button"
+          href="../Press%20Kit-20260521T220359Z-3-001.zip"
+          download
+        >
+          Download Press Kit
+        </a>
+      </section>
+    </main>
+  </body>
+</html>
+
+

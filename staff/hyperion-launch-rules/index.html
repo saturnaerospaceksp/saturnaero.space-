@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Internal Hyperion launch rules placeholder for Saturn Aerospace." />
+    <meta name="theme-color" content="#05070d" />
+    <link rel="stylesheet" href="../../src/styles.css" />
+    <title>Saturn | Hyperion Launch Rules</title>
+    <style>
+      .stub-page {
+        min-height: 100vh;
+        padding: 42px 20px 56px;
+      }
+
+      .stub-page__inner {
+        width: min(980px, 100%);
+        margin: 0 auto;
+        padding: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(10, 14, 28, 0.9), rgba(4, 6, 11, 0.92));
+      }
+
+      .stub-page__eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .stub-page__title {
+        margin: 0;
+        font-size: clamp(2.2rem, 6vw, 4.2rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .stub-page__lead {
+        max-width: 70ch;
+        margin: 18px 0 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .stub-page__panel {
+        margin-top: 24px;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .stub-page__panel a {
+        color: var(--fg);
+        text-decoration: none;
+      }
+    </style>
+      <link rel="icon" href="../../img/favicon.webp" type="image/webp" data-site-icon data-root="../../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body class="page-content">
+    <main class="stub-page">
+      <section class="stub-page__inner">
+        <p class="stub-page__eyebrow">Staff Only</p>
+        <h1 class="stub-page__title">Hyperion Launch Rules</h1>
+        <p class="stub-page__lead">
+          This page is reserved for the Hyperion launch rules package. The hub
+          link is live, but the content has not been filled in yet.
+        </p>
+        <div class="stub-page__panel">
+          <p>Placeholder only. Add the Hyperion launch rules here when ready.</p>
+          <a href="../index.html">Back to Staff Hub</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+

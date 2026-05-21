@@ -1,0 +1,238 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050717" />
+    <link rel="icon" href="../img/favicon.webp" type="image/webp" data-site-icon data-root="../" />
+    <title>Privacy Policy | Saturn Aerospace</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --site-bg: #050717;
+        --site-bg-soft: #090c22;
+        --site-line: rgba(184, 198, 255, 0.1);
+        --site-text: #f7f8ff;
+        --site-text-soft: rgba(247, 248, 255, 0.76);
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: var(--site-bg);
+        color: var(--site-text);
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at top, rgba(58, 82, 160, 0.16), transparent 40%),
+          linear-gradient(180deg, var(--site-bg-soft), var(--site-bg));
+      }
+
+      .page {
+        width: min(100% - 32px, 980px);
+        margin: 0 auto;
+        padding: 56px 0 72px;
+      }
+
+      .page__home,
+      .page__back {
+        color: rgba(247, 248, 255, 0.82);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+
+      .page__home:hover,
+      .page__home:focus-visible,
+      .page__back:hover,
+      .page__back:focus-visible {
+        color: #fff;
+        outline: none;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      .page__back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .page__back::before {
+        content: '<';
+        font-size: 0.9rem;
+        line-height: 1;
+      }
+
+      .page__home {
+        display: inline-block;
+        margin-top: 24px;
+      }
+
+      .page__title {
+        margin: 18px 0 12px;
+        font-size: clamp(2.4rem, 4vw, 4.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+      }
+
+      .page__intro {
+        margin: 0 0 30px;
+        max-width: 56rem;
+        color: var(--site-text-soft);
+        font-size: 1.02rem;
+        line-height: 1.7;
+      }
+
+      .policy {
+        border-top: 1px solid var(--site-line);
+        padding-top: 24px;
+      }
+
+      .policy__section {
+        margin: 0 0 28px;
+      }
+
+      .policy__section h2 {
+        margin: 0 0 10px;
+        font-size: 1.02rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .policy__section p,
+      .policy__section li {
+        margin: 0;
+        color: var(--site-text-soft);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .policy__section ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .policy__section li + li {
+        margin-top: 8px;
+      }
+
+      .policy__note {
+        margin-top: 34px;
+        padding-top: 18px;
+        border-top: 1px solid var(--site-line);
+        color: rgba(247, 248, 255, 0.62);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+    </style>
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body>
+    <main class="page">
+      <a class="page__back" href="../index.html">Back</a>
+      <a class="page__home" href="../index.html">Saturn Aerospace</a>
+      <h1 class="page__title">Privacy Policy</h1>
+      <p class="page__intro">
+        This page explains what information we may collect on this site, how we may use it, and
+        what happens when you contact us or submit details through forms.
+      </p>
+
+      <section class="policy" aria-label="Privacy policy details">
+        <div class="policy__section">
+          <h2>Information We May Collect</h2>
+          <p>
+            We may collect the information you choose to give us, including your name, email
+            address, message contents, and any other details you submit through the site. We may
+            also collect basic technical information such as browser type, device information,
+            page views, referring pages, and approximate usage data.
+          </p>
+        </div>
+
+        <div class="policy__section">
+          <h2>How We Use It</h2>
+          <p>
+            We use this information to respond to enquiries, manage site forms, improve the
+            website, understand how people use the site, and support communications about launch
+            services, careers, and related updates.
+          </p>
+        </div>
+
+        <div class="policy__section">
+          <h2>Analytics And Cookies</h2>
+          <p>
+            We may use analytics tools and similar technologies to understand traffic, measure
+            performance, and improve the site. Those tools may collect usage data, device details,
+            and interaction patterns.
+          </p>
+        </div>
+
+        <div class="policy__section">
+          <h2>Sharing</h2>
+          <p>
+            We do not sell your personal information. We may share information with service
+            providers that help us run the site, process messages, or analyze traffic, and we may
+            disclose information if required by law.
+          </p>
+        </div>
+
+        <div class="policy__section">
+          <h2>Retention</h2>
+          <p>
+            We keep information for as long as it is needed for the purpose it was collected, for
+            operational needs, or to meet legal and security requirements.
+          </p>
+        </div>
+
+        <div class="policy__section">
+          <h2>Your Choices</h2>
+          <p>
+            You can contact us to ask about the information we hold about you, request a change,
+            or ask us to stop using your details where applicable.
+          </p>
+        </div>
+
+        <div class="policy__section">
+          <h2>Contact</h2>
+          <p>
+            If you have questions about this policy, contact Saturn Aerospace at
+            <a href="mailto:saturnaerospaceksp@gmail.com">saturnaerospaceksp@gmail.com</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+

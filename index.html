@@ -1,0 +1,965 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05070d" />
+    <title>Saturn Aerospace</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --site-bg: #050717;
+        --site-bg-strong: #04040f;
+        --site-bg-soft: #090c22;
+        --site-line: rgba(184, 198, 255, 0.1);
+        --site-text: #f7f8ff;
+        --site-text-soft: rgba(247, 248, 255, 0.76);
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: var(--site-bg);
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .splash {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .splash video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        border: 0;
+      }
+
+      .masthead {
+        position: absolute;
+        top: 8px;
+        left: 32px;
+        right: 32px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        pointer-events: none;
+      }
+
+      .masthead__toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin-left: auto;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(5, 7, 13, 0.28);
+        backdrop-filter: blur(12px);
+        color: #f7f8ff;
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      .masthead__toggle-lines {
+        position: relative;
+        width: 16px;
+        height: 12px;
+      }
+
+      .masthead__toggle-lines::before,
+      .masthead__toggle-lines::after,
+      .masthead__toggle-lines span {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 16px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+        transition:
+          transform 180ms ease,
+          opacity 180ms ease,
+          top 180ms ease;
+      }
+
+      .masthead__toggle-lines::before {
+        top: 0;
+      }
+
+      .masthead__toggle-lines span {
+        top: 5px;
+      }
+
+      .masthead__toggle-lines::after {
+        top: 10px;
+      }
+
+      .masthead.is-nav-open .masthead__toggle-lines::before {
+        top: 5px;
+        transform: rotate(45deg);
+      }
+
+      .masthead.is-nav-open .masthead__toggle-lines span {
+        opacity: 0;
+      }
+
+      .masthead.is-nav-open .masthead__toggle-lines::after {
+        top: 5px;
+        transform: rotate(-45deg);
+      }
+
+      .masthead__home {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 44px;
+        width: 12.5ch;
+        pointer-events: auto;
+        color: #f7f8ff;
+        text-decoration: none;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: clamp(0.96rem, 1.45vw, 1.18rem);
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .masthead__home.is-changing {
+        opacity: 0.72;
+        transform: translateY(-1px);
+      }
+
+      .nav {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        pointer-events: auto;
+      }
+
+      .nav__group {
+        position: relative;
+        display: inline-flex;
+        align-items: flex-start;
+      }
+
+      .nav__button {
+        position: relative;
+        padding: 8px 0 9px;
+        border: 0;
+        background: transparent;
+        color: #f7f8ff;
+        font: inherit;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .nav__button::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 2px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(247, 248, 255, 0), rgba(247, 248, 255, 0.9), rgba(247, 248, 255, 0));
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 170ms ease;
+      }
+
+      .nav__group:hover .nav__button::after,
+      .nav__group.is-open .nav__button::after,
+      .nav__button:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .nav__menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        min-width: 220px;
+        padding: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        background: rgba(5, 7, 13, 0.7);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition:
+          opacity 180ms ease,
+          transform 180ms ease,
+          visibility 0s linear 180ms;
+      }
+
+      .nav__group.is-open .nav__menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition:
+          opacity 180ms ease,
+          transform 180ms ease,
+          visibility 0s linear 0s;
+      }
+
+      .nav__link {
+        display: block;
+        padding: 10px 14px;
+        color: rgba(247, 248, 255, 0.96);
+        text-decoration: none;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 0.84rem;
+        line-height: 1.3;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+
+      .nav__link:hover,
+      .nav__link:focus-visible {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
+      .copy {
+        position: absolute;
+        left: 32px;
+        bottom: 56px;
+        z-index: 1;
+        width: min(88vw, 1080px);
+        color: #f7f8ff;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      .copy__eyebrow {
+        margin: 0 0 14px;
+        color: rgba(247, 248, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .copy__title {
+        margin: 0;
+        max-width: none;
+        font-size: clamp(3rem, 4.9vw, 5.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.055em;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .copy__text {
+        margin: 16px 0 0;
+        max-width: 52rem;
+        color: rgba(247, 248, 255, 0.76);
+        font-size: clamp(1rem, 1.1vw, 1.12rem);
+        line-height: 1.6;
+      }
+
+      .stats-bar {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        align-items: center;
+        padding: 34px 32px 32px;
+        border-top: 1px solid var(--site-line);
+        border-bottom: 1px solid var(--site-line);
+        background: linear-gradient(180deg, var(--site-bg-strong), var(--site-bg-soft));
+        color: var(--site-text);
+        font-family: 'Inter', system-ui, sans-serif;
+        text-align: center;
+      }
+
+      .stats-bar__item {
+        display: grid;
+        justify-items: center;
+        align-content: center;
+        gap: 10px;
+        min-height: 128px;
+      }
+
+      .stats-bar__value {
+        margin: 0;
+        font-size: clamp(3rem, 5vw, 5rem);
+        line-height: 0.9;
+        font-weight: 800;
+        letter-spacing: -0.07em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stats-bar__label {
+        margin: 0;
+        color: var(--site-text-soft);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+
+      .stats-bar__item--highlight {
+        border-right: 1px solid var(--site-line);
+      }
+
+      .below-splash {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background: var(--site-bg);
+        display: grid;
+        place-items: center;
+      }
+
+      .below-splash__media {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        border: 0;
+      }
+
+      .below-splash__veil {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(4, 6, 18, 0.14) 0%, rgba(5, 7, 23, 0.34) 52%, rgba(5, 7, 23, 0.72) 100%),
+          radial-gradient(circle at center, rgba(12, 14, 40, 0.1) 0%, rgba(5, 7, 23, 0) 58%);
+        pointer-events: none;
+      }
+
+      .below-splash__copy {
+        position: relative;
+        z-index: 1;
+        width: min(88vw, 1080px);
+        margin: 0 auto;
+        padding: 10vh 0;
+        color: #f7f8ff;
+        font-family: 'Inter', system-ui, sans-serif;
+        text-align: center;
+      }
+
+      .below-splash__eyebrow {
+        margin: 0 0 14px;
+        color: rgba(247, 248, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .below-splash__title {
+        margin: 0;
+        max-width: none;
+        font-size: clamp(2.8rem, 4.4vw, 5.2rem);
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+        font-weight: 800;
+      }
+
+      .below-splash__text {
+        margin: 14px auto 0;
+        max-width: 52rem;
+        color: var(--site-text-soft);
+        font-size: clamp(1rem, 1.1vw, 1.12rem);
+        line-height: 1.6;
+      }
+
+      .below-splash__cta-text {
+        margin: 20px 0 0;
+        color: rgba(247, 248, 255, 0.82);
+        font-size: 0.96rem;
+        line-height: 1.5;
+      }
+
+      .below-splash__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        margin-top: 14px;
+        padding: 0 20px;
+        border: 1px solid rgba(184, 198, 255, 0.18);
+        border-radius: 14px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+          rgba(6, 8, 24, 0.8);
+        color: var(--site-text);
+        text-decoration: none;
+        font: inherit;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition:
+          transform 220ms ease,
+          box-shadow 220ms ease,
+          border-color 220ms ease;
+      }
+
+      .below-splash__cta:hover,
+      .below-splash__cta:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(194, 215, 255, 0.28);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+        outline: none;
+      }
+
+      .closing-band {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        padding: 0;
+        background: var(--site-bg);
+        color: #f7f8ff;
+        font-family: 'Inter', system-ui, sans-serif;
+        display: flex;
+        align-items: center;
+      }
+
+      .closing-band__media {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        border: 0;
+      }
+
+      .closing-band__veil {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(5, 7, 23, 0.12) 0%, rgba(5, 7, 23, 0.5) 54%, rgba(4, 6, 18, 0.84) 100%),
+          radial-gradient(circle at center, rgba(12, 14, 40, 0.12) 0%, rgba(5, 7, 23, 0) 60%);
+        pointer-events: none;
+      }
+
+      .closing-band__inner {
+        position: relative;
+        z-index: 1;
+        width: min(88vw, 1180px);
+        margin: 0 auto;
+        padding: 0 clamp(32px, 5vw, 72px);
+        height: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+        gap: clamp(32px, 6vw, 96px);
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+      }
+
+      .closing-band__eyebrow {
+        margin: 0 0 14px;
+        color: rgba(247, 248, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .closing-band__title {
+        margin: 0;
+        font-size: clamp(2.4rem, 4vw, 4.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+      }
+
+      .closing-band__text {
+        margin: 16px 0 0;
+        max-width: 48rem;
+        color: var(--site-text-soft);
+        font-size: clamp(1rem, 1.08vw, 1.12rem);
+        line-height: 1.7;
+      }
+
+      .closing-band__actions {
+        display: grid;
+        justify-items: start;
+        align-content: center;
+        gap: 12px;
+        justify-self: end;
+        align-self: center;
+        width: min(100%, 320px);
+      }
+
+      .closing-band__actions-label {
+        margin: 0;
+        color: rgba(247, 248, 255, 0.84);
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: 500;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      .closing-band__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 20px;
+        border: 1px solid rgba(184, 198, 255, 0.18);
+        border-radius: 14px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+          rgba(6, 8, 24, 0.8);
+        color: var(--site-text);
+        text-decoration: none;
+        font: inherit;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition:
+          transform 220ms ease,
+          box-shadow 220ms ease,
+          border-color 220ms ease;
+      }
+
+      .closing-band__button:hover,
+      .closing-band__button:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(194, 215, 255, 0.28);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+        outline: none;
+      }
+
+      .site-footer {
+        padding: 18px 20px 22px;
+        background: linear-gradient(180deg, rgba(4, 6, 18, 1), rgba(3, 5, 15, 1));
+        color: #f7f8ff;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      .site-footer__inner {
+        width: min(84vw, 860px);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+      }
+
+      .site-footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 18px;
+        margin: 0;
+      }
+
+      .site-footer__links a {
+        color: rgba(247, 248, 255, 0.84);
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: 4px;
+      }
+
+      .site-footer__links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: rgba(247, 248, 255, 0.82);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 240ms ease;
+      }
+
+      .site-footer__links a:hover,
+      .site-footer__links a:focus-visible {
+        color: #fff;
+        outline: none;
+      }
+
+      .site-footer__links a:hover::after,
+      .site-footer__links a:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .site-footer__copyright {
+        margin: 2px 0 0;
+        color: rgba(247, 248, 255, 0.6);
+        font-size: 0.74rem;
+        line-height: 1.25;
+        letter-spacing: 0.03em;
+      }
+
+      @media (max-width: 980px) {
+        .copy {
+          width: min(100% - 48px, 760px);
+        }
+
+        .copy__title {
+          white-space: normal;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .masthead {
+          left: 24px;
+          right: 24px;
+          flex-direction: row;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .masthead__toggle {
+          display: inline-flex;
+        }
+
+        .nav {
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 0;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+          padding: 14px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 18px;
+          background: rgba(5, 7, 13, 0.78);
+          backdrop-filter: blur(16px);
+          box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+        }
+
+        .masthead.is-nav-open .nav {
+          display: flex;
+        }
+
+        .nav__group {
+          display: grid;
+          width: 100%;
+        }
+
+        .nav__button {
+          width: 100%;
+          padding: 10px 0 8px;
+          text-align: left;
+        }
+
+        .nav__menu {
+          position: static;
+          min-width: 0;
+          padding: 2px 0 4px 12px;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+          opacity: 0;
+          visibility: hidden;
+          max-height: 0;
+          overflow: hidden;
+          transform: none;
+          pointer-events: none;
+          transition:
+            max-height 180ms ease,
+            opacity 180ms ease,
+            visibility 0s linear 180ms;
+        }
+
+        .nav__group.is-open .nav__menu {
+          opacity: 1;
+          visibility: visible;
+          max-height: 420px;
+          pointer-events: auto;
+          transition:
+            max-height 220ms ease,
+            opacity 180ms ease,
+            visibility 0s linear 0s;
+        }
+
+        .nav__link {
+          padding: 8px 0;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .stats-bar {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          padding: 28px 20px;
+        }
+
+        .stats-bar__item--highlight {
+          border-right: 0;
+          padding-right: 0;
+          padding-bottom: 18px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .masthead {
+          left: 20px;
+          right: 20px;
+        }
+
+        .masthead__home {
+          min-height: 40px;
+          font-size: 0.9rem;
+          letter-spacing: 0.18em;
+        }
+      }
+    </style>
+      <link rel="icon" href="./img/favicon.webp" type="image/webp" data-site-icon data-root="./" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+    (() => {
+      if (document.getElementById('site-shell-loader')) return;
+      const script = document.createElement('script');
+      script.id = 'site-shell-loader';
+      const marker = '/saturnaero.space-/';
+      const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+      const markerIndex = path.indexOf(marker);
+      const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const root = depth > 0 ? '../'.repeat(depth) : './';
+      script.src = root + 'shared/site-shell.js';
+      document.head.appendChild(script);
+    })();
+  </script>
+  </head>
+  <body>
+    <main class="splash">
+      <header class="masthead" aria-label="Primary navigation">
+        <a class="masthead__home" href="./index.html" aria-label="Saturn Aerospace home" data-brand-cycle>#SATURN</a>
+        <button class="masthead__toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+          <span class="masthead__toggle-lines" aria-hidden="true"><span></span></span>
+        </button>
+        <nav class="nav" aria-label="Site sections">
+          <div class="nav__group" data-nav-group>
+            <button class="nav__button" type="button" aria-expanded="false">Vehicles</button>
+            <div class="nav__menu" role="menu" aria-label="Vehicles">
+              <span class="nav__link" aria-disabled="true">Coming Soon!</span>
+            </div>
+          </div>
+          <div class="nav__group" data-nav-group>
+            <button class="nav__button" type="button" aria-expanded="false">Technologies</button>
+            <div class="nav__menu" role="menu" aria-label="Technologies">
+              <a class="nav__link" href="./scom/index.html">SCOM</a>
+              <a class="nav__link" href="./mnswt/index.html">MNSWT</a>
+            </div>
+          </div>
+          <div class="nav__group" data-nav-group>
+            <button class="nav__button" type="button" aria-expanded="false">Company</button>
+            <div class="nav__menu" role="menu" aria-label="Company">
+              <a class="nav__link" href="./team/index.html">Team</a>
+              <a class="nav__link" href="./careers/index.html">Careers</a>
+              <a class="nav__link" href="./our-goal/index.html">Our Goal</a>
+            </div>
+          </div>
+          <div class="nav__group" data-nav-group>
+            <button class="nav__button" type="button" aria-expanded="false">Launches</button>
+            <div class="nav__menu" role="menu" aria-label="Launches">
+              <a class="nav__link" href="./upcoming-launches/index.html">Upcoming Launches</a>
+              <a class="nav__link" href="./launch-with-us/index.html">Launch With Us</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <section class="copy" aria-label="Homepage introduction">
+        <p class="copy__eyebrow">What we do</p>
+        <h1 class="copy__title">Reliable Access to Space</h1>
+        <p class="copy__text">
+          Saturn Aerospace builds the vehicles, launch systems, and mission operations needed
+          for repeatable, high-quality access to orbit and beyond. From development to pad
+          operations, every system is shaped to support the next step outward.
+        </p>
+      </section>
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="./img/spaceport_tour.mp4" type="video/mp4" />
+      </video>
+      </main>
+      <section class="stats-bar" aria-label="Launch statistics">
+        <div class="stats-bar__item stats-bar__item--highlight">
+          <p class="stats-bar__value" data-stat-value data-stat-key="completed" data-target="13">0</p>
+          <p class="stats-bar__label">Completed Launches</p>
+        </div>
+        <div class="stats-bar__item">
+          <p class="stats-bar__value" data-stat-value data-stat-key="payloads" data-target="8">0</p>
+          <p class="stats-bar__label">Payloads Launched</p>
+        </div>
+        <div class="stats-bar__item">
+          <p class="stats-bar__value" data-stat-value data-stat-key="reflown" data-target="10">0</p>
+          <p class="stats-bar__label">Flights Reflown</p>
+        </div>
+      </section>
+      <section class="below-splash">
+        <video class="below-splash__media" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="./img/moonspin.mp4" type="video/mp4" />
+        </video>
+        <div class="below-splash__veil" aria-hidden="true"></div>
+        <div class="below-splash__copy">
+          <p class="below-splash__eyebrow">OUR GOAL</p>
+          <h2 class="below-splash__title">Cities On The Moon</h2>
+          <p class="below-splash__text">
+            Our goal is to build a launch organisation capable of repeatable, high-quality
+            missions. From vehicle development to pad operations, every system is designed to
+            support the next step outward.
+          </p>
+          <p class="below-splash__cta-text">Interested in helping us get there?</p>
+          <a class="below-splash__cta" href="./careers/index.html">Careers</a>
+        </div>
+      </section>
+      <section class="closing-band" aria-label="Homepage closing statement">
+        <video class="closing-band__media" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="./img/splash_intro.mp4" type="video/mp4" />
+        </video>
+        <div class="closing-band__veil" aria-hidden="true"></div>
+        <div class="closing-band__inner">
+          <div class="closing-band__copy">
+            <p class="closing-band__eyebrow">Our promise</p>
+            <h2 class="closing-band__title">The Worlds Best Launch Provider</h2>
+            <p class="closing-band__text">
+              We launch satellites for customers around the world and keep the process as safe and
+              reliable as we can. That means careful vehicle preparation, disciplined operations at
+              the pad, and launch services built to deliver payloads on schedule with a standard
+              people can trust.
+            </p>
+          </div>
+          <div class="closing-band__actions">
+            <p class="closing-band__actions-label">Do you have a payload?</p>
+            <a class="closing-band__button" href="./launch-with-us/index.html">Launch With Us</a>
+          </div>
+        </div>
+      </section>
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <nav class="site-footer__links" aria-label="Important pages">
+            <a href="./careers/index.html">Careers</a>
+            <a href="./launch-with-us/index.html">Launch With Us</a>
+            <a href="./our-goal/index.html">Our Goal</a>
+            <a href="./upcoming-launches/index.html">Upcoming Launches</a>
+            <a href="./privacy-policy/index.html">Privacy Policy</a>
+          </nav>
+          <p class="site-footer__copyright">Copyright Saturn Aerospace 2026 - All Rights Reserved</p>
+        </div>
+      </footer>
+    <script>
+      (() => {
+        const statValues = Array.from(document.querySelectorAll('[data-stat-value]'));
+        if (statValues.length) {
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          const animateValue = (node, target) => {
+            if (prefersReducedMotion) {
+              node.textContent = String(target);
+              return;
+            }
+
+            const duration = 1600;
+            const start = performance.now();
+
+            const tick = (now) => {
+              const elapsed = Math.min(1, (now - start) / duration);
+              const eased = 1 - Math.pow(1 - elapsed, 3);
+              const value = Math.floor(target * eased);
+              node.textContent = String(value);
+
+              if (elapsed < 1) {
+                requestAnimationFrame(tick);
+              } else {
+                node.textContent = String(target);
+              }
+            };
+
+            requestAnimationFrame(tick);
+          };
+
+          const renderStats = (stats) => {
+            statValues.forEach((node) => {
+              const key = node.dataset.statKey;
+              if (key && stats?.[key] != null) {
+                node.dataset.target = String(stats[key]);
+                node.textContent = '0';
+              }
+            });
+
+            const observer = new IntersectionObserver(
+              (entries, obs) => {
+                entries.forEach((entry) => {
+                  if (!entry.isIntersecting) return;
+                  statValues.forEach((node) => {
+                    animateValue(node, Number(node.dataset.target || '0'));
+                  });
+                  obs.disconnect();
+                });
+              },
+              { threshold: 0.35 }
+            );
+
+            observer.observe(document.querySelector('.stats-bar'));
+          };
+
+          const boot = () => {
+            const stateApi = window.SaturnSiteState;
+            if (!stateApi?.ready) {
+              window.setTimeout(boot, 50);
+              return;
+            }
+
+            stateApi.ready.then((state) => {
+              renderStats(state.stats);
+            });
+
+            window.addEventListener('storage', (event) => {
+              if (event.key !== 'saturn-home-stats') return;
+              stateApi.ready.then((state) => {
+                renderStats(state.stats);
+              });
+            });
+          };
+
+          boot();
+        }
+
+      })();
+    </script>
+  </body>
+</html>
+

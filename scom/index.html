@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05070d" />
+    <title>SCOM | Saturn Aerospace</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+      :root {
+        --bg: #05070d;
+        --bg-soft: #0b1020;
+        --panel: rgba(9, 13, 24, 0.76);
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #f6f8ff;
+        --muted: rgba(246, 248, 255, 0.74);
+        --accent: #78d8ff;
+        --accent-2: #8ef0b8;
+        --accent-3: #f9d56e;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      body {
+        position: relative;
+      }
+
+      .page {
+        display: grid;
+        gap: 0;
+      }
+
+      .section {
+        position: relative;
+        min-height: 100svh;
+        isolation: isolate;
+      }
+
+      .section--hero {
+        display: grid;
+        align-items: center;
+        background:
+          linear-gradient(180deg, rgba(5, 7, 13, 0.18) 0%, rgba(5, 7, 13, 0.34) 42%, rgba(5, 7, 13, 0.88) 100%),
+          url('../img/cabin.webp') center center / cover no-repeat;
+      }
+
+      .section--spec {
+        display: grid;
+        align-items: start;
+        background:
+          linear-gradient(180deg, rgba(5, 7, 13, 0.94) 0%, rgba(10, 14, 28, 0.9) 100%),
+          url('../img/scom.webp') center top / cover no-repeat;
+      }
+
+      .section__inner {
+        width: min(100% - 32px, 1180px);
+        margin: 0 auto;
+        padding: 74px 0 54px;
+      }
+
+      .hero__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+        gap: 18px;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .hero__copy {
+        max-width: 66rem;
+        padding: 0 4px 0 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: rgba(246, 248, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 0.26em;
+        font-size: 0.72rem;
+        font-weight: 800;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .hero__title {
+        max-width: 12ch;
+        font-size: clamp(2.8rem, 6vw, 6.4rem);
+        line-height: 0.92;
+        letter-spacing: -0.07em;
+        font-weight: 900;
+        text-wrap: balance;
+      }
+
+      .hero__lede {
+        margin-top: 18px;
+        max-width: 54rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.45vw, 1.2rem);
+        line-height: 1.68;
+      }
+
+      .hero__lede strong {
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      .hero__stats {
+        display: grid;
+        gap: 8px;
+        align-self: start;
+        padding-top: 10px;
+        max-width: 340px;
+      }
+
+      .stat {
+        display: grid;
+        gap: 4px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        backdrop-filter: none;
+      }
+
+      .stat__label {
+        color: rgba(246, 248, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+
+      .stat__value {
+        font-size: clamp(1.08rem, 1.65vw, 1.42rem);
+        line-height: 1.15;
+        font-weight: 800;
+      }
+
+      .stat__note {
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .section__head {
+        display: grid;
+        gap: 14px;
+        max-width: 58rem;
+      }
+
+      .section__title {
+        font-size: clamp(2.25rem, 4.2vw, 4.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        font-weight: 900;
+        text-wrap: balance;
+      }
+
+      .section__lead {
+        max-width: 48rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.25vw, 1.12rem);
+        line-height: 1.68;
+      }
+
+      .spec-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 26px;
+        align-items: start;
+      }
+
+      .panel {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+      }
+
+      .panel--copy {
+        padding: 0;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+
+      .badge::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(120, 216, 255, 0.12);
+      }
+
+      .comparison {
+        overflow: visible;
+      }
+
+      .comparison__top {
+        padding: 0 0 12px;
+      }
+
+      .comparison__title {
+        font-size: 1.3rem;
+        font-weight: 850;
+        letter-spacing: -0.03em;
+      }
+
+      .comparison__subtitle {
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+        table-layout: fixed;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      th,
+      td {
+        padding: 15px 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        vertical-align: top;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(246, 248, 255, 0.9);
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-weight: 800;
+      }
+
+      td {
+        color: rgba(246, 248, 255, 0.86);
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+
+      tr:nth-child(odd) td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .version-tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .version-tag--old {
+        color: #ffd9a8;
+      }
+
+      .version-tag--new {
+        color: #9cf5c6;
+      }
+
+      .launch-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .launch-strip__item {
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .launch-strip__kicker {
+        color: rgba(246, 248, 255, 0.68);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.66rem;
+        font-weight: 800;
+      }
+
+      .launch-strip__value {
+        margin-top: 8px;
+        font-size: 1.1rem;
+        line-height: 1.35;
+        font-weight: 800;
+      }
+
+      .launch-strip__note {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .spec-image {
+        position: relative;
+        min-height: 420px;
+        border: 0;
+        border-radius: 0;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(5, 7, 13, 0.22), rgba(5, 7, 13, 0.86)),
+          url('../img/scom.webp') center center / cover no-repeat;
+        box-shadow: none;
+      }
+
+      .spec-image__overlay {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 18px 0 10px;
+        border-radius: 0;
+        background: linear-gradient(180deg, rgba(5, 7, 13, 0), rgba(5, 7, 13, 0.9));
+        backdrop-filter: none;
+        border: 0;
+      }
+
+      .spec-image__eyebrow {
+        color: rgba(246, 248, 255, 0.68);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+
+      .spec-image__caption {
+        margin-top: 8px;
+        font-size: 1.08rem;
+        line-height: 1.5;
+        font-weight: 700;
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        color: rgba(246, 248, 255, 0.62);
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 980px) {
+        .hero__inner,
+        .spec-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero__title {
+          max-width: 15ch;
+        }
+
+        .hero__inner {
+          padding-top: 0;
+        }
+
+        .launch-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .section__inner {
+          padding-top: 72px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .section__inner {
+          width: min(100% - 22px, 1180px);
+          padding-bottom: 34px;
+        }
+
+        .hero__copy,
+        .panel--copy {
+          padding: 0;
+          border-radius: 0;
+        }
+
+        .hero__inner {
+          padding-top: 0;
+        }
+
+        .hero__title {
+          max-width: 100%;
+          font-size: clamp(2.35rem, 14vw, 3.6rem);
+        }
+
+        .section__title {
+          font-size: clamp(2rem, 10vw, 3rem);
+        }
+
+        th,
+        td {
+          padding-inline: 12px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+    <link rel="icon" href="../img/favicon.webp" type="image/webp" data-site-icon data-root="../" />
+    <script>
+      (() => {
+        const icon = document.querySelector('link[data-site-icon]');
+        if (!icon) return;
+        const isHalloween = new Date().getMonth() === 9 && new Date().getDate() === 31;
+        const file = isHalloween ? 'Halloween.webp' : 'favicon.webp';
+        icon.href = new URL(icon.dataset.root + 'img/' + file, document.baseURI).href;
+      })();
+    </script>
+    <script>
+      (() => {
+        if (document.getElementById('site-shell-loader')) return;
+        const script = document.createElement('script');
+        script.id = 'site-shell-loader';
+        const marker = '/saturnaero.space-/';
+        const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
+        const markerIndex = path.indexOf(marker);
+        const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
+        const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+        const root = depth > 0 ? '../'.repeat(depth) : './';
+        script.src = root + 'shared/site-shell.js';
+        document.head.appendChild(script);
+      })();
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="section section--hero">
+        <div class="section__inner hero__inner">
+          <article class="hero__copy">
+            <p class="eyebrow">SCOM Broadband Systems</p>
+            <h1 class="hero__title">Fast internet, wherever the mission goes.</h1>
+            <p class="hero__lede">
+              SCOM keeps crews connected while they are on the move, out in the field, or far from normal
+              coverage. It is meant for places where the link usually drops out, and for missions where having
+              a steady connection just makes the work easier.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Works in motion</span>
+              <span class="badge">Useful in dead zones</span>
+              <span class="badge">Space-capable</span>
+            </div>
+          </article>
+
+          <aside class="hero__stats">
+            <div class="stat">
+              <div class="stat__label">Mission density</div>
+              <div class="stat__value">15-20 units per mission</div>
+              <div class="stat__note">We usually send them up in batches, so the network is there when it is needed.</div>
+            </div>
+            <div class="stat">
+              <div class="stat__label">Throughput</div>
+              <div class="stat__value">2 gigabyte Wi-Fi</div>
+              <div class="stat__note">Enough headroom to keep the link usable when conditions change.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section--spec">
+        <div class="section__inner">
+          <div class="section__head">
+            <p class="eyebrow">Version 6</p>
+            <h2 class="section__title">SCOM v6 is the current build.</h2>
+            <p class="section__lead">
+              This is the sixth revision of the system. It is the one we settled on after the earlier versions
+              taught us what actually mattered: better range, less fuss, and a link that stays useful when the
+              mission gets busy. Compared with version 5, the new platform has about 15x the headroom we wanted
+              in the first place.
+            </p>
+          </div>
+
+          <div class="spec-grid">
+            <article class="panel panel--copy comparison">
+              <div class="comparison__top">
+                <div class="comparison__title">SCOM v6 vs v5</div>
+                <p class="comparison__subtitle">
+                  The newer unit is easier to deploy and less sensitive to movement. It is a more practical piece
+                  of hardware, not a louder one.
+                </p>
+              </div>
+
+              <table aria-label="SCOM version comparison">
+                <thead>
+                  <tr>
+                    <th>Area</th>
+                    <th>SCOM v5</th>
+                    <th>SCOM v6</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Core performance</td>
+                    <td>Good performance and fairly stable connection.</td>
+                    <td>A major jump in speed, stability, and response under load.</td>
+                  </tr>
+                  <tr>
+                    <td>Network capacity</td>
+                    <td>Best for light to moderate traffic and short mission windows.</td>
+                    <td>Supports 2 gigabyte Wi-Fi when the link needs to stay open.</td>
+                  </tr>
+                  <tr>
+                    <td>Coverage behavior</td>
+                    <td>Good in permissive environments, with some drop-off during movement.</td>
+                    <td>Designed for motion, harsh terrain, and conditions where coverage used to disappear.</td>
+                  </tr>
+                  <tr>
+                    <td>Mission use</td>
+                    <td>Handfuls of units, used conservatively.</td>
+                    <td>Scaled for 15-20 launches per mission, keeping the whole stack connected.</td>
+                  </tr>
+                  <tr>
+                    <td>Value</td>
+                    <td>A good design, but less powerful overall than v6.</td>
+                    <td>Production-ready platform and the best SCOM we have shipped so far.</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="launch-strip">
+                <div class="launch-strip__item">
+                  <div class="launch-strip__kicker">Deployment rhythm</div>
+                  <div class="launch-strip__value">15-20 launches</div>
+                  <div class="launch-strip__note">Enough units to cover a mission without making the system fragile.</div>
+                </div>
+                <div class="launch-strip__item">
+                  <div class="launch-strip__kicker">Upgrade delta</div>
+                  <div class="launch-strip__value">15x better</div>
+                  <div class="launch-strip__note">A big jump over v5, especially in the situations that used to be awkward.</div>
+                </div>
+                <div class="launch-strip__item">
+                  <div class="launch-strip__kicker">Operating model</div>
+                  <div class="launch-strip__value">Always-on</div>
+                  <div class="launch-strip__note">Built to stay useful on the ground, in transit, and off-world.</div>
+                </div>
+              </div>
+            </article>
+
+            <aside class="spec-image" aria-label="SCOM version 6 craft image">
+              <div class="spec-image__overlay">
+                <div class="spec-image__eyebrow">SCOM hardware</div>
+                <div class="spec-image__caption">This image shows the sixth revision, the one we are actually shipping now.</div>
+              </div>
+            </aside>
+          </div>
+
+          <p class="footer-note">
+            SCOM v6 is the version we are using now: broad coverage, quick deployment, and enough bandwidth to
+            keep crews working without spending time thinking about the network.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
