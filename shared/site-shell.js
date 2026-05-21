@@ -1,4 +1,5 @@
 (() => {
+  const boot = () => {
   const marker = '/saturnaero.space-/';
   const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
   const markerIndex = path.indexOf(marker);
@@ -589,5 +590,12 @@
         closeHeaderNav();
       }
     });
+  }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
   }
 })();

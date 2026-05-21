@@ -321,7 +321,7 @@
         font-weight: 700;
       }
 
-      .stats-bar__item--highlight {
+      .stats-bar__item:not(:last-child) {
         border-right: 1px solid var(--site-line);
       }
 
@@ -719,7 +719,7 @@
           padding: 28px 20px;
         }
 
-        .stats-bar__item--highlight {
+        .stats-bar__item:not(:last-child) {
           border-right: 0;
           padding-right: 0;
           padding-bottom: 18px;
