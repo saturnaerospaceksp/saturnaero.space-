@@ -4,7 +4,7 @@
   const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
   const markerIndex = path.indexOf(marker);
   const relative = markerIndex >= 0 ? path.slice(markerIndex + marker.length) : path.replace(/^\/+/, '');
-  const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+  const depth = markerIndex >= 0 ? Math.max(0, relative.split('/').filter(Boolean).length - 1) : (path.endsWith('/') ? relative.split('/').filter(Boolean).length : Math.max(0, relative.split('/').filter(Boolean).length - 1));
   const root = depth > 0 ? '../'.repeat(depth) : './';
   const launchStorageKey = 'saturn-launches';
 

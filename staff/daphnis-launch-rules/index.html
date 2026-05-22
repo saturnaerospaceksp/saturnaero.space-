@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -859,7 +859,7 @@
       const path = decodeURIComponent(window.location.pathname.replace(/\\/g, '/'));
       const markerIndex = path.indexOf(marker);
       const relative = markerIndex >= 0 ? path.substring(markerIndex + marker.length) : path.replace(/^\/+/, '');
-      const depth = Math.max(0, relative.split('/').filter(Boolean).length - 1);
+      const depth = markerIndex >= 0 ? Math.max(0, relative.split('/').filter(Boolean).length - 1) : (path.endsWith('/') ? relative.split('/').filter(Boolean).length : Math.max(0, relative.split('/').filter(Boolean).length - 1));
       const root = depth > 0 ? '../'.repeat(depth) : './';
       script.src = root + 'shared/site-shell.js';
       document.head.appendChild(script);
@@ -965,7 +965,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="1" placeholder="mi" data-rule-input />
                         <span class="staff-check__unit">mi</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="min" data-rule-threshold="20">
@@ -977,7 +977,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="1" placeholder="min" data-rule-input />
                         <span class="staff-check__unit">min</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="max" data-rule-threshold="22">
@@ -989,7 +989,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="1" placeholder="kt" data-rule-input />
                         <span class="staff-check__unit">kt</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="min" data-rule-threshold="0">
@@ -1001,7 +1001,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="50" placeholder="ft" data-rule-input />
                         <span class="staff-check__unit">ft</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="min" data-rule-threshold="5">
@@ -1013,7 +1013,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="0.5" placeholder="mi" data-rule-input />
                         <span class="staff-check__unit">mi</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                   </div>
@@ -1046,7 +1046,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="1" placeholder="count" data-rule-input />
                         <span class="staff-check__unit">count</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="max" data-rule-threshold="0.5">
@@ -1058,7 +1058,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="0.1" placeholder="deg" data-rule-input />
                         <span class="staff-check__unit">deg</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="max" data-rule-threshold="0">
@@ -1070,7 +1070,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="0.1" placeholder="%" data-rule-input />
                         <span class="staff-check__unit">%</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                   </div>
@@ -1098,7 +1098,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="1" placeholder="sec" data-rule-input />
                         <span class="staff-check__unit">sec</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="min" data-rule-threshold="20">
@@ -1110,7 +1110,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="1" placeholder="sec" data-rule-input />
                         <span class="staff-check__unit">sec</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                   </div>
@@ -1138,7 +1138,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="5" placeholder="m" data-rule-input />
                         <span class="staff-check__unit">m</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                     <div class="staff-check" data-rule-mode="max" data-rule-threshold="1">
@@ -1150,7 +1150,7 @@
                       <div class="staff-check__controls">
                         <input class="staff-check__input" type="number" min="0" step="0.1" placeholder="sec" data-rule-input />
                         <span class="staff-check__unit">sec</span>
-                        <span class="staff-check__state" aria-live="polite">â€”</span>
+                        <span class="staff-check__state" aria-live="polite">—</span>
                       </div>
                     </div>
                   </div>
@@ -1546,7 +1546,7 @@
         }
 
         if (countdownToggle) {
-          countdownToggle.textContent = countdownExpanded ? 'âˆ’' : '+';
+          countdownToggle.textContent = countdownExpanded ? '−' : '+';
           countdownToggle.setAttribute('aria-label', countdownExpanded ? 'Collapse countdown' : 'Expand countdown');
         }
       };
@@ -1638,6 +1638,7 @@
     </script>
   </body>
 </html>
+
 
 
 
